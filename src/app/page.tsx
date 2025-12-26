@@ -1687,7 +1687,7 @@ export default function Dashboard() {
             <Button
               variant="primary"
               tone="critical"
-              onClick={handleGenerate}
+              onClick={startBatchGeneration}
               loading={isGenerating}
               disabled={isGenerating || (customModels.length === 0 && selectedModel === 'no-model' && !presetModels?.some(m => m.id === selectedModel))}
             >
