@@ -5,12 +5,7 @@
   --foreground: #171717;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
+
 
 @media (prefers-color-scheme: dark) {
   :root {
@@ -19,8 +14,238 @@
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+@layer utilities {
+  .glass-panel {
+    @apply backdrop-blur-xl border transition-all duration-300;
+  }
+
+  .glass-panel-light {
+    @apply bg-white/70 border-white/20 shadow-lg shadow-slate-200/50;
+  }
+
+  .glass-panel-dark {
+    @apply bg-[#0d0d10]/60 border-white/5 shadow-2xl shadow-black/20;
+  }
+}
+
+/* Dark Mode Overrides for System */
+:root.dark body {
+  background: radial-gradient(circle at top center, #1a1a20 0%, #0a0a0c 100%);
+  color: #ededed;
+}
+
+:root.light body {
+  background: radial-gradient(circle at top center, #f8fafc 0%, #e2e8f0 100%);
+  color: #171717;
+}
+
+/* Polaris Dark Mode Overrides & Glassmorphism */
+:root.dark {
+  --p-color-bg-surface: rgba(13, 13, 16, 0.6) !important;
+  --p-color-bg-surface-secondary: rgba(255, 255, 255, 0.05) !important;
+  --p-color-text: #e2e8f0 !important;
+  --p-color-text-secondary: #94a3b8 !important;
+  --p-shadow-card: 0 4px 20px -2px rgba(0, 0, 0, 0.3) !important;
+}
+
+/* Apply Glass Effect to Polaris Cards globally */
+.Polaris-Card {
+  background: var(--p-color-bg-surface) !important;
+  backdrop-filter: blur(12px) !important;
+  -webkit-backdrop-filter: blur(12px) !important;
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+  box-shadow: var(--p-shadow-card) !important;
+  border-radius: 16px !important;
+}
+
+/* Enhance Polaris Text in Dark Mode */
+:root.dark .Polaris-Text--root {
+  color: #f1f5f9 !important;
+}
+
+:root.dark .Polaris-Text--toneSubdued {
+  color: #94a3b8 !important;
+}
+
+/* Input Fields Glass Style */
+.Polaris-TextField__Input {
+  background: rgba(255, 255, 255, 0.03) !important;
+  border-color: rgba(255, 255, 255, 0.1) !important;
+  color: inherit !important;
+}
+
+:root.light .Polaris-Card {
+  background: rgba(255, 255, 255, 0.7) !important;
+  border: 1px solid rgba(255, 255, 255, 0.4) !important;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.05) !important;
+}
+
+:root.light .Polaris-Page {
+  background: transparent !important;
+}
+
+/* Custom Components from page.tsx migrated to global with Glass/Theme support */
+@layer components {
+  .model-card {
+    width: 150px;
+    height: 250px;
+    flex: none;
+    border-radius: 1rem;
+    text-align: center;
+    cursor: pointer;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    transition: all 300ms;
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-width: 1px;
+  }
+
+  /* Light Mode Card */
+  :root.light .model-card {
+    background-color: rgba(255, 255, 255, 0.8);
+    border-color: #e2e8f0;
+    color: #475569;
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  }
+
+  :root.light .model-card:hover {
+    background-color: #ffffff;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  }
+
+  /* Dark Mode Card */
+  :root.dark .model-card {
+    background-color: rgba(30, 41, 59, 0.4);
+    border-color: rgba(255, 255, 255, 0.05);
+    color: #cbd5e1;
+  }
+
+  :root.dark .model-card:hover {
+    background-color: rgba(51, 65, 85, 0.5);
+    border-color: rgba(255, 255, 255, 0.1);
+  }
+
+  .model-card-selected {
+    box-shadow: 0 0 0 2px #10b981 !important;
+    /* ring-emerald-500 */
+  }
+
+  :root.light .model-card-selected {
+    background-color: rgba(236, 253, 245, 0.8) !important;
+    /* bg-emerald-50/80 */
+  }
+
+  :root.dark .model-card-selected {
+    background-color: rgba(6, 78, 59, 0.2) !important;
+    /* bg-emerald-900/20 */
+  }
+
+  .full-height-card .Polaris-Card__Section {
+    flex: 1;
+  }
+
+  .card-scroll-container {
+    display: flex;
+    gap: 0.75rem;
+    overflow-x: auto;
+    padding-top: 0.75rem;
+    padding-bottom: 0.75rem;
+    margin-top: 0.75rem;
+    scroll-behavior: smooth;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+
+  .card-scroll-container::-webkit-scrollbar {
+    display: none;
+  }
+
+  .scroll-btn {
+    width: 2rem;
+    height: 2rem;
+    border-radius: 9999px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    position: absolute;
+    z-index: 10;
+    transition: all 150ms;
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-width: 1px;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+
+  :root.light .scroll-btn {
+    background-color: rgba(255, 255, 255, 0.9);
+    border-color: #e2e8f0;
+    color: #475569;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  }
+
+  :root.light .scroll-btn:hover {
+    background-color: #ffffff;
+    transform: translateY(-50%) scale(1.05);
+  }
+
+  :root.dark .scroll-btn {
+    background-color: rgba(30, 41, 59, 0.8);
+    border-color: rgba(255, 255, 255, 0.1);
+    color: #e2e8f0;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3);
+  }
+
+  :root.dark .scroll-btn:hover {
+    background-color: #334155;
+    transform: translateY(-50%) scale(1.05);
+  }
+
+  .fab-container {
+    position: fixed;
+    bottom: 2rem;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 50;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 0.75rem 1.5rem;
+    border-radius: 9999px;
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    border-width: 1px;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+    transition: all 300ms;
+    animation: fabSlideUp 0.5s ease-out forwards;
+  }
+
+  :root.light .fab-container {
+    background-color: rgba(255, 255, 255, 0.8);
+    border-color: rgba(255, 255, 255, 0.4);
+    box-shadow: 0 10px 15px -3px rgba(6, 78, 59, 0.05);
+  }
+
+  :root.dark .fab-container {
+    background-color: rgba(26, 26, 32, 0.8);
+    border-color: rgba(255, 255, 255, 0.1);
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.4);
+  }
+
+  @keyframes fabSlideUp {
+    from {
+      transform: translate(-50%, 100px);
+      opacity: 0;
+    }
+
+    to {
+      transform: translate(-50%, 0);
+      opacity: 1;
+    }
+  }
 }

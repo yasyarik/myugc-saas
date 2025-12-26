@@ -489,23 +489,6 @@ export default function Dashboard() {
             background: #f4f6f8;
           }
           /* Polaris overrides */
-          .Polaris-Labelled--hidden {
-            height: 100% !important;
-          }
-          .Polaris-ProgressBar__Indicator.Polaris-ProgressBar__Indicator--appearDone {
-            height: 28px!important;
-          }
-          .Polaris-ProgressBar--toneSuccess {
-            height: 28px!important;
-          }
-          .white-spinner { filter: brightness(0) invert(1); }
-          .Polaris-DropZone.Polaris-DropZone--noOutline {
-            height: 100% !important;
-          }
-          .action-card-content:hover { background: #f9fafb; color: #008060; }
-          body { background: linear-gradient(180deg, #1e4632 0%, #e3f9e5 100%); min-height: 100vh; background-attachment: fixed; }
-          .full-height-card { height: 100%; display: flex; flex-direction: column; }
-          /* Force direct child (LegacyCard/Card) to take full height */
           .full-height-card > * { 
             height: 100% !important; 
             display: flex !important; 
@@ -657,9 +640,9 @@ export default function Dashboard() {
                         <Text variant="headingMd" as="h2">Upload Products</Text>
                         <div style={{ marginTop: '10px', height: '100px' }}>
                           <DropZone onDrop={handleProductDrop} allowMultiple={true} accept="image/*" outline={false}>
-                            <div style={{ height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center', background: '#f9fafb', borderRadius: '8px', border: '1px dashed #ccc', cursor: 'pointer' }}>
+                            <div style={{ height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center', borderRadius: '8px', cursor: 'pointer' }} className="bg-slate-50/50 dark:bg-white/5 border border-dashed border-slate-300 dark:border-white/20 transition-colors hover:bg-slate-100/50 dark:hover:bg-white/10">
                               <InlineStack gap="200" align="center" blockAlign="center">
-                                <div style={{ background: '#e1e3e5', borderRadius: '50%', padding: '4px' }}>
+                                <div className="bg-slate-200/50 dark:bg-white/10" style={{ borderRadius: '50%', padding: '4px' }}>
                                   <Icon source={NoteIcon} tone="base" />
                                 </div>
                                 <Text>Drop images or click to upload</Text>
@@ -717,9 +700,8 @@ export default function Dashboard() {
                             setSelectedModel('no-model');
                             setLocationTab('placements');
                           }}
-                          className={`model-card ${selectedModel === 'no-model' ? 'model-card-selected' : ''}`}
+                          className={`model-card ${selectedModel === 'no-model' ? 'model-card-selected' : ''} bg-slate-50/50 dark:bg-white/5 border border-slate-200 dark:border-white/10`}
                           style={{
-                            backgroundColor: '#f6f6f7',
                             display: 'flex',
                             flexDirection: 'column',
                             alignItems: 'center',
@@ -842,7 +824,7 @@ export default function Dashboard() {
                                 padding: '4px 12px',
                                 borderRadius: '6px',
                                 cursor: 'pointer',
-                                background: locationTab === 'locations' ? '#f1f8f5' : 'transparent',
+                                background: locationTab === 'locations' ? 'rgba(0, 128, 96, 0.1)' : 'transparent',
                                 border: locationTab === 'locations' ? '1px solid #008060' : '1px solid transparent',
                                 color: locationTab === 'locations' ? '#008060' : '#5c5f62',
                                 fontWeight: locationTab === 'locations' ? '600' : '400',
@@ -857,7 +839,7 @@ export default function Dashboard() {
                                 padding: '4px 12px',
                                 borderRadius: '6px',
                                 cursor: 'pointer',
-                                background: locationTab === 'placements' ? '#f1f8f5' : 'transparent',
+                                background: locationTab === 'placements' ? 'rgba(0, 128, 96, 0.1)' : 'transparent',
                                 border: locationTab === 'placements' ? '1px solid #008060' : '1px solid transparent',
                                 color: locationTab === 'placements' ? '#008060' : '#5c5f62',
                                 fontWeight: locationTab === 'placements' ? '600' : '400',
@@ -896,13 +878,13 @@ export default function Dashboard() {
 
                         {/* Auto-Select Card */}
                         <div
-                          className={`model-card ${selectedLocation === 'auto' ? 'model-card-selected' : ''}`}
                           onClick={() => setSelectedLocation('auto')}
                           style={{
-                            background: selectedLocation === 'auto' ? 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)' : '#f9fafb',
+                            background: selectedLocation === 'auto' ? 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)' : undefined,
                             color: selectedLocation === 'auto' ? 'white' : 'inherit',
-                            border: selectedLocation === 'auto' ? '2px solid #008060' : '1px solid #e1e3e5'
+                            border: selectedLocation === 'auto' ? '2px solid #008060' : undefined
                           }}
+                          className={`model-card ${selectedLocation === 'auto' ? 'model-card-selected' : ''} ${selectedLocation !== 'auto' ? 'bg-slate-50/50 dark:bg-white/5' : ''}`}
                         >
                           <div className="action-card-content">
                             <div style={{ fontSize: '32px', marginBottom: '4px' }}>🤖</div>
@@ -1041,18 +1023,18 @@ export default function Dashboard() {
                       )}
                       {batchResults.map((res, idx) => res.loading ? (
                         <div key={res.tempId} className="model-card">
-                          <div style={{ width: '100%', height: '215px', background: '#f4f4f4', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                          <div style={{ width: '100%', height: '215px', display: 'flex', alignItems: 'center', justifyContent: 'center' }} className="bg-slate-100/50 dark:bg-white/5">
                             <Spinner size="large" />
                           </div>
                           <div className="model-text"><Text variant="bodySm">{res.title}</Text></div>
                         </div>
                       ) : (
                         <div key={res.id || idx} className={`model-card ${res.selected ? 'model-card-selected' : ''}`} onClick={() => { if (res.imageUrl) { const updated = [...batchResults]; updated[idx].selected = !updated[idx].selected; setBatchResults(updated); } }}>
-                          <div style={{ width: '100%', height: '215px', background: '#f4f4f4', overflow: 'hidden', position: 'relative' }}>
+                          <div style={{ width: '100%', height: '215px', overflow: 'hidden', position: 'relative' }} className="bg-slate-100/50 dark:bg-white/5">
                             {res.imageUrl ? (
                               <img src={res.imageUrl} style={{ width: '100%', height: '100%', objectFit: 'cover' }} alt="" onLoad={() => setBatchResults(prev => prev.map(item => item.id === res.id ? { ...item, imageLoaded: true } : item))} />
                             ) : (
-                              <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', height: '100%', background: '#fff4f4' }}>
+                              <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', height: '100%' }} className="bg-red-50/50 dark:bg-red-900/10">
                                 <Text variant="bodySm" tone="critical">Failed</Text>
                                 <Text variant="bodyXs" tone="subdued">{res.error}</Text>
                               </div>
@@ -1121,7 +1103,7 @@ export default function Dashboard() {
                         if (v.loading && !v.videoUrl) {
                           return (
                             <div key={v.tempId || idx} className="model-card">
-                              <div style={{ width: '100%', height: '215px', background: '#000', position: 'relative', overflow: 'hidden', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                              <div style={{ width: '100%', height: '215px', position: 'relative', overflow: 'hidden', display: 'flex', alignItems: 'center', justifyContent: 'center' }} className="bg-black/90 dark:bg-black/50">
                                 {v.imageUrl ? (
                                   <>
                                     <img
@@ -1154,7 +1136,8 @@ export default function Dashboard() {
                             }}
                           >
                             <div
-                              style={{ width: '100%', height: '215px', background: '#000', position: 'relative', overflow: 'hidden' }}
+                              style={{ width: '100%', height: '215px', position: 'relative', overflow: 'hidden' }}
+                              className="bg-black/90 dark:bg-black/50"
                               onMouseEnter={(e) => {
                                 const video = e.currentTarget.querySelector('video');
                                 if (video) video.play().catch(() => { });
@@ -1192,7 +1175,7 @@ export default function Dashboard() {
 
                               {/* Error State */}
                               {v.status === 'FAILED' && (
-                                <div style={{ position: 'absolute', inset: 0, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', background: '#1a0000', color: '#ffaaaa', padding: '15px', textAlign: 'center', zIndex: 10 }}>
+                                <div style={{ position: 'absolute', inset: 0, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', padding: '15px', textAlign: 'center', zIndex: 10 }} className="bg-red-950/90 text-red-200">
                                   <Text variant="bodySm" fontWeight="bold">Generation Failed</Text>
                                   <div style={{ marginTop: '8px', fontSize: '11px', lineHeight: '1.2' }}>
                                     {v.error || 'Server error'}
@@ -1277,23 +1260,7 @@ export default function Dashboard() {
         {/* Sticky Floating Action Bar */}
         {
           (selectedProducts.some(p => p.selected !== false) || batchResults.some(r => r.selected)) && (
-            <div style={{
-              position: 'fixed',
-              bottom: '24px',
-              left: '50%',
-              transform: 'translateX(-50%)',
-              zIndex: 1000,
-              background: 'rgba(255, 255, 255, 0.95)',
-              backdropFilter: 'blur(12px)',
-              padding: '12px 24px',
-              borderRadius: '100px',
-              boxShadow: '0 20px 50px rgba(0, 128, 96, 0.15)',
-              border: '2px solid #008060',
-              display: 'flex',
-              alignItems: 'center',
-              gap: '16px',
-              animation: 'fabSlideUp 0.4s cubic-bezier(0.16, 1, 0.3, 1)'
-            }}>
+            <div className="fab-container">
               <div style={{ display: 'flex', alignItems: 'center', gap: '8px', paddingRight: '16px', borderRight: '1px solid rgba(0,0,0,0.1)' }}>
                 <Badge tone="success">Ready to Generate</Badge>
               </div>

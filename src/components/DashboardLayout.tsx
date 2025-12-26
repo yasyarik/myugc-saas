@@ -12,7 +12,8 @@ import {
     ChevronRight
 } from "lucide-react";
 import { cn } from "@/lib/utils";
-import { UserButton, SignedOut } from "@clerk/nextjs";
+import { UserButton, SignedIn, SignedOut } from "@clerk/nextjs";
+import { ThemeToggle } from "./ThemeToggle";
 
 interface SidebarItemProps {
     href: string;
@@ -54,9 +55,9 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
     ];
 
     return (
-        <div className="flex h-screen bg-[#0a0a0c] text-slate-200 overflow-hidden">
+        <div className="flex h-screen bg-transparent text-foreground overflow-hidden">
             {/* Sidebar */}
-            <aside className="w-72 border-r border-slate-800/50 bg-[#0d0d10] flex flex-col">
+            <aside className="w-72 border-r border-white/5 bg-[#0d0d10]/80 backdrop-blur-xl flex flex-col shadow-2xl z-50">
                 <div className="p-6">
                     <Link href="/" className="flex flex-col items-center gap-2 group">
                         <img
@@ -87,28 +88,32 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
                 </nav>
 
                 <div className="p-4 mt-auto">
+                    <div className="mb-4">
+                        <ThemeToggle className="w-full justify-center" />
+                    </div>
+
                     {/* Auth Section - Only show when signed out */}
                     <div className="flex flex-col gap-3 mb-4">
                         <SignedOut>
                             <Link
                                 href="/sign-in"
-                                className="block text-center py-2.5 px-4 bg-emerald-600 hover:bg-emerald-500 text-white rounded-xl text-sm font-semibold transition-colors"
+                                className="block text-center py-2.5 px-4 bg-emerald-600 hover:bg-emerald-500 text-white rounded-xl text-sm font-semibold transition-colors shadow-lg shadow-emerald-900/20"
                             >
                                 Sign In
                             </Link>
                             <Link
                                 href="/sign-up"
-                                className="block text-center py-2.5 px-4 bg-slate-700 hover:bg-slate-600 text-white rounded-xl text-sm font-semibold transition-colors"
+                                className="block text-center py-2.5 px-4 bg-slate-700/50 hover:bg-slate-600/50 text-white rounded-xl text-sm font-semibold transition-colors backdrop-blur-md"
                             >
                                 Create Account
                             </Link>
                         </SignedOut>
                     </div>
 
-                    <div className="flex items-center gap-3 px-4 py-4 bg-slate-900/50 rounded-2xl border border-slate-800/50">
+                    <div className="flex items-center gap-3 px-4 py-4 bg-slate-900/40 backdrop-blur-md rounded-2xl border border-white/5 transition-all hover:bg-slate-800/40">
                         <UserButton afterSignOutUrl="/" />
                         <Link href="/user-profile" className="flex-1 min-w-0 cursor-pointer hover:opacity-80 transition-opacity">
-                            <p className="text-sm font-medium text-white truncate px-1">My Account</p>
+                            <p className="text-sm font-medium text-slate-200 truncate px-1">My Account</p>
                             <p className="text-xs text-slate-500 truncate px-1">Manage profile</p>
                         </Link>
                     </div>
