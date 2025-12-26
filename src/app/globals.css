@@ -1,372 +1,101 @@
-@import "tailwindcss";
+@import "./model-cards.css";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --p-color-bg-surface: transparent;
+  --p-color-bg-surface-secondary: rgba(139, 92, 246, 0.05);
 }
 
-
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
-@layer utilities {
-  .glass-panel {
-    backdrop-filter: blur(24px);
-    -webkit-backdrop-filter: blur(24px);
-    border-width: 1px;
-    transition: all 300ms cubic-bezier(0.4, 0, 0.2, 1);
-  }
-
-  .glass-panel-light {
-    background-color: rgba(139, 92, 246, 0.1);
-    border-color: rgba(139, 92, 246, 0.3);
-    box-shadow:
-      0 4px 6px -1px rgba(139, 92, 246, 0.15),
-      inset 0 0 20px rgba(139, 92, 246, 0.15);
-  }
-
-  .glass-panel-dark {
-    background-color: rgba(20, 20, 25, 0.6);
-    border-color: rgba(139, 92, 246, 0.15);
-    box-shadow:
-      0 10px 15px -3px rgba(0, 0, 0, 0.3),
-      inset 0 0 20px rgba(139, 92, 246, 0.05);
-  }
-}
-
-/* Vibrant Animated Mesh Gradients */
-@keyframes gradientShift {
-
-  0%,
-  100% {
-    background-position: 0% 50%;
-  }
-
-  50% {
-    background-position: 100% 50%;
-  }
-}
-
-:root.dark body {
-  background:
-    linear-gradient(135deg, #0a0514 0%, #1a0a2e 50%, #2d1b4e 100%);
-  position: relative;
-  overflow: hidden;
-}
-
-:root.dark body::before {
-  content: "";
-  position: fixed;
-  inset: 0;
-  background:
-    radial-gradient(circle at 15% 25%, rgba(139, 92, 246, 0.4) 0%, transparent 35%),
-    radial-gradient(circle at 85% 15%, rgba(168, 85, 247, 0.45) 0%, transparent 35%),
-    radial-gradient(circle at 50% 75%, rgba(217, 70, 239, 0.35) 0%, transparent 40%),
-    radial-gradient(circle at 10% 80%, rgba(124, 58, 237, 0.3) 0%, transparent 35%),
-    radial-gradient(circle at 90% 85%, rgba(192, 132, 252, 0.35) 0%, transparent 40%);
-  background-size: 200% 200%;
-  animation: gradientShift 18s ease infinite;
-  pointer-events: none;
-  z-index: 0;
-}
-
-:root.light body {
-  background:
-    linear-gradient(135deg, #faf5ff 0%, #f3e5ff 50%, #e9d5ff 100%);
-  position: relative;
-  overflow: hidden;
-}
-
-:root.light body::before {
-  content: "";
-  position: fixed;
-  inset: 0;
-  background:
-    radial-gradient(circle at 15% 25%, rgba(139, 92, 246, 0.2) 0%, transparent 30%),
-    radial-gradient(circle at 85% 15%, rgba(168, 85, 247, 0.22) 0%, transparent 30%),
-    radial-gradient(circle at 50% 75%, rgba(217, 70, 239, 0.18) 0%, transparent 35%),
-    radial-gradient(circle at 10% 80%, rgba(124, 58, 237, 0.15) 0%, transparent 30%),
-    radial-gradient(circle at 90% 85%, rgba(192, 132, 252, 0.2) 0%, transparent 35%);
-  background-size: 200% 200%;
-  animation: gradientShift 18s ease infinite;
-  pointer-events: none;
-  z-index: 0;
-}
-
-/* Noise texture overlay */
-body::after {
-  content: "";
-  position: fixed;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  pointer-events: none;
-  z-index: 1;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.05'/%3E%3C/svg%3E");
-  opacity: 0.6;
-}
-
-/* Polaris Dark Mode Variables */
-:root.dark {
-  --p-color-bg-surface: rgba(255, 255, 255, 0.03) !important;
-  --p-color-bg-surface-secondary: rgba(255, 255, 255, 0.05) !important;
-  --p-color-text: #f1f5f9 !important;
-  --p-color-text-secondary: #cbd5e1 !important;
-  --p-shadow-card:
-    0 8px 32px rgba(0, 0, 0, 0.4),
-    0 0 0 1px rgba(139, 92, 246, 0.1) inset,
-    0 4px 12px rgba(139, 92, 246, 0.15) !important;
-}
-
-:root.light {
-  --p-color-bg-surface: rgba(139, 92, 246, 0.08) !important;
-  --p-color-bg-surface-secondary: rgba(139, 92, 246, 0.12) !important;
-  --p-color-text: #1e293b !important;
-  --p-color-text-secondary: #64748b !important;
-  --p-shadow-card:
-    0 8px 32px rgba(0, 0, 0, 0.08),
-    0 0 0 1px rgba(139, 92, 246, 0.3) inset,
-    0 4px 12px rgba(139, 92, 246, 0.1) !important;
-}
-
-/* Ultra-Glass Effect for Polaris Cards */
-.Polaris-Card {
-  background: var(--p-color-bg-surface) !important;
-  backdrop-filter: blur(48px) saturate(180%) !important;
-  -webkit-backdrop-filter: blur(48px) saturate(180%) !important;
-  border: 1.5px solid transparent !important;
-  background-image: linear-gradient(var(--p-color-bg-surface),
-      var(--p-color-bg-surface)), linear-gradient(135deg,
-      rgba(139, 92, 246, 0.4) 0%,
-      rgba(236, 72, 153, 0.4) 25%,
-      rgba(192, 132, 252, 0.4) 50%,
-      rgba(34, 197, 94, 0.4) 75%,
-      rgba(251, 146, 60, 0.4) 100%) !important;
-  background-origin: border-box !important;
-  background-clip: padding-box, border-box !important;
-  box-shadow: var(--p-shadow-card) !important;
-  border-radius: 20px !important;
-  position: relative;
-  z-index: 2;
-}
-
-.Polaris-Card::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  border-radius: 20px;
-  padding: 1.5px;
-  background: linear-gradient(135deg,
-      rgba(139, 92, 246, 0.3),
-      rgba(236, 72, 153, 0.3),
-      rgba(192, 132, 252, 0.3));
-  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-  -webkit-mask-composite: xor;
-  mask-composite: exclude;
-  pointer-events: none;
-  opacity: 0.6;
-}
-
-/* Enhanced Polaris Text */
-:root.dark .Polaris-Text--root {
-  color: #f8fafc !important;
-  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
-}
-
-:root.light .Polaris-Text--root {
-  color: #0f172a !important;
-  text-shadow: 0 1px 2px rgba(139, 92, 246, 0.2);
-}
-
-:root.dark .Polaris-Text--toneSubdued {
-  color: #cbd5e1 !important;
-}
-
-:root.light .Polaris-Text--toneSubdued {
-  color: #7c3aed !important;
-}
-
-/* Glass Input Fields */
-.Polaris-TextField__Input {
-  background: rgba(255, 255, 255, 0.05) !important;
-  backdrop-filter: blur(20px) !important;
-  border-color: rgba(255, 255, 255, 0.15) !important;
-  color: inherit !important;
-  box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.1) !important;
-}
-
-.Polaris-TextField__Input:focus {
-  border-color: rgba(139, 92, 246, 0.5) !important;
-  box-shadow:
-    inset 0 2px 8px rgba(0, 0, 0, 0.1),
-    0 0 0 3px rgba(139, 92, 246, 0.15) !important;
-}
-
-:root.light .Polaris-Card {
-  background: var(--p-color-bg-surface) !important;
-}
-
-:root.light .Polaris-Page {
-  background: transparent !important;
+body {
+  background: #020617;
+  color: #f8fafc;
 }
 
 /* ============================================
-   POLARIS CARDS - PROMINENT BORDERS LIKE MODEL CARDS 
+   BLOCKS (POLARIS CARDS) - PROMINENT GLASS
    ============================================ */
 .Polaris-Card {
   border-radius: 20px !important;
-  /* THICKER, MORE VISIBLE BORDER */
   border: 3px solid rgba(139, 92, 246, 0.6) !important;
   background: rgba(139, 92, 246, 0.08) !important;
   backdrop-filter: blur(50px) saturate(180%) !important;
   -webkit-backdrop-filter: blur(50px) saturate(180%) !important;
-  /* STRONGER GLOW */
   box-shadow:
-    0 8px 32px rgba(0, 0, 0, 0.25),
+    0 10px 40px rgba(0, 0, 0, 0.3),
     inset 0 1px 0 rgba(255, 255, 255, 0.2),
     inset 0 0 30px rgba(139, 92, 246, 0.15),
-    0 0 45px rgba(139, 92, 246, 0.4) !important;
+    0 0 50px rgba(139, 92, 246, 0.4) !important;
+  margin-bottom: 24px !important;
   overflow: visible !important;
 }
 
-:root.dark .Polaris-Card {
-  background: rgba(139, 92, 246, 0.1) !important;
-  border-color: rgba(139, 92, 246, 0.55) !important;
-  box-shadow:
-    0 8px 32px rgba(0, 0, 0, 0.5),
-    inset 0 1px 0 rgba(255, 255, 255, 0.1),
-    inset 0 0 30px rgba(139, 92, 246, 0.12),
-    0 0 50px rgba(139, 92, 246, 0.45) !important;
+/* Specific styling for results */
+.results-section .Polaris-Card {
+  border-color: rgba(139, 92, 246, 0.7) !important;
+  box-shadow: 0 0 60px rgba(139, 92, 246, 0.5) !important;
 }
 
-/* Card sections transparent */
+/* Ensure parents don't clip glow */
+.Polaris-Layout__Section,
+.Polaris-Page {
+  overflow: visible !important;
+}
+
+/* KILL WHITE BACKGROUNDS */
 .Polaris-Card__Section,
 .Polaris-LegacyCard,
-.Polaris-LegacyCard__Section {
-  background: transparent !important;
-}
-
-/* ============================================
-   POLARIS MODALS - COMPLETE REWORK
-   ============================================ */
-
-/* Modal Backdrop/Overlay */
-.Polaris-Modal-Dialog__Container {
-  background: rgba(0, 0, 0, 0.7) !important;
-  backdrop-filter: blur(15px) saturate(150%) !important;
-  -webkit-backdrop-filter: blur(15px) saturate(150%) !important;
-}
-
-/* Modal Dialog Container - Control Width */
-.Polaris-Modal-Dialog {
-  max-width: 600px !important;
-  width: 90% !important;
-  margin: auto !important;
-  background: transparent !important;
-  border: none !important;
-  box-shadow: none !important;
-}
-
-/* Modal Dialog Content - The Actual Glass Panel */
-.Polaris-Modal-Dialog__Modal {
-  background: rgba(139, 92, 246, 0.1) !important;
-  backdrop-filter: blur(80px) saturate(200%) !important;
-  -webkit-backdrop-filter: blur(80px) saturate(200%) !important;
-  border: 2.5px solid rgba(139, 92, 246, 0.5) !important;
-  border-radius: 24px !important;
-  box-shadow:
-    0 25px 80px rgba(0, 0, 0, 0.5),
-    0 0 80px rgba(139, 92, 246, 0.4),
-    inset 0 1px 0 rgba(255, 255, 255, 0.15),
-    inset 0 0 50px rgba(139, 92, 246, 0.15) !important;
-  overflow: hidden !important;
-}
-
-:root.dark .Polaris-Modal-Dialog__Modal {
-  background: rgba(139, 92, 246, 0.12) !important;
-  border-color: rgba(139, 92, 246, 0.6) !important;
-  box-shadow:
-    0 25px 80px rgba(0, 0, 0, 0.7),
-    0 0 100px rgba(139, 92, 246, 0.5),
-    inset 0 1px 0 rgba(255, 255, 255, 0.1),
-    inset 0 0 60px rgba(139, 92, 246, 0.2) !important;
-}
-
-/* Modal Header */
-.Polaris-Modal-Header {
-  background: transparent !important;
-  border-bottom: 1.5px solid rgba(139, 92, 246, 0.35) !important;
-  padding: 20px 24px !important;
-}
-
-.Polaris-Modal-Header__Title {
-  color: inherit !important;
-}
-
-/* Modal Close Button */
-.Polaris-Modal-CloseButton {
-  background: rgba(139, 92, 246, 0.15) !important;
-  border: 1.5px solid rgba(139, 92, 246, 0.4) !important;
-  border-radius: 12px !important;
-  transition: all 200ms ease !important;
-}
-
-.Polaris-Modal-CloseButton:hover {
-  background: rgba(139, 92, 246, 0.25) !important;
-  border-color: rgba(139, 92, 246, 0.6) !important;
-}
-
-/* Modal Body/Section */
-.Polaris-Modal-Section {
-  background: transparent !important;
-  padding: 24px !important;
-}
-
-/* Modal Footer */
-.Polaris-Modal-Footer {
-  background: transparent !important;
-  border-top: 1.5px solid rgba(139, 92, 246, 0.35) !important;
-  padding: 16px 24px !important;
-}
-
-/* Fix any white backgrounds inside modal */
-.Polaris-Modal-Dialog * {
-  background-color: transparent;
-}
-
-/* Modal inner elements that might have white */
+.Polaris-LegacyCard__Section,
 .Polaris-Box,
 .Polaris-BlockStack {
   background: transparent !important;
 }
 
-/* KILL WHITE BACKGROUNDS UNDER ICONS */
+/* NO WHITE UNDER ICONS EVER */
 .Polaris-Icon,
 .Polaris-Icon__Svg,
 .Polaris-Button__Icon,
-.Polaris-Modal-CloseButton .Polaris-Icon {
+.Polaris-Modal-CloseButton .Polaris-Icon,
+[class*="Icon"] {
   background: transparent !important;
   background-color: transparent !important;
 }
 
-/* Icon wrapper backgrounds */
-[class*="Icon"] {
+/* MODAL REWORK */
+.Polaris-Modal-Dialog__Container {
+  background: rgba(0, 0, 0, 0.75) !important;
+  backdrop-filter: blur(20px) !important;
+  z-index: 10000 !important;
+}
+
+.Polaris-Modal-Dialog {
+  max-width: 650px !important;
+  width: 95% !important;
   background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
 }
 
-/* Ensure inputs inside modals are styled */
-.Polaris-Modal-Dialog .Polaris-TextField__Input {
+.Polaris-Modal-Dialog__Modal {
+  background: rgba(15, 10, 30, 0.8) !important;
+  backdrop-filter: blur(100px) !important;
+  border: 3px solid rgba(139, 92, 246, 0.6) !important;
+  border-radius: 24px !important;
+  box-shadow: 0 0 100px rgba(139, 92, 246, 0.5) !important;
+  overflow: hidden !important;
+}
+
+.Polaris-Modal-Header {
+  background: transparent !important;
+  border-bottom: 1.5px solid rgba(139, 92, 246, 0.3) !important;
+}
+
+.Polaris-Modal-Footer {
+  background: transparent !important;
+  border-top: 1.5px solid rgba(139, 92, 246, 0.3) !important;
+}
+
+/* Sidebar fix - NO BLUE TINT */
+.sidebar-glass {
   background: rgba(139, 92, 246, 0.08) !important;
-  border: 1.5px solid rgba(139, 92, 246, 0.4) !important;
-  border-radius: 12px !important;
-}
-
-.Polaris-Modal-Dialog .Polaris-TextField__Input:focus {
-  border-color: rgba(139, 92, 246, 0.7) !important;
-  box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.2) !important;
+  border: 3px solid rgba(139, 92, 246, 0.5) !important;
+  box-shadow: 0 0 40px rgba(139, 92, 246, 0.3) !important;
 }
