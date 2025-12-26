@@ -712,7 +712,15 @@ export default function Dashboard() {
                             padding: '10px',
                             textAlign: 'center',
                             gap: '8px',
-                            border: selectedModel === 'no-model' ? '3px solid #008060' : '1px solid #e1e3e5',
+                            backgroundColor: selectedModel === 'no-model' ? 'rgba(139, 92, 246, 0.15)' : 'rgba(139, 92, 246, 0.08)',
+                            border: selectedModel === 'no-model' ? '3px solid #8b5cf6' : '1.5px solid rgba(139, 92, 246, 0.3)',
+                            borderRadius: '20px',
+                            boxShadow: selectedModel === 'no-model'
+                              ? '0 0 0 4px rgba(139, 92, 246, 0.3), 0 8px 32px rgba(139, 92, 246, 0.5)'
+                              : '0 8px 32px rgba(0, 0, 0, 0.2), inset 0 0 20px rgba(139, 92, 246, 0.1), 0 0 0 1px rgba(139, 92, 246, 0.2)',
+                            backdropFilter: 'blur(50px) saturate(180%)',
+                            WebkitBackdropFilter: 'blur(50px) saturate(180%)',
+                            transition: 'all 400ms cubic-bezier(0.4, 0, 0.2, 1)',
                           }}
                         >
                           <div style={{ fontSize: '32px' }}>📦</div>
