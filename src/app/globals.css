@@ -54,7 +54,7 @@
 
 :root.dark body {
   background:
-    linear-gradient(125deg, #0a0a0a 0%, #1a1a2e 100%);
+    linear-gradient(135deg, #0a0514 0%, #1a0a2e 50%, #2d1b4e 100%);
   position: relative;
   overflow: hidden;
 }
@@ -64,20 +64,20 @@
   position: fixed;
   inset: 0;
   background:
-    radial-gradient(circle at 20% 30%, rgba(56, 189, 248, 0.35) 0%, transparent 40%),
-    radial-gradient(circle at 80% 20%, rgba(168, 85, 247, 0.4) 0%, transparent 40%),
-    radial-gradient(circle at 60% 80%, rgba(236, 72, 153, 0.35) 0%, transparent 40%),
-    radial-gradient(circle at 10% 70%, rgba(34, 197, 94, 0.3) 0%, transparent 40%),
-    radial-gradient(circle at 90% 90%, rgba(251, 146, 60, 0.3) 0%, transparent 40%);
+    radial-gradient(circle at 15% 25%, rgba(139, 92, 246, 0.4) 0%, transparent 35%),
+    radial-gradient(circle at 85% 15%, rgba(168, 85, 247, 0.45) 0%, transparent 35%),
+    radial-gradient(circle at 50% 75%, rgba(217, 70, 239, 0.35) 0%, transparent 40%),
+    radial-gradient(circle at 10% 80%, rgba(124, 58, 237, 0.3) 0%, transparent 35%),
+    radial-gradient(circle at 90% 85%, rgba(192, 132, 252, 0.35) 0%, transparent 40%);
   background-size: 200% 200%;
-  animation: gradientShift 15s ease infinite;
+  animation: gradientShift 18s ease infinite;
   pointer-events: none;
   z-index: 0;
 }
 
 :root.light body {
   background:
-    linear-gradient(125deg, #f0f9ff 0%, #faf5ff 100%);
+    linear-gradient(135deg, #faf5ff 0%, #f3e5ff 50%, #e9d5ff 100%);
   position: relative;
   overflow: hidden;
 }
@@ -87,13 +87,13 @@
   position: fixed;
   inset: 0;
   background:
-    radial-gradient(circle at 20% 30%, rgba(56, 189, 248, 0.25) 0%, transparent 35%),
-    radial-gradient(circle at 80% 20%, rgba(168, 85, 247, 0.28) 0%, transparent 35%),
-    radial-gradient(circle at 60% 80%, rgba(236, 72, 153, 0.22) 0%, transparent 35%),
-    radial-gradient(circle at 10% 70%, rgba(34, 197, 94, 0.2) 0%, transparent 35%),
-    radial-gradient(circle at 90% 90%, rgba(251, 146, 60, 0.25) 0%, transparent 35%);
+    radial-gradient(circle at 15% 25%, rgba(139, 92, 246, 0.2) 0%, transparent 30%),
+    radial-gradient(circle at 85% 15%, rgba(168, 85, 247, 0.22) 0%, transparent 30%),
+    radial-gradient(circle at 50% 75%, rgba(217, 70, 239, 0.18) 0%, transparent 35%),
+    radial-gradient(circle at 10% 80%, rgba(124, 58, 237, 0.15) 0%, transparent 30%),
+    radial-gradient(circle at 90% 85%, rgba(192, 132, 252, 0.2) 0%, transparent 35%);
   background-size: 200% 200%;
-  animation: gradientShift 15s ease infinite;
+  animation: gradientShift 18s ease infinite;
   pointer-events: none;
   z-index: 0;
 }
@@ -312,19 +312,36 @@ body::after {
       inset 0 0 30px rgba(255, 255, 255, 0.05);
   }
 
+  /* SELECTED STATE - Single Bold Border with Purple Glow */
   .model-card-selected {
-    box-shadow: 0 0 0 2px #10b981 !important;
-    /* ring-emerald-500 */
+    border: 3px solid #8b5cf6 !important;
+    box-shadow:
+      0 0 0 4px rgba(139, 92, 246, 0.3),
+      0 8px 32px rgba(139, 92, 246, 0.5),
+      inset 0 0 30px rgba(139, 92, 246, 0.2) !important;
+    background-color: rgba(139, 92, 246, 0.12) !important;
+  }
+
+  /* Hide ::before border on selection */
+  .model-card-selected::before {
+    opacity: 0 !important;
   }
 
   :root.light .model-card-selected {
-    background-color: rgba(236, 253, 245, 0.8) !important;
-    /* bg-emerald-50/80 */
+    background-color: rgba(139, 92, 246, 0.15) !important;
+    box-shadow:
+      0 0 0 4px rgba(139, 92, 246, 0.25),
+      0 12px 40px rgba(139, 92, 246, 0.35),
+      inset 0 0 40px rgba(139, 92, 246, 0.25) !important;
   }
 
   :root.dark .model-card-selected {
-    background-color: rgba(6, 78, 59, 0.2) !important;
-    /* bg-emerald-900/20 */
+    background-color: rgba(139, 92, 246, 0.12) !important;
+    box-shadow:
+      0 0 0 4px rgba(139, 92, 246, 0.4),
+      0 12px 40px rgba(139, 92, 246, 0.6),
+      0 0 80px rgba(168, 85, 247, 0.4),
+      inset 0 0 40px rgba(139, 92, 246, 0.2) !important;
   }
 
   .full-height-card .Polaris-Card__Section {

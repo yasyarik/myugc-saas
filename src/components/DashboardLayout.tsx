@@ -70,13 +70,21 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
                             className="h-16 w-auto object-contain group-hover:scale-105 transition-transform"
                         />
                     </Link>
-                    <div className="mt-4 px-4 py-2 text-center rounded-xl" style={{
+                    <div className="mt-4 px-4 py-3 text-center rounded-xl" style={{
                         background: 'rgba(16, 185, 129, 0.08)',
                         border: '1.5px solid rgba(16, 185, 129, 0.25)',
                         backdropFilter: 'blur(20px)',
                     }}>
+                        <p className="text-[10px] uppercase tracking-wider text-emerald-400/70 font-semibold mb-1">Free Plan</p>
                         <p className="text-xs text-emerald-400 font-medium">Credits Available</p>
-                        <p className="text-lg font-bold text-white">10</p>
+                        <p className="text-2xl font-bold text-white mb-2">10</p>
+                        <Link href="/credits" className="block w-full py-1.5 px-3 rounded-lg text-xs font-semibold transition-all" style={{
+                            background: 'rgba(16, 185, 129, 0.15)',
+                            border: '1px solid rgba(16, 185, 129, 0.3)',
+                            color: '#10b981',
+                        }}>
+                            Upgrade Plan
+                        </Link>
                     </div>
                 </div>
 

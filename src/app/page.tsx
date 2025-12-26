@@ -636,21 +636,27 @@ export default function Dashboard() {
                 <div style={{ flex: 1 }}>
                   <div className="full-height-card">
                     <Card>
-                      <div style={{ height: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
-                        <Text variant="headingMd" as="h2">Upload Products</Text>
-                        <div style={{ marginTop: '10px', height: '100px' }}>
-                          <DropZone onDrop={handleProductDrop} allowMultiple={true} accept="image/*" outline={false}>
-                            <div style={{ height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center', borderRadius: '8px', cursor: 'pointer' }} className="bg-slate-50/50 dark:bg-white/5 border border-dashed border-slate-300 dark:border-white/20 transition-colors hover:bg-slate-100/50 dark:hover:bg-white/10">
-                              <InlineStack gap="200" align="center" blockAlign="center">
-                                <div className="bg-slate-200/50 dark:bg-white/10" style={{ borderRadius: '50%', padding: '4px' }}>
-                                  <Icon source={NoteIcon} tone="base" />
-                                </div>
-                                <Text>Drop images or click to upload</Text>
-                              </InlineStack>
-                              <div style={{ display: 'none' }}><DropZone.FileUpload /></div>
+                      <div style={{ height: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'center', padding: '20px' }}>
+                        <DropZone onDrop={handleProductDrop} allowMultiple={true} accept="image/*" outline={false}>
+                          <div style={{
+                            height: '200px',
+                            display: 'flex',
+                            flexDirection: 'column',
+                            alignItems: 'center',
+                            justifyContent: 'center',
+                            borderRadius: '16px',
+                            cursor: 'pointer',
+                            gap: '16px',
+                            transition: 'all 300ms'
+                          }} className="bg-transparent border-2 border-dashed border-purple-400/30 dark:border-purple-400/20 hover:border-purple-400/50 dark:hover:border-purple-400/40 hover:bg-purple-500/5">
+                            <Icon source={NoteIcon} tone="base" />
+                            <div style={{ textAlign: 'center' }}>
+                              <Text variant="headingLg" as="h3" fontWeight="bold">Drop product images</Text>
+                              <Text variant="bodyLg" tone="subdued">or click to upload</Text>
                             </div>
-                          </DropZone>
-                        </div>
+                            <div style={{ display: 'none' }}><DropZone.FileUpload /></div>
+                          </div>
+                        </DropZone>
                       </div>
                     </Card>
                   </div>
@@ -690,7 +696,7 @@ export default function Dashboard() {
                         <div className="model-card" onClick={() => setIsModelModalOpen(true)}>
                           <div className="action-card-content">
                             <div style={{ fontSize: '32px', marginBottom: '4px' }}>✨</div>
-                            <Text variant="bodyMd" fontWeight="medium">Create New</Text>
+                            <Text variant="bodyMd" fontWeight="medium">Generate New</Text>
                           </div>
                         </div>
 
@@ -872,7 +878,7 @@ export default function Dashboard() {
                         <div className="model-card" onClick={() => setIsLocationModalOpen(true)}>
                           <div className="action-card-content">
                             <div style={{ fontSize: '32px', marginBottom: '4px' }}>✨</div>
-                            <Text variant="bodyMd" fontWeight="medium">Create New</Text>
+                            <Text variant="bodyMd" fontWeight="medium">Generate New</Text>
                           </div>
                         </div>
 
