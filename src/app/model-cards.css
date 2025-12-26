@@ -99,14 +99,14 @@
 }
 
 /* SELECTED STATE - WHITE GLOW FOR VISIBILITY */
+/* SELECTED STATE - REFINED WHITE GLOW */
 .model-card-selected {
     border: 3px solid #ffffff !important;
     background-color: rgba(139, 92, 246, 0.18) !important;
     box-shadow:
-        0 0 0 4px rgba(255, 255, 255, 0.4),
-        0 8px 32px rgba(255, 255, 255, 0.3),
-        0 0 60px rgba(255, 255, 255, 0.5),
-        inset 0 0 35px rgba(139, 92, 246, 0.25) !important;
+        0 4px 20px rgba(255, 255, 255, 0.3),
+        /* Reduced spread */
+        inset 0 0 20px rgba(139, 92, 246, 0.2) !important;
 }
 
 .model-card-selected::before {
@@ -116,12 +116,10 @@
 /* KEEP BORDER WHITE ON HOVER FOR SELECTED CARD */
 .model-card-selected:hover {
     border: 3px solid #ffffff !important;
-    background-color: rgba(139, 92, 246, 0.25) !important;
+    background-color: rgba(139, 92, 246, 0.2) !important;
     box-shadow:
-        0 0 0 4px rgba(255, 255, 255, 0.5),
-        0 8px 32px rgba(255, 255, 255, 0.4),
-        0 0 70px rgba(255, 255, 255, 0.6),
-        inset 0 0 40px rgba(139, 92, 246, 0.3) !important;
+        0 4px 25px rgba(255, 255, 255, 0.4),
+        inset 0 0 20px rgba(139, 92, 246, 0.2) !important;
 }
 
 /* Card components */
