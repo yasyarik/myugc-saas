@@ -43,7 +43,7 @@ const OptionGrid = ({ label, options, selected, onChange }: {
           key={opt.value}
           onClick={() => onChange(opt.value)}
           style={{
-            border: selected === opt.value ? '2px solid #008060' : '1px solid #e1e3e5',
+            border: selected === opt.value ? '2px solid #8b5cf6' : '1px solid #e1e3e5',
             borderRadius: '8px',
             padding: '8px',
             cursor: 'pointer',
@@ -451,7 +451,7 @@ export default function Dashboard() {
             color: #5c5f62;
           }
           .model-card-selected {
-            border: 2px solid #008060 !important;
+            border: 2px solid #8b5cf6 !important;
             background: #f1f8f5 !important;
           }
           .full-height-card .Polaris-Card__Section {
@@ -506,7 +506,7 @@ export default function Dashboard() {
             to { opacity: 1; transform: translateY(0) scale(1); }
           }
           .generate-btn-wrapper button {
-            background: #008060!important;
+            background: #8b5cf6!important;
             color: white!important;
             border: none!important;
             box-shadow: none!important;
@@ -518,8 +518,8 @@ export default function Dashboard() {
             background: #ccc!important;
             color: #666!important;
           }
-          .model-card:hover {border-color: #008060; transform: translateY(-2px); transition: all 0.2s; }
-          .model-card-selected {border: 2px solid #008060; }
+          .model-card:hover {border-color: #8b5cf6; transform: translateY(-2px); transition: all 0.2s; }
+          .model-card-selected {border: 2px solid #8b5cf6; }
           .model-img {width: 100%; height: 215px; object-fit: cover; }
           .model-text {height: 35px; display: flex; align-items: center; justify-content: center; padding: 0 4px; }
           .action-card-content {
@@ -576,7 +576,7 @@ export default function Dashboard() {
           .Polaris-DropZone.Polaris-DropZone--noOutline {
             height: 100% !important;
           }
-          .action-card-content:hover {background: #f9fafb; color: #008060; }
+          .action-card-content:hover {background: #f9fafb; color: #8b5cf6; }
           .full-height-card {height: 100%; display: flex; flex-direction: column; }
           .full-height-card > * {
             height: 100% !important;
@@ -591,8 +591,8 @@ export default function Dashboard() {
             to {transform: translate(-50%, 0); opacity: 1; }
           }
           .Polaris-Button--variantPrimary:not(.Polaris-Button--disabled) {
-            background: #008060 !important;
-            border-color: #008060 !important;
+            background: #8b5cf6 !important;
+            border-color: #8b5cf6 !important;
             color: white !important;
           }
           .Polaris-Button--variantPrimary:not(.Polaris-Button--disabled):hover {
@@ -664,11 +664,12 @@ export default function Dashboard() {
 
             {/* Models and Locations */}
             <Layout.Section>
-              <div style={{ display: 'flex', gap: '20px', alignItems: 'stretch' }}>
-                {/* MODEL - 50% */}
-                <div className="full-height-card" style={{ flex: 1, overflow: 'hidden' }}>
+              {/* Desktop: side by side, Mobile: stacked */}
+              <div style={{ display: 'flex', gap: '20px', flexWrap: 'wrap' }} className="flex-col lg:flex-row">
+                {/* MODEL - 50% on desktop, 100% on mobile */}
+                <div className="full-height-card" style={{ flex: '1 1 300px', minHeight: '350px' }}>
                   <Card>
-                    <div style={{ overflow: 'hidden', position: 'relative' }}>
+                    <div style={{ position: 'relative' }}>
                       <InlineStack align="space-between" blockAlign="center">
                         <Text variant="headingMd" as="h2">Select / Generate / Upload UGC Model</Text>
                         <div style={{ display: 'flex', gap: '5px' }}>
@@ -820,13 +821,12 @@ export default function Dashboard() {
                 </div>
 
                 {/* LOCATION - 50% */}
-                <div className="full-height-card" style={{ flex: 1, overflow: 'hidden' }}>
+                <div className="full-height-card" style={{ flex: '1 1 300px', minHeight: '350px' }}>
                   <Card>
-                    <div style={{ overflow: 'hidden', position: 'relative' }}>
+                    <div style={{ position: 'relative' }}>
                       <InlineStack align="space-between" blockAlign="center">
                         <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
                           <Text variant="headingMd" as="h2">Background Location</Text>
-                          {/* Toggle Tabs */}
                           <div style={{ display: 'flex', gap: '8px' }}>
                             <div
                               onClick={() => setLocationTab('locations')}
@@ -834,9 +834,9 @@ export default function Dashboard() {
                                 padding: '4px 12px',
                                 borderRadius: '6px',
                                 cursor: 'pointer',
-                                background: locationTab === 'locations' ? 'rgba(0, 128, 96, 0.1)' : 'transparent',
-                                border: locationTab === 'locations' ? '1px solid #008060' : '1px solid transparent',
-                                color: locationTab === 'locations' ? '#008060' : '#5c5f62',
+                                background: locationTab === 'locations' ? 'rgba(139, 92, 246, 0.15)' : 'transparent',
+                                border: locationTab === 'locations' ? '2px solid rgba(139, 92, 246, 0.5)' : '1px solid transparent',
+                                color: locationTab === 'locations' ? '#a78bfa' : '#94a3b8',
                                 fontWeight: locationTab === 'locations' ? '600' : '400',
                                 fontSize: '13px'
                               }}
@@ -849,9 +849,9 @@ export default function Dashboard() {
                                 padding: '4px 12px',
                                 borderRadius: '6px',
                                 cursor: 'pointer',
-                                background: locationTab === 'placements' ? 'rgba(0, 128, 96, 0.1)' : 'transparent',
-                                border: locationTab === 'placements' ? '1px solid #008060' : '1px solid transparent',
-                                color: locationTab === 'placements' ? '#008060' : '#5c5f62',
+                                background: locationTab === 'placements' ? 'rgba(139, 92, 246, 0.1)' : 'transparent',
+                                border: locationTab === 'placements' ? '1px solid #8b5cf6' : '1px solid transparent',
+                                color: locationTab === 'placements' ? '#8b5cf6' : '#5c5f62',
                                 fontWeight: locationTab === 'placements' ? '600' : '400',
                                 fontSize: '13px'
                               }}
@@ -892,7 +892,7 @@ export default function Dashboard() {
                           style={{
                             background: selectedLocation === 'auto' ? 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)' : undefined,
                             color: selectedLocation === 'auto' ? 'white' : 'inherit',
-                            border: selectedLocation === 'auto' ? '2px solid #008060' : undefined
+                            border: selectedLocation === 'auto' ? '2px solid #8b5cf6' : undefined
                           }}
                           className={`model-card ${selectedLocation === 'auto' ? 'model-card-selected' : ''} ${selectedLocation !== 'auto' ? 'bg-slate-50/50 dark:bg-white/5' : ''}`}
                         >
@@ -1040,7 +1040,7 @@ export default function Dashboard() {
                         </div>
                       ) : (
                         <div key={res.id || idx} className={`model-card ${res.selected ? 'model-card-selected' : ''}`} onClick={() => { if (res.imageUrl) { const updated = [...batchResults]; updated[idx].selected = !updated[idx].selected; setBatchResults(updated); } }}>
-                          <div style={{ width: '100%', height: '215px', overflow: 'hidden', position: 'relative' }} className="bg-slate-100/50 dark:bg-white/5">
+                          <div style={{ width: '100%', height: '215px', position: 'relative' }} className="bg-slate-100/50 dark:bg-white/5">
                             {res.imageUrl ? (
                               <img src={res.imageUrl} style={{ width: '100%', height: '100%', objectFit: 'cover' }} alt="" onLoad={() => setBatchResults(prev => prev.map(item => item.id === res.id ? { ...item, imageLoaded: true } : item))} />
                             ) : (

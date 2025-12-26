@@ -57,21 +57,37 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
 
     return (
         <div className="flex h-screen bg-transparent text-foreground overflow-hidden relative">
+            {/* Mobile menu overlay */}
+            {isSidebarOpen && (
+                <div
+                    className="lg:hidden fixed inset-0 bg-black/50 z-30 backdrop-blur-sm"
+                    onClick={() => setIsSidebarOpen(false)}
+                />
+            )}
+
             {/* Mobile menu button */}
             <button
                 onClick={() => setIsSidebarOpen(!isSidebarOpen)}
-                className="lg:hidden fixed top-4 left-4 z-50 p-2 rounded-lg bg-purple-500/20 backdrop-blur-md border border-purple-400/30"
+                className="lg:hidden fixed top-4 left-4 z-50 p-3 rounded-2xl backdrop-blur-xl"
+                style={{
+                    background: 'rgba(139, 92, 246, 0.15)',
+                    border: '2px solid rgba(139, 92, 246, 0.4)',
+                    boxShadow: '0 4px 20px rgba(139, 92, 246, 0.3)',
+                }}
             >
-                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+                <svg className="w-6 h-6 text-purple-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d={isSidebarOpen ? "M6 18L18 6M6 6l12 12" : "M4 6h16M4 12h16M4 18h16"} />
                 </svg>
             </button>
 
-            {/* Sidebar */}
-            <aside className={`w-72 border-r border-white/10 flex flex-col shadow-2xl relative z-10 transition-transform lg:translate-x-0 ${isSidebarOpen ? 'translate-x-0' : '-translate-x-full'} fixed lg:static h-full`} style={{
-                background: 'rgba(255, 255, 255, 0.03)',
+            {/* Sidebar - GLASS STYLE with same border radius as cards */}
+            <aside className={`w-72 flex flex-col shadow-2xl z-40 transition-all duration-300 lg:translate-x-0 ${isSidebarOpen ? 'translate-x-0' : '-translate-x-full'} fixed lg:relative h-full`} style={{
+                background: 'rgba(139, 92, 246, 0.08)',
                 backdropFilter: 'blur(60px) saturate(180%)',
                 WebkitBackdropFilter: 'blur(60px) saturate(180%)',
+                borderRight: '2px solid rgba(139, 92, 246, 0.4)',
+                borderRadius: '0 20px 20px 0',
+                boxShadow: '0 8px 32px rgba(0, 0, 0, 0.3), 0 0 40px rgba(139, 92, 246, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.1)',
             }}>
                 <div className="p-6">
                     <Link href="/" className="flex flex-col items-center gap-2 group relative">
@@ -88,17 +104,18 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
                         </div>
                     </Link>
                     <div className="mt-4 px-4 py-3 text-center rounded-xl" style={{
-                        background: 'rgba(16, 185, 129, 0.08)',
-                        border: '1.5px solid rgba(16, 185, 129, 0.25)',
+                        background: 'rgba(139, 92, 246, 0.08)',
+                        border: '2px solid rgba(139, 92, 246, 0.4)',
                         backdropFilter: 'blur(20px)',
+                        boxShadow: '0 4px 20px rgba(139, 92, 246, 0.2)',
                     }}>
-                        <p className="text-[10px] uppercase tracking-wider text-emerald-400/70 font-semibold mb-1">Free Plan</p>
-                        <p className="text-xs text-emerald-400 font-medium">Credits Available</p>
+                        <p className="text-[10px] uppercase tracking-wider text-purple-400/70 font-semibold mb-1">Free Plan</p>
+                        <p className="text-xs text-purple-400 font-medium">Credits Available</p>
                         <p className="text-2xl font-bold text-white mb-2">10</p>
                         <Link href="/credits" className="block w-full py-1.5 px-3 rounded-lg text-xs font-semibold transition-all" style={{
-                            background: 'rgba(16, 185, 129, 0.15)',
-                            border: '1px solid rgba(16, 185, 129, 0.3)',
-                            color: '#10b981',
+                            background: 'rgba(139, 92, 246, 0.15)',
+                            border: '1px solid rgba(139, 92, 246, 0.4)',
+                            color: '#a78bfa',
                         }}>
                             Upgrade Plan
                         </Link>
