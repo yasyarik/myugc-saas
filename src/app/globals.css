@@ -220,22 +220,36 @@ body::after {
   background: rgba(139, 92, 246, 0.08) !important;
   backdrop-filter: blur(60px) saturate(180%) !important;
   -webkit-backdrop-filter: blur(60px) saturate(180%) !important;
-  border: 1.5px solid rgba(139, 92, 246, 0.3) !important;
+  border: 2px solid rgba(139, 92, 246, 0.4) !important;
+  border-radius: 20px !important;
   box-shadow:
-    0 20px 60px rgba(0, 0, 0, 0.3),
+    0 20px 60px rgba(0, 0, 0, 0.4),
+    0 0 60px rgba(139, 92, 246, 0.3),
     inset 0 0 40px rgba(139, 92, 246, 0.15) !important;
+  overflow: hidden !important;
 }
 
 :root.dark .Polaris-Modal-Dialog {
   background: rgba(139, 92, 246, 0.12) !important;
-  border-color: rgba(139, 92, 246, 0.4) !important;
+  border-color: rgba(139, 92, 246, 0.5) !important;
 }
 
 .Polaris-Modal-Header {
   background: transparent !important;
-  border-bottom-color: rgba(139, 92, 246, 0.2) !important;
+  border-bottom: 1px solid rgba(139, 92, 246, 0.3) !important;
 }
 
 .Polaris-Modal-Section {
   background: transparent !important;
+}
+
+.Polaris-Modal-Footer {
+  background: transparent !important;
+  border-top: 1px solid rgba(139, 92, 246, 0.3) !important;
+}
+
+/* Modal overlay */
+.Polaris-Modal-Dialog__Container {
+  background: rgba(0, 0, 0, 0.5) !important;
+  backdrop-filter: blur(8px) !important;
 }

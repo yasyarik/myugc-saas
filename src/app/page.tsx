@@ -665,9 +665,9 @@ export default function Dashboard() {
             {/* Models and Locations */}
             <Layout.Section>
               {/* Desktop: side by side, Mobile: stacked */}
-              <div style={{ display: 'flex', gap: '20px', flexWrap: 'wrap' }} className="flex-col lg:flex-row">
-                {/* MODEL - 50% on desktop, 100% on mobile */}
-                <div className="full-height-card" style={{ flex: '1 1 300px', minHeight: '350px' }}>
+              <div style={{ display: 'flex', gap: '20px', flexDirection: 'row', flexWrap: 'nowrap' }}>
+                {/* MODEL - 50% width */}
+                <div style={{ flex: 1, minWidth: 0 }}>
                   <Card>
                     <div style={{ position: 'relative' }}>
                       <InlineStack align="space-between" blockAlign="center">
@@ -820,8 +820,8 @@ export default function Dashboard() {
                   </Card>
                 </div>
 
-                {/* LOCATION - 50% */}
-                <div className="full-height-card" style={{ flex: '1 1 300px', minHeight: '350px' }}>
+                {/* LOCATION - 50% width */}
+                <div style={{ flex: 1, minWidth: 0 }}>
                   <Card>
                     <div style={{ position: 'relative' }}>
                       <InlineStack align="space-between" blockAlign="center">

@@ -6,10 +6,11 @@
     --glass-border: 2px solid rgba(139, 92, 246, 0.4);
     --glass-blur: blur(50px) saturate(180%);
     --glass-bg: rgba(139, 92, 246, 0.08);
-    --glass-bg-hover: rgba(139, 92, 246, 0.15);
+    --glass-bg-hover: rgba(139, 92, 246, 0.12);
     --glass-glow: 0 0 30px rgba(139, 92, 246, 0.3);
 }
 
+/* BASE MODEL CARD - Same as "No Model" card (the perfect reference) */
 .model-card {
     width: 150px;
     height: 250px;
@@ -25,11 +26,9 @@
     transition: all 400ms cubic-bezier(0.4, 0, 0.2, 1);
     backdrop-filter: var(--glass-blur);
     -webkit-backdrop-filter: var(--glass-blur);
-    /* THICKER glass border with glow */
     border: 2px solid rgba(139, 92, 246, 0.4);
-    /* NO overflow hidden - allows glow to show */
-    background-color: var(--glass-bg);
-    /* Strong glass effect with glow */
+    /* PURPLE BACKGROUND - NO WHITE EVER */
+    background-color: rgba(139, 92, 246, 0.08) !important;
     box-shadow:
         0 8px 32px rgba(0, 0, 0, 0.2),
         inset 0 1px 0 rgba(255, 255, 255, 0.1),
@@ -37,7 +36,7 @@
         0 0 20px rgba(139, 92, 246, 0.15);
 }
 
-/* Gradient border effect on hover - NO GREEN */
+/* Gradient border on hover - PURE PURPLE, NO GREEN */
 .model-card::before {
     content: "";
     position: absolute;
@@ -61,50 +60,38 @@
     opacity: 1;
 }
 
-/* Light Mode - NO WHITE on hover */
-:root.light .model-card {
-    background-color: rgba(139, 92, 246, 0.08);
-    border: 2px solid rgba(139, 92, 246, 0.4);
-    color: #5b21b6;
-    box-shadow:
-        0 8px 32px rgba(139, 92, 246, 0.15),
-        inset 0 1px 0 rgba(255, 255, 255, 0.3),
-        inset 0 0 20px rgba(139, 92, 246, 0.1),
-        0 0 25px rgba(139, 92, 246, 0.2);
-}
-
-:root.light .model-card:hover {
-    background-color: rgba(139, 92, 246, 0.15);
+/* HOVER STATE - PURPLE ONLY, NO WHITE */
+.model-card:hover {
+    background-color: rgba(139, 92, 246, 0.12) !important;
     transform: translateY(-4px) scale(1.02);
     box-shadow:
         0 16px 48px rgba(139, 92, 246, 0.3),
-        inset 0 1px 0 rgba(255, 255, 255, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1),
         inset 0 0 30px rgba(139, 92, 246, 0.15),
-        0 0 40px rgba(139, 92, 246, 0.35);
+        0 0 40px rgba(139, 92, 246, 0.35) !important;
+}
+
+/* Light Mode */
+:root.light .model-card {
+    background-color: rgba(139, 92, 246, 0.08) !important;
+    border: 2px solid rgba(139, 92, 246, 0.4);
+    color: #5b21b6;
+}
+
+:root.light .model-card:hover {
+    background-color: rgba(139, 92, 246, 0.15) !important;
 }
 
 /* Dark Mode */
 :root.dark .model-card {
-    background-color: rgba(139, 92, 246, 0.08);
+    background-color: rgba(139, 92, 246, 0.08) !important;
     border: 2px solid rgba(139, 92, 246, 0.35);
     color: #e9d5ff;
-    box-shadow:
-        0 8px 32px rgba(0, 0, 0, 0.5),
-        inset 0 1px 0 rgba(255, 255, 255, 0.05),
-        inset 0 0 20px rgba(139, 92, 246, 0.08),
-        0 0 25px rgba(139, 92, 246, 0.2);
     text-shadow: 0 1px 3px rgba(0, 0, 0, 0.8);
 }
 
 :root.dark .model-card:hover {
-    background-color: rgba(139, 92, 246, 0.15);
-    transform: translateY(-4px) scale(1.02);
-    box-shadow:
-        0 16px 48px rgba(139, 92, 246, 0.4),
-        0 0 60px rgba(168, 85, 247, 0.3),
-        inset 0 1px 0 rgba(255, 255, 255, 0.08),
-        inset 0 0 30px rgba(139, 92, 246, 0.12),
-        0 0 50px rgba(139, 92, 246, 0.4);
+    background-color: rgba(139, 92, 246, 0.15) !important;
 }
 
 /* SELECTED STATE - Strong purple glow */
@@ -122,24 +109,6 @@
     opacity: 0 !important;
 }
 
-:root.light .model-card-selected {
-    background-color: rgba(139, 92, 246, 0.2) !important;
-    box-shadow:
-        0 0 0 4px rgba(139, 92, 246, 0.3),
-        0 12px 40px rgba(139, 92, 246, 0.4),
-        0 0 50px rgba(139, 92, 246, 0.35),
-        inset 0 0 40px rgba(139, 92, 246, 0.2) !important;
-}
-
-:root.dark .model-card-selected {
-    background-color: rgba(139, 92, 246, 0.15) !important;
-    box-shadow:
-        0 0 0 4px rgba(139, 92, 246, 0.4),
-        0 12px 40px rgba(139, 92, 246, 0.6),
-        0 0 80px rgba(168, 85, 247, 0.5),
-        inset 0 0 40px rgba(139, 92, 246, 0.2) !important;
-}
-
 /* Card components */
 .model-img {
     width: 100%;
@@ -154,7 +123,7 @@
     padding: 0 8px;
 }
 
-/* Scrolling containers - NO overflow hidden on wrapper */
+/* Scrolling containers - HORIZONTAL SCROLL FOR CARDS */
 .card-scroll-container {
     display: flex;
     gap: 0.75rem;
@@ -196,26 +165,11 @@
 .scroll-btn:hover {
     background: rgba(139, 92, 246, 0.25);
     transform: scale(1.1);
-    box-shadow:
-        0 8px 24px rgba(139, 92, 246, 0.25),
-        0 0 25px rgba(139, 92, 246, 0.3);
 }
 
 :root.dark .scroll-btn {
     background: rgba(139, 92, 246, 0.15);
-    box-shadow:
-        0 8px 16px rgba(0, 0, 0, 0.4),
-        0 0 15px rgba(139, 92, 246, 0.15),
-        inset 0 0 20px rgba(139, 92, 246, 0.08);
     color: #f1f5f9;
-}
-
-:root.dark .scroll-btn:hover {
-    background: rgba(139, 92, 246, 0.25);
-    transform: scale(1.1);
-    box-shadow:
-        0 12px 32px rgba(139, 92, 246, 0.35),
-        0 0 30px rgba(139, 92, 246, 0.25);
 }
 
 /* Action card content */
@@ -226,6 +180,12 @@
     justify-content: center;
     gap: 8px;
     height: 100%;
+    /* NO WHITE BACKGROUND ON HOVER */
+    background: transparent !important;
+}
+
+.action-card-content:hover {
+    background: transparent !important;
 }
 
 /* Full height card */
@@ -233,11 +193,7 @@
     height: 100%;
 }
 
-.full-height-card .Polaris-Card__Section {
-    flex: 1;
-}
-
-/* GLASS PANEL - for sidebar and all blocks */
+/* GLASS PANEL - for all blocks */
 .glass-panel {
     background-color: rgba(139, 92, 246, 0.08);
     backdrop-filter: var(--glass-blur);
@@ -258,6 +214,21 @@
         0 8px 32px rgba(0, 0, 0, 0.15),
         inset 0 1px 0 rgba(255, 255, 255, 0.1),
         0 0 20px rgba(139, 92, 246, 0.15) !important;
+    /* NO WHITE BACKGROUND */
+    background: rgba(139, 92, 246, 0.05) !important;
+}
+
+/* KILL ALL WHITE BACKGROUNDS */
+.Polaris-Card__Section,
+.Polaris-LegacyCard,
+.Polaris-LegacyCard__Section {
+    background: transparent !important;
+}
+
+/* NO HORIZONTAL SCROLL ON PAGE - blocks fit screen */
+.Polaris-Page {
+    max-width: 100% !important;
+    overflow-x: hidden !important;
 }
 
 /* MOBILE RESPONSIVE */
@@ -271,9 +242,8 @@
         height: 140px;
     }
 
-    .card-scroll-container {
-        gap: 0.5rem;
-        padding: 0.75rem 0.25rem;
+    .Polaris-Page {
+        padding: 10px !important;
     }
 }
 
@@ -292,9 +262,12 @@
         height: 2rem;
     }
 
-    /* Stack cards vertically on very small screens */
-    .card-scroll-container {
-        padding: 0.5rem 0;
+    .Polaris-Page {
+        padding: 8px !important;
+    }
+
+    :root {
+        --glass-border-radius: 16px;
     }
 }
 
@@ -309,7 +282,7 @@
         border-radius: 8px;
     }
 
-    :root {
-        --glass-border-radius: 16px;
+    .Polaris-Page {
+        padding: 6px !important;
     }
 }
