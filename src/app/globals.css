@@ -286,7 +286,7 @@ div[role="dialog"]>div[class*="Polaris-Modal-Dialog__Modal"] {
 /* Modal Header */
 .Polaris-Modal-Header {
   background: transparent !important;
-  border-bottom: 1.5px solid rgba(139, 92, 246, 0.35) !important;
+  border-bottom: none !important;
   padding: 20px 24px !important;
 }
 
@@ -316,7 +316,7 @@ div[role="dialog"]>div[class*="Polaris-Modal-Dialog__Modal"] {
 /* Modal Footer */
 .Polaris-Modal-Footer {
   background: transparent !important;
-  border-top: 1.5px solid rgba(139, 92, 246, 0.35) !important;
+  border-top: none !important;
   padding: 16px 24px !important;
 }
 
