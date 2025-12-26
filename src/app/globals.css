@@ -293,14 +293,14 @@ div[role="dialog"]>div[class*="Polaris-Modal-Dialog__Modal"] {
 }
 
 :root.dark .Polaris-Modal-Dialog__Modal {
-  background: rgba(139, 92, 246, 0.2) !important;
-  border-color: rgba(139, 92, 246, 0.7) !important;
+  background: rgba(20, 20, 30, 0.8) !important;
+  border: 3px solid rgba(139, 92, 246, 0.6) !important;
   box-shadow:
     0 25px 80px rgba(0, 0, 0, 0.7),
-    0 0 100px rgba(139, 92, 246, 0.6),
-    inset 0 1px 0 rgba(255, 255, 255, 0.1),
-    inset 0 0 60px rgba(139, 92, 246, 0.25) !important;
+    inset 0 1px 0 rgba(255, 255, 255, 0.1) !important;
 }
+
+
 
 /* Modal Header */
 .Polaris-Modal-Header {
