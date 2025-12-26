@@ -28,13 +28,13 @@ const SidebarItem = ({ href, icon, label, active }: SidebarItemProps) => (
         className={cn(
             "flex items-center gap-3 px-4 py-3 rounded-xl transition-all duration-200 group",
             active
-                ? "bg-indigo-600/10 text-indigo-400 font-medium"
+                ? "bg-purple-600/10 text-purple-400 font-medium" // CHANGED TO PURPLE
                 : "text-slate-400 hover:bg-slate-800/50 hover:text-slate-200"
         )}
     >
         <div className={cn(
             "p-1.5 rounded-lg transition-colors",
-            active ? "bg-indigo-600 text-white" : "bg-slate-800 text-slate-400 group-hover:text-slate-200"
+            active ? "bg-purple-600 text-white" : "bg-slate-800 text-slate-400 group-hover:text-slate-200" // CHANGED TO PURPLE
         )}>
             {icon}
         </div>
@@ -80,15 +80,15 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
                 </svg>
             </button>
 
-            {/* Sidebar - GLASS STYLE with same border radius as cards */}
+            {/* Sidebar - CLEAN GLASS STYLE (No 40px glow) */}
             <aside className={`w-72 flex flex-col shadow-2xl z-40 transition-all duration-300 lg:translate-x-0 ${isSidebarOpen ? 'translate-x-0' : '-translate-x-full'} fixed lg:relative h-[calc(100%-20px)]`} style={{
-                background: 'rgba(139, 92, 246, 0.08)',
-                backdropFilter: 'blur(60px) saturate(180%)',
-                WebkitBackdropFilter: 'blur(60px) saturate(180%)',
-                border: '2px solid rgba(139, 92, 246, 0.4)',
+                background: 'rgba(20, 20, 25, 0.4)', /* Darker neutral base */
+                backdropFilter: 'blur(40px)',
+                WebkitBackdropFilter: 'blur(40px)',
+                border: '1px solid rgba(139, 92, 246, 0.2)', /* Subtle border */
                 borderRadius: '20px',
                 margin: '10px',
-                boxShadow: '0 8px 32px rgba(0, 0, 0, 0.3), 0 0 40px rgba(139, 92, 246, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.1)',
+                boxShadow: '0 10px 30px rgba(0, 0, 0, 0.3)', /* Clean shadow */
             }}>
                 <div className="p-6">
                     <Link href="/" className="flex flex-col items-center gap-2 group relative">

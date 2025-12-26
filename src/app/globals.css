@@ -215,10 +215,7 @@ body::after {
 /* Specific styling for Light Mode Cards creates conflict - deleted to strictly follow Glass style below */
 
 /* ============================================
-   POLARIS CARDS - PROMINENT BORDERS LIKE MODEL CARDS 
-   ============================================ */
-/* ============================================
-   POLARIS CARDS - PROMINENT UNIVERSAL SELECTOR
+   POLARIS CARDS - CLEAN LIQUID GLASS (FINAL RESET)
    ============================================ */
 /* Target ALL possible Polaris card variations */
 .Polaris-Card,
@@ -227,29 +224,37 @@ div[class*="Polaris-Card"],
 div[class*="Polaris-LegacyCard"],
 .Polaris-Box {
   border-radius: 20px !important;
-  /* THICKER, MORE VISIBLE BORDER */
+  /* FORCE SINGLE BORDER */
   border: 3px solid rgba(139, 92, 246, 0.6) !important;
-  background: rgba(139, 92, 246, 0.08) !important;
-  backdrop-filter: blur(50px) saturate(180%) !important;
-  -webkit-backdrop-filter: blur(50px) saturate(180%) !important;
-  /* STRONGER GLOW - DROP SHADOW TO WORK WITH TRANSPARENCY */
+  border-top: 3px solid rgba(139, 92, 246, 0.6) !important;
+  border-bottom: 3px solid rgba(139, 92, 246, 0.6) !important;
+  border-left: 3px solid rgba(139, 92, 246, 0.6) !important;
+  border-right: 3px solid rgba(139, 92, 246, 0.6) !important;
+
+  background: rgba(139, 92, 246, 0.05) !important;
+  backdrop-filter: blur(40px) saturate(180%) !important;
+  -webkit-backdrop-filter: blur(40px) saturate(180%) !important;
+
+  /* DEPTH SHADOW ONLY - NO GLOW */
   box-shadow:
-    0 0 0 1px rgba(139, 92, 246, 0.5),
-    /* Inner border simulation */
-    0 0 50px rgba(139, 92, 246, 0.45) !important;
-  /* Outer glow */
+    0 15px 35px rgba(0, 0, 0, 0.2),
+    /* Dropped shadow for thickness */
+    inset 0 1px 0 rgba(255, 255, 255, 0.4) !important;
+  /* Glass Top Edge */
+
   overflow: visible !important;
   margin-bottom: 24px !important;
+  transform: translateZ(0);
+  /* Fix specific rendering artifacts */
 }
 
+/* Clear Dark Mode Overrides */
 :root.dark .Polaris-Card {
   background: rgba(139, 92, 246, 0.1) !important;
-  border-color: rgba(139, 92, 246, 0.55) !important;
+  border: 3px solid rgba(139, 92, 246, 0.6) !important;
   box-shadow:
-    0 8px 32px rgba(0, 0, 0, 0.5),
-    inset 0 1px 0 rgba(255, 255, 255, 0.1),
-    inset 0 0 30px rgba(139, 92, 246, 0.12),
-    0 0 50px rgba(139, 92, 246, 0.45) !important;
+    0 15px 35px rgba(0, 0, 0, 0.5),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1) !important;
 }
 
 /* Card sections transparent */
@@ -257,43 +262,33 @@ div[class*="Polaris-LegacyCard"],
 .Polaris-LegacyCard,
 .Polaris-LegacyCard__Section {
   background: transparent !important;
-}
-
-/* ============================================
-   POLARIS MODALS - COMPLETE REWORK
-   ============================================ */
-
-/* Modal Backdrop/Overlay */
-.Polaris-Modal-Dialog__Container {
-  background: rgba(0, 0, 0, 0.7) !important;
-  backdrop-filter: blur(15px) saturate(150%) !important;
-  -webkit-backdrop-filter: blur(15px) saturate(150%) !important;
-}
-
-/* Modal Dialog Container - Control Width */
-.Polaris-Modal-Dialog {
-  max-width: 600px !important;
-  width: 90% !important;
-  margin: auto !important;
-  background: transparent !important;
   border: none !important;
   box-shadow: none !important;
 }
 
-/* Modal Dialog Content - The Actual Glass Panel */
-/* TARGETING BOTH CLASSES FOR SPECIFICITY */
+/* ============================================
+   POLARIS MODALS - CLEAN GLASS
+   ============================================ */
+
+/* Modal Backdrop */
+.Polaris-Modal-Dialog__Container {
+  background: rgba(0, 0, 0, 0.6) !important;
+  backdrop-filter: blur(10px) !important;
+}
+
+/* Modal Content */
 .Polaris-Modal-Dialog__Modal,
 div[role="dialog"]>div[class*="Polaris-Modal-Dialog__Modal"] {
-  background: rgba(139, 92, 246, 0.15) !important;
-  backdrop-filter: blur(80px) saturate(200%) !important;
-  -webkit-backdrop-filter: blur(80px) saturate(200%) !important;
+  background: rgba(30, 30, 40, 0.6) !important;
+  /* Darker glass base */
+  backdrop-filter: blur(60px) saturate(180%) !important;
+  -webkit-backdrop-filter: blur(60px) saturate(180%) !important;
   border: 3px solid rgba(139, 92, 246, 0.6) !important;
   border-radius: 24px !important;
   box-shadow:
-    0 25px 80px rgba(0, 0, 0, 0.5),
-    0 0 80px rgba(139, 92, 246, 0.4),
-    inset 0 1px 0 rgba(255, 255, 255, 0.15),
-    inset 0 0 50px rgba(139, 92, 246, 0.15) !important;
+    0 25px 50px rgba(0, 0, 0, 0.5),
+    /* Depth */
+    inset 0 1px 0 rgba(255, 255, 255, 0.2) !important;
   overflow: hidden !important;
 }
 

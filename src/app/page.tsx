@@ -1678,9 +1678,10 @@ export default function Dashboard() {
             padding: '8px 12px',
             boxShadow: '0 8px 32px rgba(31, 38, 135, 0.15)',
             transition: 'all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1)',
-            visibility: (customModels.length > 0 || selectedProducts.length > 0) ? 'visible' : 'hidden',
-            opacity: (customModels.length > 0 || selectedProducts.length > 0) ? 1 : 0,
-            pointerEvents: (customModels.length > 0 || selectedProducts.length > 0) ? 'auto' : 'none'
+            /* FORCED VISIBILITY */
+            visibility: 'visible',
+            opacity: 1,
+            pointerEvents: 'auto'
           }}
         >
           <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
