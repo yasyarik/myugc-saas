@@ -43,15 +43,17 @@ const OptionGrid = ({ label, options, selected, onChange }: {
           key={opt.value}
           onClick={() => onChange(opt.value)}
           style={{
-            border: selected === opt.value ? '2px solid #8b5cf6' : '1px solid #e1e3e5',
-            borderRadius: '8px',
-            padding: '8px',
+            border: selected === opt.value ? '2px solid rgba(139, 92, 246, 0.8)' : '1px solid rgba(255, 255, 255, 0.2)',
+            borderRadius: '12px',
+            padding: '12px 8px',
             cursor: 'pointer',
-            background: selected === opt.value ? '#f1f8f5' : 'white',
+            background: selected === opt.value ? 'rgba(139, 92, 246, 0.15)' : 'rgba(255, 255, 255, 0.05)',
             textAlign: 'center',
+            backdropFilter: 'blur(10px)',
+            transition: 'all 0.2s ease'
           }}
         >
-          <div style={{ fontSize: '24px', marginBottom: '4px' }}>{opt.icon}</div>
+          <div style={{ fontSize: '24px', marginBottom: '4px', filter: 'drop-shadow(0 2px 4px rgba(0,0,0,0.2))' }}>{opt.icon}</div>
           <Text variant="bodyXs" tone={selected === opt.value ? 'success' : 'subdued'}>{opt.label}</Text>
         </div>
       ))}
@@ -436,23 +438,26 @@ export default function Dashboard() {
             width: 150px;
             height: 250px;
             flex: 0 0 150px;
-            border-radius: 8px;
+            border-radius: 16px; /* Smooth rounded */
             padding: 0;
             text-align: center;
             cursor: pointer;
-            background: white;
-            border: 1px solid #dfe3e8;
-            position: relative;
+            background: rgba(255, 255, 255, 0.8); /* Semi-transparent base */
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(0, 0, 0, 0.05);
+            position: relative !important; /* Crucial for icons */
             display: flex;
             align-items: center;
             justify-content: center;
             flex-direction: column;
-            background: white;
             color: #5c5f62;
+            transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+            overflow: hidden; /* Prevent spill */
           }
           .model-card-selected {
-            border: 2px solid #8b5cf6 !important;
-            background: #f1f8f5 !important;
+            border: 3px solid #ffffff !important; /* BOLD WHITE BORDER */
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15), 0 0 0 1px rgba(0,0,0,0.05) !important;
+            background: rgba(139, 92, 246, 0.1) !important;
           }
           .full-height-card .Polaris-Card__Section {
             flex: 1;
@@ -1684,7 +1689,13 @@ export default function Dashboard() {
             pointerEvents: 'auto'
           }}
         >
-          <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+            <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start' }}>
+              <Text variant="bodySm" fontWeight="bold">
+                {selectedProducts.filter(p => p.selected !== false).length} Selected
+              </Text>
+            </div>
+            <div style={{ width: '1px', height: '24px', background: 'rgba(0,0,0,0.1)' }}></div>
             <Button
               variant="primary"
               tone="critical"
@@ -1692,8 +1703,16 @@ export default function Dashboard() {
               loading={isGenerating}
               disabled={isGenerating || (customModels.length === 0 && selectedModel === 'no-model' && !presetModels?.some(m => m.id === selectedModel))}
             >
-              Generate {selectedProducts.length > 0 ? `(${selectedProducts.length})` : ''}
+              Generate Photos
             </Button>
+            {selectedProducts.filter(p => p.selected !== false).length > 0 && (
+              <Button
+                plain
+                onClick={() => setSelectedProducts(prev => prev.map(p => ({ ...p, selected: false })))}
+              >
+                Clear
+              </Button>
+            )}
             {isGenerating && (
               <Button onClick={() => window.location.reload()}>
                 Stop

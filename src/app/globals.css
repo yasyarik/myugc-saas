@@ -155,22 +155,7 @@ body::after {
   z-index: 2;
 }
 
-.Polaris-Card::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  border-radius: 20px;
-  padding: 1.5px;
-  background: linear-gradient(135deg,
-      rgba(139, 92, 246, 0.3),
-      rgba(236, 72, 153, 0.3),
-      rgba(192, 132, 252, 0.3));
-  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-  -webkit-mask-composite: xor;
-  mask-composite: exclude;
-  pointer-events: none;
-  opacity: 0.6;
-}
+
 
 /* Enhanced Polaris Text */
 :root.dark .Polaris-Text--root {
