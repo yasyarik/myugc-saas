@@ -215,8 +215,63 @@ body::after {
   background: transparent !important;
 }
 
-/* Polaris Modal Glass Styling - THICKER BORDERS, MORE GLOW */
+/* ============================================
+   POLARIS CARDS - SAME STYLE AS MODEL CARDS 
+   ============================================ */
+.Polaris-Card {
+  border-radius: 20px !important;
+  border: 2.5px solid rgba(139, 92, 246, 0.5) !important;
+  background: rgba(139, 92, 246, 0.08) !important;
+  backdrop-filter: blur(50px) saturate(180%) !important;
+  -webkit-backdrop-filter: blur(50px) saturate(180%) !important;
+  box-shadow:
+    0 8px 32px rgba(0, 0, 0, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.15),
+    inset 0 0 25px rgba(139, 92, 246, 0.12),
+    0 0 35px rgba(139, 92, 246, 0.3) !important;
+  overflow: visible !important;
+}
+
+:root.dark .Polaris-Card {
+  background: rgba(139, 92, 246, 0.08) !important;
+  border-color: rgba(139, 92, 246, 0.45) !important;
+  box-shadow:
+    0 8px 32px rgba(0, 0, 0, 0.4),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08),
+    inset 0 0 25px rgba(139, 92, 246, 0.1),
+    0 0 40px rgba(139, 92, 246, 0.35) !important;
+}
+
+/* Card sections transparent */
+.Polaris-Card__Section,
+.Polaris-LegacyCard,
+.Polaris-LegacyCard__Section {
+  background: transparent !important;
+}
+
+/* ============================================
+   POLARIS MODALS - COMPLETE REWORK
+   ============================================ */
+
+/* Modal Backdrop/Overlay */
+.Polaris-Modal-Dialog__Container {
+  background: rgba(0, 0, 0, 0.7) !important;
+  backdrop-filter: blur(15px) saturate(150%) !important;
+  -webkit-backdrop-filter: blur(15px) saturate(150%) !important;
+}
+
+/* Modal Dialog Container - Control Width */
 .Polaris-Modal-Dialog {
+  max-width: 600px !important;
+  width: 90% !important;
+  margin: auto !important;
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+/* Modal Dialog Content - The Actual Glass Panel */
+.Polaris-Modal-Dialog__Modal {
   background: rgba(139, 92, 246, 0.1) !important;
   backdrop-filter: blur(80px) saturate(200%) !important;
   -webkit-backdrop-filter: blur(80px) saturate(200%) !important;
@@ -230,8 +285,8 @@ body::after {
   overflow: hidden !important;
 }
 
-:root.dark .Polaris-Modal-Dialog {
-  background: rgba(139, 92, 246, 0.15) !important;
+:root.dark .Polaris-Modal-Dialog__Modal {
+  background: rgba(139, 92, 246, 0.12) !important;
   border-color: rgba(139, 92, 246, 0.6) !important;
   box-shadow:
     0 25px 80px rgba(0, 0, 0, 0.7),
@@ -240,32 +295,62 @@ body::after {
     inset 0 0 60px rgba(139, 92, 246, 0.2) !important;
 }
 
+/* Modal Header */
 .Polaris-Modal-Header {
   background: transparent !important;
   border-bottom: 1.5px solid rgba(139, 92, 246, 0.35) !important;
+  padding: 20px 24px !important;
 }
 
+.Polaris-Modal-Header__Title {
+  color: inherit !important;
+}
+
+/* Modal Close Button */
 .Polaris-Modal-CloseButton {
   background: rgba(139, 92, 246, 0.15) !important;
   border: 1.5px solid rgba(139, 92, 246, 0.4) !important;
   border-radius: 12px !important;
+  transition: all 200ms ease !important;
 }
 
 .Polaris-Modal-CloseButton:hover {
   background: rgba(139, 92, 246, 0.25) !important;
+  border-color: rgba(139, 92, 246, 0.6) !important;
 }
 
+/* Modal Body/Section */
 .Polaris-Modal-Section {
   background: transparent !important;
+  padding: 24px !important;
 }
 
+/* Modal Footer */
 .Polaris-Modal-Footer {
   background: transparent !important;
   border-top: 1.5px solid rgba(139, 92, 246, 0.35) !important;
+  padding: 16px 24px !important;
 }
 
-/* Modal overlay - darker with blur */
-.Polaris-Modal-Dialog__Container {
-  background: rgba(0, 0, 0, 0.6) !important;
-  backdrop-filter: blur(12px) saturate(150%) !important;
+/* Fix any white backgrounds inside modal */
+.Polaris-Modal-Dialog * {
+  background-color: transparent;
+}
+
+/* Modal inner elements that might have white */
+.Polaris-Box,
+.Polaris-BlockStack {
+  background: transparent !important;
+}
+
+/* Ensure inputs inside modals are styled */
+.Polaris-Modal-Dialog .Polaris-TextField__Input {
+  background: rgba(139, 92, 246, 0.08) !important;
+  border: 1.5px solid rgba(139, 92, 246, 0.4) !important;
+  border-radius: 12px !important;
+}
+
+.Polaris-Modal-Dialog .Polaris-TextField__Input:focus {
+  border-color: rgba(139, 92, 246, 0.7) !important;
+  box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.2) !important;
 }
