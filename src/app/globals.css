@@ -111,16 +111,14 @@ body::after {
   opacity: 0.6;
 }
 
-/* Polaris Dark Mode Variables */
+/* Polaris Dark Mode Variables - NEUTRALIZED SHADOWS */
 :root.dark {
   --p-color-bg-surface: rgba(255, 255, 255, 0.03) !important;
   --p-color-bg-surface-secondary: rgba(255, 255, 255, 0.05) !important;
   --p-color-text: #f1f5f9 !important;
   --p-color-text-secondary: #cbd5e1 !important;
-  --p-shadow-card:
-    0 8px 32px rgba(0, 0, 0, 0.4),
-    0 0 0 1px rgba(139, 92, 246, 0.1) inset,
-    0 4px 12px rgba(139, 92, 246, 0.15) !important;
+  --p-shadow-card: 0 10px 30px rgba(0, 0, 0, 0.5) !important;
+  /* Clean shadow only */
 }
 
 :root.light {
@@ -128,10 +126,8 @@ body::after {
   --p-color-bg-surface-secondary: rgba(139, 92, 246, 0.12) !important;
   --p-color-text: #1e293b !important;
   --p-color-text-secondary: #64748b !important;
-  --p-shadow-card:
-    0 8px 32px rgba(0, 0, 0, 0.08),
-    0 0 0 1px rgba(139, 92, 246, 0.3) inset,
-    0 4px 12px rgba(139, 92, 246, 0.1) !important;
+  --p-shadow-card: 0 10px 30px rgba(0, 0, 0, 0.1) !important;
+  /* Clean shadow only */
 }
 
 /* Ultra-Glass Effect for Polaris Cards */
