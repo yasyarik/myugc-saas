@@ -665,9 +665,9 @@ export default function Dashboard() {
             {/* Models and Locations */}
             <Layout.Section>
               {/* Desktop: side by side, Mobile: stacked */}
-              <div style={{ display: 'flex', gap: '20px', flexDirection: 'row', flexWrap: 'nowrap' }}>
-                {/* MODEL - 50% width */}
-                <div style={{ flex: 1, minWidth: 0 }}>
+              <div className="flex flex-col lg:flex-row gap-5">
+                {/* MODEL - 50% width on desktop, full on mobile */}
+                <div className="flex-1 min-w-0">
                   <Card>
                     <div style={{ position: 'relative' }}>
                       <InlineStack align="space-between" blockAlign="center">
@@ -820,8 +820,8 @@ export default function Dashboard() {
                   </Card>
                 </div>
 
-                {/* LOCATION - 50% width */}
-                <div style={{ flex: 1, minWidth: 0 }}>
+                {/* LOCATION - 50% width on desktop, full on mobile */}
+                <div className="flex-1 min-w-0">
                   <Card>
                     <div style={{ position: 'relative' }}>
                       <InlineStack align="space-between" blockAlign="center">
