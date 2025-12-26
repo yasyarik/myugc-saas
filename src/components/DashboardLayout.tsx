@@ -45,6 +45,7 @@ const SidebarItem = ({ href, icon, label, active }: SidebarItemProps) => (
 
 export default function DashboardLayout({ children }: { children: React.ReactNode }) {
     const pathname = usePathname();
+    const [isSidebarOpen, setIsSidebarOpen] = React.useState(false);
 
     const navItems = [
         { href: "/", icon: <LayoutDashboard size={18} />, label: "Dashboard" },
@@ -56,8 +57,18 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
 
     return (
         <div className="flex h-screen bg-transparent text-foreground overflow-hidden relative">
+            {/* Mobile menu button */}
+            <button
+                onClick={() => setIsSidebarOpen(!isSidebarOpen)}
+                className="lg:hidden fixed top-4 left-4 z-50 p-2 rounded-lg bg-purple-500/20 backdrop-blur-md border border-purple-400/30"
+            >
+                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+                </svg>
+            </button>
+
             {/* Sidebar */}
-            <aside className="w-72 border-r border-white/10 flex flex-col shadow-2xl relative z-10" style={{
+            <aside className={`w-72 border-r border-white/10 flex flex-col shadow-2xl relative z-10 transition-transform lg:translate-x-0 ${isSidebarOpen ? 'translate-x-0' : '-translate-x-full'} fixed lg:static h-full`} style={{
                 background: 'rgba(255, 255, 255, 0.03)',
                 backdropFilter: 'blur(60px) saturate(180%)',
                 WebkitBackdropFilter: 'blur(60px) saturate(180%)',
