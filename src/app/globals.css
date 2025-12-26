@@ -23,11 +23,11 @@
   }
 
   .glass-panel-light {
-    background-color: rgba(255, 255, 255, 0.65);
-    border-color: rgba(255, 255, 255, 0.4);
+    background-color: rgba(139, 92, 246, 0.1);
+    border-color: rgba(139, 92, 246, 0.3);
     box-shadow:
-      0 4px 6px -1px rgba(0, 0, 0, 0.05),
-      inset 0 0 20px rgba(255, 255, 255, 0.5);
+      0 4px 6px -1px rgba(139, 92, 246, 0.15),
+      inset 0 0 20px rgba(139, 92, 246, 0.15);
   }
 
   .glass-panel-dark {
@@ -124,8 +124,8 @@ body::after {
 }
 
 :root.light {
-  --p-color-bg-surface: rgba(255, 255, 255, 0.15) !important;
-  --p-color-bg-surface-secondary: rgba(255, 255, 255, 0.25) !important;
+  --p-color-bg-surface: rgba(139, 92, 246, 0.08) !important;
+  --p-color-bg-surface-secondary: rgba(139, 92, 246, 0.12) !important;
   --p-color-text: #1e293b !important;
   --p-color-text-secondary: #64748b !important;
   --p-shadow-card:
@@ -212,6 +212,31 @@ body::after {
 }
 
 :root.light .Polaris-Page {
+  background: transparent !important;
+}
+
+/* Polaris Modal Glass Styling */
+.Polaris-Modal-Dialog {
+  background: rgba(139, 92, 246, 0.08) !important;
+  backdrop-filter: blur(60px) saturate(180%) !important;
+  -webkit-backdrop-filter: blur(60px) saturate(180%) !important;
+  border: 1.5px solid rgba(139, 92, 246, 0.3) !important;
+  box-shadow:
+    0 20px 60px rgba(0, 0, 0, 0.3),
+    inset 0 0 40px rgba(139, 92, 246, 0.15) !important;
+}
+
+:root.dark .Polaris-Modal-Dialog {
+  background: rgba(139, 92, 246, 0.12) !important;
+  border-color: rgba(139, 92, 246, 0.4) !important;
+}
+
+.Polaris-Modal-Header {
+  background: transparent !important;
+  border-bottom-color: rgba(139, 92, 246, 0.2) !important;
+}
+
+.Polaris-Modal-Section {
   background: transparent !important;
 }
 
@@ -381,7 +406,7 @@ body::after {
   }
 
   :root.light .scroll-btn:hover {
-    background: rgba(255, 255, 255, 0.25);
+    background: rgba(139, 92, 246, 0.2);
     transform: translateY(-50%) scale(1.1);
     box-shadow: 0 8px 24px rgba(139, 92, 246, 0.2);
   }
@@ -395,7 +420,7 @@ body::after {
   }
 
   :root.dark .scroll-btn:hover {
-    background: rgba(255, 255, 255, 0.12);
+    background: rgba(139, 92, 246, 0.15);
     transform: translateY(-50%) scale(1.1);
     box-shadow: 0 12px 32px rgba(139, 92, 246, 0.3);
   }
@@ -414,8 +439,8 @@ body::after {
     backdrop-filter: blur(60px) saturate(180%);
     -webkit-backdrop-filter: blur(60px) saturate(180%);
     border: 1.5px solid transparent;
-    background-image: linear-gradient(rgba(255, 255, 255, 0.08),
-        rgba(255, 255, 255, 0.08)), linear-gradient(135deg,
+    background-image: linear-gradient(rgba(139, 92, 246, 0.1),
+        rgba(139, 92, 246, 0.1)), linear-gradient(135deg,
         rgba(139, 92, 246, 0.4),
         rgba(236, 72, 153, 0.4),
         rgba(56, 189, 248, 0.4));
