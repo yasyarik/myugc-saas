@@ -760,7 +760,7 @@ export default function Dashboard() {
                               <div className="model-text">
                                 <Text variant="bodySm" truncate>{model.name}</Text>
                               </div>
-                              <div style={{ position: 'absolute', bottom: '40px', left: '0', right: '0', display: 'flex', justifyContent: 'center', gap: '8px' }}>
+                              <div style={{ position: 'absolute', bottom: '40px', left: '0', right: '0', display: 'flex', justifyContent: 'center', gap: '8px', zIndex: 20 }}>
                                 <Tooltip content="Preview">
                                   <Button
                                     plain
@@ -794,7 +794,7 @@ export default function Dashboard() {
                             <div className="model-text">
                               <Text variant="bodySm" truncate>{model.name}</Text>
                             </div>
-                            <div style={{ position: 'absolute', bottom: '40px', left: '0', right: '0', display: 'flex', justifyContent: 'center', gap: '8px' }}>
+                            <div style={{ position: 'absolute', bottom: '40px', left: '0', right: '0', display: 'flex', justifyContent: 'center', gap: '8px', zIndex: 20 }}>
                               <Tooltip content="Preview">
                                 <Button
                                   plain
@@ -1270,7 +1270,20 @@ export default function Dashboard() {
         {/* Sticky Floating Action Bar */}
         {
           (selectedProducts.some(p => p.selected !== false) || batchResults.some(r => r.selected)) && (
-            <div className="fab-container">
+            <div className="fab-container" style={{
+              display: 'flex',
+              position: 'fixed',
+              bottom: '30px',
+              left: '50%',
+              transform: 'translateX(-50%)',
+              zIndex: 9999,
+              background: 'rgba(139, 92, 246, 0.2)',
+              backdropFilter: 'blur(40px) saturate(180%)',
+              border: '3px solid rgba(139, 92, 246, 0.6)',
+              borderRadius: '9999px',
+              padding: '12px 24px',
+              boxShadow: '0 15px 45px rgba(0, 0, 0, 0.5), 0 0 60px rgba(139, 92, 246, 0.5)'
+            }}>
               <div style={{ display: 'flex', alignItems: 'center', gap: '8px', paddingRight: '16px', borderRight: '1px solid rgba(0,0,0,0.1)' }}>
                 <Badge tone="success">Ready to Generate</Badge>
               </div>
