@@ -216,30 +216,32 @@ body::after {
 }
 
 /* ============================================
-   POLARIS CARDS - SAME STYLE AS MODEL CARDS 
+   POLARIS CARDS - PROMINENT BORDERS LIKE MODEL CARDS 
    ============================================ */
 .Polaris-Card {
   border-radius: 20px !important;
-  border: 2.5px solid rgba(139, 92, 246, 0.5) !important;
+  /* THICKER, MORE VISIBLE BORDER */
+  border: 3px solid rgba(139, 92, 246, 0.6) !important;
   background: rgba(139, 92, 246, 0.08) !important;
   backdrop-filter: blur(50px) saturate(180%) !important;
   -webkit-backdrop-filter: blur(50px) saturate(180%) !important;
+  /* STRONGER GLOW */
   box-shadow:
-    0 8px 32px rgba(0, 0, 0, 0.2),
-    inset 0 1px 0 rgba(255, 255, 255, 0.15),
-    inset 0 0 25px rgba(139, 92, 246, 0.12),
-    0 0 35px rgba(139, 92, 246, 0.3) !important;
+    0 8px 32px rgba(0, 0, 0, 0.25),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2),
+    inset 0 0 30px rgba(139, 92, 246, 0.15),
+    0 0 45px rgba(139, 92, 246, 0.4) !important;
   overflow: visible !important;
 }
 
 :root.dark .Polaris-Card {
-  background: rgba(139, 92, 246, 0.08) !important;
-  border-color: rgba(139, 92, 246, 0.45) !important;
+  background: rgba(139, 92, 246, 0.1) !important;
+  border-color: rgba(139, 92, 246, 0.55) !important;
   box-shadow:
-    0 8px 32px rgba(0, 0, 0, 0.4),
-    inset 0 1px 0 rgba(255, 255, 255, 0.08),
-    inset 0 0 25px rgba(139, 92, 246, 0.1),
-    0 0 40px rgba(139, 92, 246, 0.35) !important;
+    0 8px 32px rgba(0, 0, 0, 0.5),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1),
+    inset 0 0 30px rgba(139, 92, 246, 0.12),
+    0 0 50px rgba(139, 92, 246, 0.45) !important;
 }
 
 /* Card sections transparent */
@@ -340,6 +342,20 @@ body::after {
 /* Modal inner elements that might have white */
 .Polaris-Box,
 .Polaris-BlockStack {
+  background: transparent !important;
+}
+
+/* KILL WHITE BACKGROUNDS UNDER ICONS */
+.Polaris-Icon,
+.Polaris-Icon__Svg,
+.Polaris-Button__Icon,
+.Polaris-Modal-CloseButton .Polaris-Icon {
+  background: transparent !important;
+  background-color: transparent !important;
+}
+
+/* Icon wrapper backgrounds */
+[class*="Icon"] {
   background: transparent !important;
 }
 

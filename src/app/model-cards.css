@@ -98,14 +98,14 @@
     background-color: rgba(139, 92, 246, 0.15) !important;
 }
 
-/* SELECTED STATE */
+/* SELECTED STATE - WHITE GLOW FOR VISIBILITY */
 .model-card-selected {
-    border: 3px solid #8b5cf6 !important;
+    border: 3px solid #ffffff !important;
     background-color: rgba(139, 92, 246, 0.18) !important;
     box-shadow:
-        0 0 0 4px rgba(139, 92, 246, 0.35),
-        0 8px 32px rgba(139, 92, 246, 0.5),
-        0 0 60px rgba(139, 92, 246, 0.5),
+        0 0 0 4px rgba(255, 255, 255, 0.4),
+        0 8px 32px rgba(255, 255, 255, 0.3),
+        0 0 60px rgba(255, 255, 255, 0.5),
         inset 0 0 35px rgba(139, 92, 246, 0.25) !important;
 }
 
