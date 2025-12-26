@@ -109,14 +109,37 @@ export default function Dashboard() {
   const [showTermsModal, setShowTermsModal] = useState(false);
   const [termsAccepted, setTermsAccepted] = useState(false);
 
+  // State for generation params
+  const [isAssetGenerating, setIsAssetGenerating] = useState(false);
   const [modelParams, setModelParams] = useState({
-    gender: 'female', ethnicity: 'caucasian', age: 'young adult', hairColor: 'brown',
-    hairLength: 'long', bodyType: 'average', height: 'average', emotion: 'neutral',
-    aesthetic: 'ugc-authentic', makeup: 'natural', eyewear: 'none', jewelry: 'minimal', notes: ''
+    gender: 'female',
+    ethnicity: 'caucasian',
+    age: 'young adult',
+    hairColor: 'blonde',
+    hairLength: 'medium',
+    bodyType: 'slim',
+    height: 'average',
+    emotion: 'neutral',
+    aesthetic: 'ugc-authentic',
+    makeup: 'natural',
+    eyewear: 'none',
+    jewelry: 'none',
+    notes: ''
   });
-  const [locationParams, setLocationParams] = useState({ setting: 'studio', lighting: 'natural', style: 'modern', notes: '' });
+
+  const [locationParams, setLocationParams] = useState({
+    setting: 'modern-interior',
+    lighting: 'soft-natural',
+    style: 'clean-ecommerce',
+    notes: ''
+  });
+
   const [placementParams, setPlacementParams] = useState({
-    productCategory: 'cosmetics', material: 'marble', decor: 'minimalist', level: 'eye-level', notes: ''
+    productCategory: 'cosmetics',
+    material: 'marble',
+    decor: 'minimalist',
+    level: 'eye-level',
+    notes: ''
   });
 
   // Preset data
@@ -338,6 +361,7 @@ export default function Dashboard() {
   };
 
   const handleGenerateAsset = async (type: 'model' | 'location' | 'placement') => {
+    setIsAssetGenerating(true);
     if (type === 'model') setIsModelModalOpen(false);
     else setIsLocationModalOpen(false);
 
@@ -378,6 +402,8 @@ export default function Dashboard() {
       if (type === 'model') setCustomModels(prev => prev.filter(m => m.id !== tempId));
       else if (type === 'placement') setCustomPlacements(prev => prev.filter(l => l.id !== tempId));
       else setCustomLocations(prev => prev.filter(l => l.id !== tempId));
+    } finally {
+      setIsAssetGenerating(false);
     }
   };
 
@@ -1316,32 +1342,304 @@ export default function Dashboard() {
         }
 
         {/* Model Generation Modal */}
-        <Modal open={isModelModalOpen} onClose={() => setIsModelModalOpen(false)} title="Generate Custom Model" primaryAction={{ content: 'Generate (1 Credit)', onAction: () => handleGenerateAsset('model') }} secondaryActions={[{ content: 'Cancel', onAction: () => setIsModelModalOpen(false) }]}>
+        <Modal
+          open={isModelModalOpen}
+          onClose={() => setIsModelModalOpen(false)}
+          title="Generate Custom Model"
+          primaryAction={{
+            content: 'Generate (1 Credit)',
+            onAction: () => handleGenerateAsset('model'),
+            loading: isAssetGenerating
+          }}
+          secondaryActions={[{ content: 'Cancel', onAction: () => setIsModelModalOpen(false) }]}
+        >
           <Modal.Section>
             <BlockStack gap="400">
-              <OptionGrid label="Gender" options={[{ value: 'female', label: 'Female', icon: '👩' }, { value: 'male', label: 'Male', icon: '👨' }]} selected={modelParams.gender} onChange={(v) => setModelParams({ ...modelParams, gender: v })} />
-              <OptionGrid label="Ethnicity" options={[{ value: 'caucasian', label: 'Caucasian', icon: '🌍' }, { value: 'asian', label: 'Asian', icon: '🌏' }, { value: 'black', label: 'Black', icon: '🌍' }, { value: 'hispanic', label: 'Hispanic', icon: '🌎' }]} selected={modelParams.ethnicity} onChange={(v) => setModelParams({ ...modelParams, ethnicity: v })} />
-              <OptionGrid label="Age" options={[{ value: 'young adult', label: 'Young Adult', icon: '👱' }, { value: 'adult', label: 'Adult', icon: '👩' }, { value: 'middle aged', label: 'Middle', icon: '👵' }]} selected={modelParams.age} onChange={(v) => setModelParams({ ...modelParams, age: v })} />
-              <OptionGrid label="Hair Color" options={[{ value: 'blonde', label: 'Blonde', icon: '👱‍♀️' }, { value: 'brown', label: 'Brown', icon: '👩' }, { value: 'black', label: 'Black', icon: '👧' }, { value: 'red', label: 'Red', icon: '👩‍🦰' }]} selected={modelParams.hairColor} onChange={(v) => setModelParams({ ...modelParams, hairColor: v })} />
-              <TextField label="Additional Details" value={modelParams.notes} onChange={(v) => setModelParams({ ...modelParams, notes: v })} placeholder="e.g. curly hair, blue eyes" multiline={2} autoComplete="off" />
+              <OptionGrid
+                label="Gender"
+                options={[
+                  { value: 'female', label: 'Female', icon: '👩' },
+                  { value: 'male', label: 'Male', icon: '👨' }
+                ]}
+                selected={modelParams.gender}
+                onChange={(v) => setModelParams({ ...modelParams, gender: v })}
+              />
+              <OptionGrid
+                label="Ethnicity"
+                options={[
+                  { value: 'caucasian', label: 'Caucasian', icon: '🌍' },
+                  { value: 'asian', label: 'Asian', icon: '🌏' },
+                  { value: 'black', label: 'Black', icon: '🌍' },
+                  { value: 'hispanic', label: 'Hispanic', icon: '🌎' }
+                ]}
+                selected={modelParams.ethnicity}
+                onChange={(v) => setModelParams({ ...modelParams, ethnicity: v })}
+              />
+              <OptionGrid
+                label="Age Group"
+                options={[
+                  { value: 'young adult', label: 'Young Adult', icon: '👱' },
+                  { value: 'adult', label: 'Adult', icon: '👩' },
+                  { value: 'middle aged', label: 'Middle Aged', icon: '👵' }
+                ]}
+                selected={modelParams.age}
+                onChange={(v) => setModelParams({ ...modelParams, age: v })}
+              />
+              <OptionGrid
+                label="Hair Color"
+                options={[
+                  { value: 'blonde', label: 'Blonde', icon: '👱‍♀️' },
+                  { value: 'brown', label: 'Brown', icon: '👩' },
+                  { value: 'black', label: 'Black', icon: '👧' },
+                  { value: 'red', label: 'Red', icon: '👩‍🦰' },
+                  { value: 'grey', label: 'Grey', icon: '👵' }
+                ]}
+                selected={modelParams.hairColor}
+                onChange={(v) => setModelParams({ ...modelParams, hairColor: v })}
+              />
+              <OptionGrid
+                label="Hair Length"
+                options={[
+                  { value: 'short', label: 'Short', icon: '💇‍♀️' },
+                  { value: 'medium', label: 'Medium', icon: '👩' },
+                  { value: 'long', label: 'Long', icon: '👱‍♀️' },
+                  { value: 'bald', label: 'Bald', icon: '👨‍🦲' }
+                ]}
+                selected={modelParams.hairLength}
+                onChange={(v) => setModelParams({ ...modelParams, hairLength: v })}
+              />
+              <OptionGrid
+                label="Body Type"
+                options={[
+                  { value: 'slim', label: 'Slim', icon: '🧍‍♀️' },
+                  { value: 'average', label: 'Average', icon: '🚶‍♀️' },
+                  { value: 'curvy', label: 'Curvy', icon: '💃' },
+                  { value: 'athletic', label: 'Athletic', icon: '🏃‍♀️' }
+                ]}
+                selected={modelParams.bodyType}
+                onChange={(v) => setModelParams({ ...modelParams, bodyType: v })}
+              />
+              <OptionGrid
+                label="Height"
+                options={[
+                  { value: 'short', label: 'Short / Petite', icon: '⬇️' },
+                  { value: 'average', label: 'Average Height', icon: '↔️' },
+                  { value: 'tall', label: 'Tall / Model', icon: '⬆️' }
+                ]}
+                selected={modelParams.height}
+                onChange={(v) => setModelParams({ ...modelParams, height: v })}
+              />
+              <OptionGrid
+                label="Emotion"
+                options={[
+                  { value: 'neutral', label: 'Neutral', icon: '😐' },
+                  { value: 'smiling', label: 'Smiling', icon: '😊' },
+                  { value: 'laughing', label: 'Laughing', icon: '😄' },
+                  { value: 'flirty', label: 'Flirty', icon: '😏' },
+                  { value: 'expressive', label: 'Expressive', icon: '😮' }
+                ]}
+                selected={modelParams.emotion}
+                onChange={(v) => setModelParams({ ...modelParams, emotion: v })}
+              />
+              <OptionGrid
+                label="Aesthetic Style"
+                options={[
+                  { value: 'ugc-authentic', label: 'UGC Authentic', icon: '📱' },
+                  { value: 'high-fashion', label: 'High Fashion', icon: '✨' },
+                  { value: 'business-casual', label: 'Business Casual', icon: '💼' },
+                  { value: 'athleisure', label: 'Athleisure', icon: '🧘‍♀️' }
+                ]}
+                selected={modelParams.aesthetic}
+                onChange={(v) => setModelParams({ ...modelParams, aesthetic: v })}
+              />
+              <OptionGrid
+                label="Grooming / Makeup"
+                options={[
+                  { value: 'no-makeup', label: 'No Makeup', icon: '🧼' },
+                  { value: 'natural', label: 'Natural / Daily', icon: '💄' },
+                  { value: 'glam', label: 'Heavy / Glam', icon: '💋' }
+                ]}
+                selected={modelParams.makeup}
+                onChange={(v) => setModelParams({ ...modelParams, makeup: v })}
+              />
+              <OptionGrid
+                label="Accessories"
+                options={[
+                  { value: 'none', label: 'No Glasses', icon: '👀' },
+                  { value: 'glasses', label: 'Glasses', icon: '👓' },
+                  { value: 'sunglasses', label: 'Sunglasses', icon: '🕶️' }
+                ]}
+                selected={modelParams.eyewear}
+                onChange={(v) => setModelParams({ ...modelParams, eyewear: v })}
+              />
+              <OptionGrid
+                label="Jewelry"
+                options={[
+                  { value: 'none', label: 'None', icon: '❌' },
+                  { value: 'minimal', label: 'Minimal', icon: '💍' },
+                  { value: 'statement', label: 'Statement', icon: '💎' }
+                ]}
+                selected={modelParams.jewelry}
+                onChange={(v) => setModelParams({ ...modelParams, jewelry: v })}
+              />
+              <TextField
+                label="Additional Details"
+                value={modelParams.notes}
+                onChange={(v) => setModelParams({ ...modelParams, notes: v })}
+                placeholder="e.g. curly hair, blue eyes, business suit"
+                multiline={3}
+                autoComplete="off"
+              />
             </BlockStack>
           </Modal.Section>
         </Modal>
 
         {/* Location Generation Modal */}
-        <Modal open={isLocationModalOpen} onClose={() => setIsLocationModalOpen(false)} title={locationTab === 'placements' ? "Generate Placement" : "Generate Location"} primaryAction={{ content: 'Generate', onAction: () => handleGenerateAsset(locationTab === 'placements' ? 'placement' : 'location') }} secondaryActions={[{ content: 'Cancel', onAction: () => setIsLocationModalOpen(false) }]}>
+        <Modal
+          open={isLocationModalOpen}
+          onClose={() => setIsLocationModalOpen(false)}
+          title={locationTab === 'placements' ? "Generate New Placement Pedestal" : "Generate New Studio Location"}
+          primaryAction={{
+            content: 'Generate',
+            loading: isAssetGenerating,
+            onAction: () => handleGenerateAsset(locationTab === 'placements' ? 'placement' : 'location'),
+          }}
+          secondaryActions={[
+            {
+              content: 'Cancel',
+              onAction: () => setIsLocationModalOpen(false),
+            },
+          ]}
+        >
+          <Box padding="400">
+            <Tabs
+              tabs={[
+                { id: 'studio', content: 'Studio Settings' },
+                { id: 'placements', content: 'Product Placements' }
+              ]}
+              selected={locationTab === 'studio' ? 0 : 1}
+              onSelect={(index) => setLocationTab(index === 0 ? 'studio' : 'placements')}
+            />
+          </Box>
           <Modal.Section>
-            {locationTab === 'placements' ? (
-              <BlockStack gap="400">
-                <OptionGrid label="Product Category" options={[{ value: 'cosmetics', label: 'Cosmetics', icon: '💄' }, { value: 'skincare', label: 'Skincare', icon: '🧴' }, { value: 'jewelry', label: 'Jewelry', icon: '💎' }, { value: 'perfume', label: 'Perfume', icon: '🌬️' }]} selected={placementParams.productCategory} onChange={(v) => setPlacementParams({ ...placementParams, productCategory: v })} />
-                <OptionGrid label="Material" options={[{ value: 'marble', label: 'Marble', icon: '⚪' }, { value: 'wood', label: 'Wood', icon: '🪵' }, { value: 'concrete', label: 'Concrete', icon: '🏗️' }, { value: 'velvet', label: 'Velvet', icon: '🧣' }]} selected={placementParams.material} onChange={(v) => setPlacementParams({ ...placementParams, material: v })} />
-              </BlockStack>
-            ) : (
-              <BlockStack gap="400">
-                <OptionGrid label="Setting" options={[{ value: 'modern-interior', label: 'Modern', icon: '🏠' }, { value: 'luxury-bathroom', label: 'Bathroom', icon: '🛁' }, { value: 'outdoor-nature', label: 'Nature', icon: '🌳' }, { value: 'urban-street', label: 'Urban', icon: '🏙️' }]} selected={locationParams.setting} onChange={(v) => setLocationParams({ ...locationParams, setting: v })} />
-                <OptionGrid label="Lighting" options={[{ value: 'soft-natural', label: 'Natural', icon: '☀️' }, { value: 'dramatic-studio', label: 'Studio', icon: '💡' }, { value: 'golden-hour', label: 'Golden', icon: '🌇' }]} selected={locationParams.lighting} onChange={(v) => setLocationParams({ ...locationParams, lighting: v })} />
-              </BlockStack>
-            )}
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
+              {locationTab === 'placements' ? (
+                <>
+                  <Text variant="headingMd" as="h3">Placement Configuration</Text>
+
+                  <OptionGrid
+                    label="Product Category"
+                    options={[
+                      { value: 'cosmetics', label: 'Cosmetics', icon: '💄' },
+                      { value: 'skincare', label: 'Skincare', icon: '🧴' },
+                      { value: 'jewelry', label: 'Jewelry', icon: '💎' },
+                      { value: 'perfume', label: 'Perfume', icon: '🌬️' },
+                      { value: 'watches', label: 'Watches', icon: '⌚' },
+                      { value: 'eyewear', label: 'Eyewear', icon: '🕶️' },
+                      { value: 'drinks', label: 'Drinks', icon: '🍹' },
+                      { value: 'food', label: 'Food', icon: '🥯' },
+                      { value: 'tech', label: 'Tech', icon: '💻' },
+                      { value: 'fashion', label: 'Fashion', icon: '👠' },
+                      { value: 'home-decor', label: 'Home Decor', icon: '🏠' },
+                      { value: 'supplements', label: 'Supplements', icon: '💊' }
+                    ]}
+                    selected={placementParams.productCategory}
+                    onChange={(id) => setPlacementParams(p => ({ ...p, productCategory: id }))}
+                  />
+
+                  <OptionGrid
+                    label="Pedestal Material"
+                    options={[
+                      { value: 'marble', label: 'Marble', icon: '⚪' },
+                      { value: 'wood', label: 'Wood', icon: '🪵' },
+                      { value: 'concrete', label: 'Concrete', icon: '🏗️' },
+                      { value: 'velvet', label: 'Velvet', icon: '🧣' },
+                      { value: 'glass', label: 'Glass', icon: '💎' },
+                      { value: 'botanical', label: 'Fruit/Berries', icon: '🍓' },
+                      { value: 'sandstone', label: 'Sandstone', icon: '🏜️' }
+                    ]}
+                    selected={placementParams.material}
+                    onChange={(id) => setPlacementParams(p => ({ ...p, material: id }))}
+                  />
+
+                  <OptionGrid
+                    label="Decor Style"
+                    options={[
+                      { value: 'organic', label: 'Organic', icon: '🐚' },
+                      { value: 'minimalist', label: 'Minimalist', icon: '⬜' },
+                      { value: 'luxury', label: 'Luxury', icon: '✨' },
+                      { value: 'floral', label: 'Floral', icon: '🌸' },
+                      { value: 'nature', label: 'Nature', icon: '🌿' },
+                      { value: 'seasonal', label: 'Seasonal', icon: '🍂' },
+                      { value: 'industrial', label: 'Industrial', icon: '⚙️' }
+                    ]}
+                    selected={placementParams.decor}
+                    onChange={(id) => setPlacementParams(p => ({ ...p, decor: id }))}
+                  />
+
+                  <OptionGrid
+                    label="Camera Level"
+                    options={[
+                      { value: 'eye-level', label: 'Eye Level', icon: '👁️' },
+                      { value: 'top-down', label: 'Top-Down', icon: '📐' },
+                      { value: 'macro', label: 'Macro', icon: '🔍' }
+                    ]}
+                    selected={placementParams.level}
+                    onChange={(id) => setPlacementParams(p => ({ ...p, level: id }))}
+                  />
+                </>
+              ) : (
+                <>
+                  <Text variant="headingMd" as="h3">Location Setting</Text>
+                  <OptionGrid
+                    options={[
+                      { value: 'modern-interior', label: 'Modern Interior', icon: '🏠' },
+                      { value: 'luxury-bathroom', label: 'Luxury Bathroom', icon: '🛁' },
+                      { value: 'minimalist-studio', label: 'Minimalist Studio', icon: '🏢' },
+                      { value: 'outdoor-nature', label: 'Nature/Outdoor', icon: '🌳' },
+                      { value: 'urban-street', label: 'Urban Street', icon: '🏙️' }
+                    ]}
+                    selected={locationParams.setting}
+                    onChange={(id) => setLocationParams(p => ({ ...p, setting: id }))}
+                  />
+
+                  <Text variant="headingMd" as="h3">Lighting Type</Text>
+                  <OptionGrid
+                    options={[
+                      { value: 'soft-natural', label: 'Soft Natural', icon: '☀️' },
+                      { value: 'dramatic-studio', label: 'Dramatic Studio', icon: '💡' },
+                      { value: 'golden-hour', label: 'Golden Hour', icon: '🌇' },
+                      { value: 'bright-clean', label: 'Bright & Clean', icon: '✨' },
+                      { value: 'neon-vibrant', label: 'Neon / Vibrant', icon: '🌈' }
+                    ]}
+                    selected={locationParams.lighting}
+                    onChange={(id) => setLocationParams(p => ({ ...p, lighting: id }))}
+                  />
+
+                  <Text variant="headingMd" as="h3">Aesthetic Style</Text>
+                  <OptionGrid
+                    options={[
+                      { value: 'clean-ecommerce', label: 'Clean E-com', icon: '🛒' },
+                      { value: 'authentic-ugc', label: 'Authentic UGC', icon: '📱' },
+                      { value: 'cinematic-film', label: 'Cinematic', icon: '🎬' },
+                      { value: 'editorial-fashion', label: 'Editorial', icon: '📔' },
+                      { value: 'vintage-retro', label: 'Vintage', icon: '📼' }
+                    ]}
+                    selected={locationParams.style}
+                    onChange={(id) => setLocationParams(p => ({ ...p, style: id }))}
+                  />
+                </>
+              )}
+
+              <TextField
+                label="Additional Notes (Optional)"
+                value={locationTab === 'placements' ? placementParams.notes : locationParams.notes}
+                onChange={(value) => locationTab === 'placements' ? setPlacementParams(p => ({ ...p, notes: value })) : setLocationParams(p => ({ ...p, notes: value }))}
+                multiline={3}
+                autoComplete="off"
+                helpText="Describe specific details like 'sand on the floor' or 'pink background'."
+              />
+            </div>
           </Modal.Section>
         </Modal>
 

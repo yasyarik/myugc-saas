@@ -1,7 +1,7 @@
 
 import { NextRequest, NextResponse } from "next/server";
 import { generateTryOnImage, generateImageFromPrompt } from "@/lib/services/ai";
-import { generateClothingPrompt } from "@/lib/data/prompts";
+import { generateClothingPrompt, generateModelPrompt, generateLocationPrompt, generatePlacementPrompt } from "@/lib/data/prompts";
 import fs from "fs/promises";
 import path from "path";
 
@@ -23,9 +23,23 @@ export async function POST(req: NextRequest) {
 
         // --- ACTION: GENERATE ASSET (Model / Location / Placement) ---
         if (actionType === "generate-asset") {
-            const prompt = formData.get("prompt") as string;
             const type = formData.get("assetType") as string;
             const assetName = formData.get("assetName") as string || `asset-${Date.now()}`;
+            const paramsJson = formData.get("params") as string;
+
+            let prompt = formData.get("prompt") as string;
+
+            // If prompt is not provided directly, generate it from params
+            if (!prompt && paramsJson) {
+                const params = JSON.parse(paramsJson);
+                if (type === 'model') {
+                    prompt = generateModelPrompt(params);
+                } else if (type === 'location') {
+                    prompt = generateLocationPrompt(params);
+                } else if (type === 'placement') {
+                    prompt = generatePlacementPrompt(params);
+                }
+            }
 
             if (!prompt) {
                 return NextResponse.json({ error: "Prompt is required" }, { status: 400 });
