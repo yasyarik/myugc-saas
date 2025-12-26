@@ -81,14 +81,14 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
             </button>
 
             {/* Sidebar - GLASS STYLE with same border radius as cards */}
-            <aside className={`sidebar-glass w-72 flex flex-col shadow-2xl z-40 transition-all duration-300 lg:translate-x-0 ${isSidebarOpen ? 'translate-x-0' : '-translate-x-full'} fixed lg:relative h-[calc(100%-20px)]`} style={{
-                background: 'rgba(139, 92, 246, 0.05)', /* pure purple tint */
-                backdropFilter: 'blur(60px) saturate(200%)',
-                WebkitBackdropFilter: 'blur(60px) saturate(200%)',
-                border: '3px solid rgba(139, 92, 246, 0.5)',
+            <aside className={`w-72 flex flex-col shadow-2xl z-40 transition-all duration-300 lg:translate-x-0 ${isSidebarOpen ? 'translate-x-0' : '-translate-x-full'} fixed lg:relative h-[calc(100%-20px)]`} style={{
+                background: 'rgba(139, 92, 246, 0.08)',
+                backdropFilter: 'blur(60px) saturate(180%)',
+                WebkitBackdropFilter: 'blur(60px) saturate(180%)',
+                border: '2px solid rgba(139, 92, 246, 0.4)',
                 borderRadius: '20px',
                 margin: '10px',
-                boxShadow: '0 10px 40px rgba(0, 0, 0, 0.4), 0 0 50px rgba(139, 92, 246, 0.2)',
+                boxShadow: '0 8px 32px rgba(0, 0, 0, 0.3), 0 0 40px rgba(139, 92, 246, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.1)',
             }}>
                 <div className="p-6">
                     <Link href="/" className="flex flex-col items-center gap-2 group relative">

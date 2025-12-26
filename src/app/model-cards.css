@@ -1,19 +1,18 @@
 /* Model Card Styles - Direct CSS (not processed by Tailwind) */
 
-/* UNIFIED VARIABLES - EXTREME GLASS */
+/* UNIFIED VARIABLES - THICKER GLASS WITH GLOW */
 :root {
     --glass-border-radius: 20px;
-    --glass-border-width: 3px;
+    --glass-border-width: 2.5px;
     --glass-border-color: rgba(139, 92, 246, 0.5);
     --glass-blur: blur(50px) saturate(180%);
     --glass-bg: rgba(139, 92, 246, 0.08);
-    --glass-bg-hover: rgba(139, 92, 246, 0.15);
-    --glass-glow: 0 0 45px rgba(139, 92, 246, 0.4);
-    --glass-glow-strong: 0 0 60px rgba(139, 92, 246, 0.5);
-    --glass-glow-white: 0 0 70px rgba(255, 255, 255, 0.5);
+    --glass-bg-hover: rgba(139, 92, 246, 0.12);
+    --glass-glow: 0 0 35px rgba(139, 92, 246, 0.4);
+    --glass-glow-strong: 0 0 50px rgba(139, 92, 246, 0.5);
 }
 
-/* BASE MODEL CARD */
+/* BASE MODEL CARD - THICKER BORDERS WITH GLOW */
 .model-card {
     width: 150px;
     height: 250px;
@@ -29,19 +28,103 @@
     transition: all 400ms cubic-bezier(0.4, 0, 0.2, 1);
     backdrop-filter: var(--glass-blur);
     -webkit-backdrop-filter: var(--glass-blur);
-    /* THICK BORDER */
+    /* THICKER BORDER WITH GLOW */
     border: var(--glass-border-width) solid var(--glass-border-color) !important;
-    background-color: var(--glass-bg) !important;
-    /* OVERFLOW VISIBLE FOR GLOW */
-    overflow: visible !important;
+    /* PURPLE BACKGROUND - NO WHITE EVER */
+    background-color: rgba(139, 92, 246, 0.08) !important;
+    /* PROMINENT GLOW */
     box-shadow:
-        0 8px 32px rgba(0, 0, 0, 0.25),
-        inset 0 1px 0 rgba(255, 255, 255, 0.2),
-        inset 0 0 25px rgba(139, 92, 246, 0.15),
+        0 8px 32px rgba(0, 0, 0, 0.2),
+        inset 0 1px 0 rgba(255, 255, 255, 0.15),
+        inset 0 0 25px rgba(139, 92, 246, 0.12),
         var(--glass-glow) !important;
 }
 
-/* Ensure image stays inside padding and has radius */
+/* Gradient border on hover */
+.model-card::before {
+    content: "";
+    position: absolute;
+    inset: -4px;
+    border-radius: calc(var(--glass-border-radius) + 4px);
+    padding: 4px;
+    background: linear-gradient(135deg,
+            rgba(139, 92, 246, 0.7),
+            rgba(168, 85, 247, 0.6),
+            rgba(192, 132, 252, 0.6),
+            rgba(139, 92, 246, 0.7));
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 400ms;
+}
+
+.model-card:hover::before {
+    opacity: 1;
+}
+
+/* HOVER STATE - PURPLE ONLY, NO WHITE, STRONGER GLOW */
+.model-card:hover {
+    background-color: rgba(139, 92, 246, 0.15) !important;
+    transform: translateY(-4px) scale(1.02);
+    box-shadow:
+        0 16px 48px rgba(139, 92, 246, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.15),
+        inset 0 0 30px rgba(139, 92, 246, 0.18),
+        var(--glass-glow-strong) !important;
+}
+
+/* Light Mode */
+:root.light .model-card {
+    background-color: rgba(139, 92, 246, 0.08) !important;
+    border: var(--glass-border-width) solid var(--glass-border-color) !important;
+    color: #5b21b6;
+}
+
+:root.light .model-card:hover {
+    background-color: rgba(139, 92, 246, 0.15) !important;
+}
+
+/* Dark Mode */
+:root.dark .model-card {
+    background-color: rgba(139, 92, 246, 0.08) !important;
+    border: var(--glass-border-width) solid rgba(139, 92, 246, 0.45) !important;
+    color: #e9d5ff;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.8);
+}
+
+:root.dark .model-card:hover {
+    background-color: rgba(139, 92, 246, 0.15) !important;
+}
+
+/* SELECTED STATE - WHITE GLOW FOR VISIBILITY */
+.model-card-selected {
+    border: 3px solid #ffffff !important;
+    background-color: rgba(139, 92, 246, 0.18) !important;
+    box-shadow:
+        0 0 0 4px rgba(255, 255, 255, 0.4),
+        0 8px 32px rgba(255, 255, 255, 0.3),
+        0 0 60px rgba(255, 255, 255, 0.5),
+        inset 0 0 35px rgba(139, 92, 246, 0.25) !important;
+}
+
+.model-card-selected::before {
+    opacity: 0 !important;
+}
+
+/* KEEP BORDER WHITE ON HOVER FOR SELECTED CARD */
+.model-card-selected:hover {
+    border: 3px solid #ffffff !important;
+    background-color: rgba(139, 92, 246, 0.25) !important;
+    box-shadow:
+        0 0 0 4px rgba(255, 255, 255, 0.5),
+        0 8px 32px rgba(255, 255, 255, 0.4),
+        0 0 70px rgba(255, 255, 255, 0.6),
+        inset 0 0 40px rgba(139, 92, 246, 0.3) !important;
+}
+
+/* Card components */
 .model-img {
     width: calc(100% - 10px);
     height: 180px;
@@ -49,60 +132,23 @@
     border-radius: 12px;
     margin: 5px;
     pointer-events: none;
-    /* Prevent image from overlapping card border */
     z-index: 1;
+    border-radius: 12px;
+    margin-bottom: 8px;
 }
 
 .model-text {
     width: 100%;
     padding: 0 8px;
-    z-index: 2;
 }
 
-/* HOVER STATE - KEEP BORDER */
-.model-card:hover {
-    background-color: var(--glass-bg-hover) !important;
-    transform: translateY(-5px);
-    border: var(--glass-border-width) solid rgba(139, 92, 246, 0.7) !important;
-    box-shadow:
-        0 20px 50px rgba(0, 0, 0, 0.3),
-        inset 0 1px 0 rgba(255, 255, 255, 0.25),
-        var(--glass-glow-strong) !important;
-}
-
-/* SELECTED STATE - WHITE BORDER AND GLOW */
-.model-card-selected {
-    border: 4px solid #ffffff !important;
-    background-color: rgba(139, 92, 246, 0.2) !important;
-    box-shadow:
-        0 0 0 2px rgba(255, 255, 255, 0.6),
-        0 10px 40px rgba(255, 255, 255, 0.4),
-        var(--glass-glow-white),
-        inset 0 0 40px rgba(139, 92, 246, 0.25) !important;
-    z-index: 10;
-}
-
-/* SELECTED HOVER - KEEP WHITE BORDER */
-.model-card-selected:hover {
-    border: 4px solid #ffffff !important;
-    transform: translateY(-5px);
-    box-shadow:
-        0 0 0 3px rgba(255, 255, 255, 0.8),
-        0 15px 50px rgba(255, 255, 255, 0.5),
-        var(--glass-glow-white),
-        inset 0 0 50px rgba(139, 92, 246, 0.3) !important;
-}
-
-/* Card scroll container - MUST BE VISIBLE FOR GLOW */
+/* Scrolling containers */
 .card-scroll-container {
     display: flex;
-    gap: 1.5rem;
+    gap: 0.75rem;
     overflow-x: auto;
-    overflow-y: visible !important;
-    padding: 2.5rem 1rem !important;
-    /* Extra padding for glow */
-    margin: -1rem 0;
-    /* Compensation */
+    padding: 1rem 0.5rem;
+    margin-top: 0.75rem;
     scroll-behavior: smooth;
     scrollbar-width: none;
     -ms-overflow-style: none;
@@ -113,62 +159,232 @@
     display: none;
 }
 
-/* ACTION CONTENT - NO WHITE HOVER */
-.action-card-content,
-.action-card-content:hover {
-    background: transparent !important;
+/* Scroll buttons - GLASS STYLE */
+.scroll-btn {
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: var(--glass-border-radius);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 10;
+    transition: all 300ms cubic-bezier(0.4, 0, 0.2, 1);
+    backdrop-filter: var(--glass-blur);
+    -webkit-backdrop-filter: var(--glass-blur);
+    border: var(--glass-border-width) solid var(--glass-border-color) !important;
+    background: rgba(139, 92, 246, 0.15) !important;
+    box-shadow:
+        0 4px 15px rgba(0, 0, 0, 0.1),
+        0 0 25px rgba(139, 92, 246, 0.25),
+        inset 0 0 20px rgba(139, 92, 246, 0.12) !important;
+    color: #0f172a;
+}
+
+.scroll-btn:hover {
+    background: rgba(139, 92, 246, 0.25) !important;
+    transform: scale(1.1);
+    box-shadow:
+        0 8px 25px rgba(139, 92, 246, 0.3),
+        0 0 35px rgba(139, 92, 246, 0.4) !important;
+}
+
+:root.dark .scroll-btn {
+    background: rgba(139, 92, 246, 0.15) !important;
+    color: #f1f5f9;
+}
+
+/* Action card content - TRANSPARENT */
+.action-card-content {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    gap: 8px;
     height: 100%;
-    width: 100%;
+    background: transparent !important;
 }
 
-/* FAB CONTAINER - THE ISLAND */
+.action-card-content:hover {
+    background: transparent !important;
+}
+
+/* GLASS PANEL - for all blocks */
+.glass-panel {
+    background-color: rgba(139, 92, 246, 0.08) !important;
+    backdrop-filter: var(--glass-blur);
+    -webkit-backdrop-filter: var(--glass-blur);
+    border: var(--glass-border-width) solid var(--glass-border-color) !important;
+    border-radius: var(--glass-border-radius) !important;
+    box-shadow:
+        0 8px 32px rgba(0, 0, 0, 0.2),
+        inset 0 1px 0 rgba(255, 255, 255, 0.15),
+        var(--glass-glow) !important;
+}
+
+/* Make ALL Polaris Cards glass with THICKER borders and GLOW */
+.Polaris-Card {
+    border-radius: var(--glass-border-radius) !important;
+    border: var(--glass-border-width) solid var(--glass-border-color) !important;
+    background: rgba(139, 92, 246, 0.06) !important;
+    box-shadow:
+        0 8px 32px rgba(0, 0, 0, 0.15),
+        inset 0 1px 0 rgba(255, 255, 255, 0.12),
+        0 0 30px rgba(139, 92, 246, 0.2) !important;
+}
+
+/* KILL ALL WHITE BACKGROUNDS */
+.Polaris-Card__Section,
+.Polaris-LegacyCard,
+.Polaris-LegacyCard__Section {
+    background: transparent !important;
+}
+
+/* FAB CONTAINER - FLOATING ISLAND */
 .fab-container {
     position: fixed;
-    bottom: 30px;
+    bottom: 2rem;
     left: 50%;
     transform: translateX(-50%);
-    z-index: 9999;
-    display: flex !important;
-    /* Force display */
+    z-index: 50;
+    display: flex;
     align-items: center;
-    gap: 1.5rem;
-    padding: 12px 24px;
+    gap: 1rem;
+    padding: 1rem 2rem;
     border-radius: 9999px;
-    backdrop-filter: blur(40px) saturate(180%);
-    -webkit-backdrop-filter: blur(40px) saturate(180%);
-    border: 3px solid rgba(139, 92, 246, 0.6);
-    background: rgba(139, 92, 246, 0.2) !important;
+    backdrop-filter: blur(60px) saturate(180%);
+    -webkit-backdrop-filter: blur(60px) saturate(180%);
+    border: var(--glass-border-width) solid var(--glass-border-color);
+    background: rgba(139, 92, 246, 0.12);
     box-shadow:
-        0 15px 45px rgba(0, 0, 0, 0.5),
-        0 0 60px rgba(139, 92, 246, 0.5),
-        inset 0 1px 0 rgba(255, 255, 255, 0.2);
+        0 12px 40px rgba(0, 0, 0, 0.4),
+        0 0 60px rgba(139, 92, 246, 0.4),
+        inset 0 0 30px rgba(139, 92, 246, 0.15);
+    animation: fabSlideUp 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
 }
 
-/* GLASS TOGGLES for products types */
+:root.light .fab-container {
+    background: rgba(139, 92, 246, 0.15);
+    box-shadow:
+        0 12px 40px rgba(139, 92, 246, 0.2),
+        0 0 50px rgba(139, 92, 246, 0.3),
+        inset 0 0 30px rgba(139, 92, 246, 0.2);
+}
+
+@keyframes fabSlideUp {
+    from {
+        transform: translate(-50%, 150px);
+        opacity: 0;
+        filter: blur(20px);
+    }
+
+    to {
+        transform: translate(-50%, 0);
+        opacity: 1;
+        filter: blur(0);
+    }
+}
+
+/* TOGGLE BUTTONS - LIQUID GLASS STYLE */
 .glass-toggle {
-    background: rgba(139, 92, 246, 0.1) !important;
-    border: 2px solid rgba(139, 92, 246, 0.4) !important;
+    padding: 6px 14px;
     border-radius: 12px;
-    padding: 10px 16px;
-    color: #e9d5ff;
     cursor: pointer;
-    transition: all 0.3s ease;
-    backdrop-filter: blur(10px);
+    background: rgba(139, 92, 246, 0.08);
+    border: 2px solid rgba(139, 92, 246, 0.3);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    color: #94a3b8;
+    font-weight: 500;
+    font-size: 13px;
+    transition: all 300ms cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 0 15px rgba(139, 92, 246, 0.1);
 }
 
 .glass-toggle:hover {
-    background: rgba(139, 92, 246, 0.2) !important;
-    border-color: rgba(139, 92, 246, 0.6) !important;
-    box-shadow: 0 0 20px rgba(139, 92, 246, 0.3);
+    background: rgba(139, 92, 246, 0.15);
+    border-color: rgba(139, 92, 246, 0.5);
+    color: #a78bfa;
+    box-shadow: 0 0 25px rgba(139, 92, 246, 0.25);
 }
 
 .glass-toggle-active {
-    background: rgba(139, 92, 246, 0.3) !important;
-    border: 2px solid #ffffff !important;
-    color: #ffffff !important;
-    box-shadow: 0 0 30px rgba(139, 92, 246, 0.4);
+    background: rgba(139, 92, 246, 0.2) !important;
+    border: 2px solid rgba(139, 92, 246, 0.6) !important;
+    color: #a78bfa !important;
+    font-weight: 600;
+    box-shadow: 0 0 30px rgba(139, 92, 246, 0.35) !important;
+}
+
+/* NO HORIZONTAL SCROLL ON PAGE */
+.Polaris-Page {
+    max-width: 100% !important;
+    overflow-x: hidden !important;
+}
+
+/* MOBILE RESPONSIVE */
+@media (max-width: 1024px) {
+    .model-card {
+        width: 120px;
+        height: 200px;
+    }
+
+    .model-img {
+        height: 140px;
+    }
+
+    .Polaris-Page {
+        padding: 12px !important;
+    }
+
+    .fab-container {
+        padding: 0.75rem 1.5rem;
+        bottom: 1.5rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .model-card {
+        width: 100px;
+        height: 170px;
+    }
+
+    .model-img {
+        height: 110px;
+    }
+
+    .scroll-btn {
+        width: 2rem;
+        height: 2rem;
+    }
+
+    .Polaris-Page {
+        padding: 10px !important;
+    }
+
+    .fab-container {
+        padding: 0.5rem 1rem;
+        gap: 0.5rem;
+        bottom: 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .model-card {
+        width: 90px;
+        height: 150px;
+    }
+
+    .model-img {
+        height: 90px;
+        border-radius: 8px;
+    }
+
+    .Polaris-Page {
+        padding: 8px !important;
+    }
+
+    :root {
+        --glass-border-radius: 16px;
+    }
 }

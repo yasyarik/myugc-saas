@@ -42,11 +42,17 @@ const OptionGrid = ({ label, options, selected, onChange }: {
         <div
           key={opt.value}
           onClick={() => onChange(opt.value)}
-          className={`glass-toggle ${selected === opt.value ? 'glass-toggle-active' : ''}`}
-          style={{ textAlign: 'center' }}
+          style={{
+            border: selected === opt.value ? '2px solid #8b5cf6' : '1px solid #e1e3e5',
+            borderRadius: '8px',
+            padding: '8px',
+            cursor: 'pointer',
+            background: selected === opt.value ? '#f1f8f5' : 'white',
+            textAlign: 'center',
+          }}
         >
           <div style={{ fontSize: '24px', marginBottom: '4px' }}>{opt.icon}</div>
-          <Text variant="bodyXs" as="span" tone={selected === opt.value ? 'success' : 'subdued'}>{opt.label}</Text>
+          <Text variant="bodyXs" tone={selected === opt.value ? 'success' : 'subdued'}>{opt.label}</Text>
         </div>
       ))}
     </div>
