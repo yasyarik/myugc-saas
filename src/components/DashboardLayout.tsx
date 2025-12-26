@@ -7,14 +7,12 @@ import {
     LayoutDashboard,
     Image as ImageIcon,
     Video,
-    UserCircle,
     CreditCard,
-    Settings,
     Sparkles,
     ChevronRight
 } from "lucide-react";
 import { cn } from "@/lib/utils";
-import { UserButton } from "@clerk/nextjs";
+import { UserButton, SignedOut } from "@clerk/nextjs";
 
 interface SidebarItemProps {
     href: string;
@@ -89,34 +87,22 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
                 </nav>
 
                 <div className="p-4 mt-auto">
-                    <div className="bg-indigo-600/5 border border-indigo-500/10 rounded-2xl p-6 mb-6">
-                        <p className="text-xs font-medium text-indigo-400 mb-1">Current Plan</p>
-                        <p className="text-sm font-bold text-white mb-3">Free Explorer</p>
-                        <div className="w-full bg-slate-800/50 h-1.5 rounded-full mb-4 overflow-hidden">
-                            <div className="bg-indigo-500 h-full w-1/3 rounded-full" />
-                        </div>
-                        <Link
-                            href="/credits"
-                            className="block text-center py-2.5 px-4 bg-indigo-600 hover:bg-indigo-500 text-white rounded-xl text-xs font-semibold transition-colors shadow-lg shadow-indigo-600/20"
-                        >
-                            Upgrade Now
-                        </Link>
-                    </div>
-
-                    {/* Auth Section */}
+                    {/* Auth Section - Only show when signed out */}
                     <div className="flex flex-col gap-3 mb-4">
-                        <Link
-                            href="/sign-in"
-                            className="block text-center py-2.5 px-4 bg-emerald-600 hover:bg-emerald-500 text-white rounded-xl text-sm font-semibold transition-colors"
-                        >
-                            Sign In
-                        </Link>
-                        <Link
-                            href="/sign-up"
-                            className="block text-center py-2.5 px-4 bg-slate-700 hover:bg-slate-600 text-white rounded-xl text-sm font-semibold transition-colors"
-                        >
-                            Create Account
-                        </Link>
+                        <SignedOut>
+                            <Link
+                                href="/sign-in"
+                                className="block text-center py-2.5 px-4 bg-emerald-600 hover:bg-emerald-500 text-white rounded-xl text-sm font-semibold transition-colors"
+                            >
+                                Sign In
+                            </Link>
+                            <Link
+                                href="/sign-up"
+                                className="block text-center py-2.5 px-4 bg-slate-700 hover:bg-slate-600 text-white rounded-xl text-sm font-semibold transition-colors"
+                            >
+                                Create Account
+                            </Link>
+                        </SignedOut>
                     </div>
 
                     <div className="flex items-center gap-3 px-4 py-4 bg-slate-900/50 rounded-2xl border border-slate-800/50">

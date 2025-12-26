@@ -21,6 +21,7 @@ import {
   Checkbox,
   TextContainer,
   Tabs,
+  Icon
 } from "@shopify/polaris";
 import { NoteIcon, DeleteIcon, MaximizeIcon, SaveIcon, PersonIcon, PlayIcon, PlayCircleIcon, ArrowRightIcon } from "@shopify/polaris-icons";
 import "@shopify/polaris/build/esm/styles.css";
@@ -186,6 +187,26 @@ export default function Dashboard() {
     };
     reader.readAsDataURL(file);
   };
+
+  const handleProductDrop = useCallback(async (_droppedFiles: any[], acceptedFiles: File[]) => {
+    if (acceptedFiles.length === 0) return;
+
+    // Process each file
+    for (const file of acceptedFiles) {
+      const reader = new FileReader();
+      reader.onload = () => {
+        const newProduct = {
+          id: `prod-${Date.now()}-${Math.random()}`,
+          title: file.name.split('.')[0],
+          images: { originalSrc: reader.result as string },
+          selected: true,
+          angleCount: 1
+        };
+        setSelectedProducts(prev => [newProduct, ...prev]);
+      };
+      reader.readAsDataURL(file);
+    }
+  }, []);
 
   const saveCustomLocation = async (files: File[]) => {
     if (files.length === 0) return;
@@ -607,12 +628,19 @@ export default function Dashboard() {
                   <div className="full-height-card">
                     <Card>
                       <div style={{ height: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
-                        <InlineStack align="space-between" blockAlign="center">
-                          <Text variant="headingMd" as="h2">Credits</Text>
-                          <Badge tone={credits > 0 ? "success" : "critical"}>{credits} Available</Badge>
-                        </InlineStack>
-                        <div style={{ marginTop: '10px' }}>
-                          <ProgressBar progress={Math.min(100, credits)} tone="success" />
+                        <Text variant="headingMd" as="h2">Upload Products</Text>
+                        <div style={{ marginTop: '10px', height: '100px' }}>
+                          <DropZone onDrop={handleProductDrop} allowMultiple={true} accept="image/*" outline={false}>
+                            <div style={{ height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center', background: '#f9fafb', borderRadius: '8px', border: '1px dashed #ccc', cursor: 'pointer' }}>
+                              <InlineStack gap="200" align="center" blockAlign="center">
+                                <div style={{ background: '#e1e3e5', borderRadius: '50%', padding: '4px' }}>
+                                  <Icon source={NoteIcon} tone="base" />
+                                </div>
+                                <Text>Drop images or click to upload</Text>
+                              </InlineStack>
+                              <div style={{ display: 'none' }}><DropZone.FileUpload /></div>
+                            </div>
+                          </DropZone>
                         </div>
                       </div>
                     </Card>
@@ -621,83 +649,7 @@ export default function Dashboard() {
               </div>
             </Layout.Section>
 
-            {/* Products Section */}
-            <Layout.Section>
-              <Card>
-                <InlineStack align="space-between" blockAlign="center">
-                  <Text variant="headingMd" as="h2">Select Products to Generate UGC Photos ({selectedProducts.filter(p => p.selected !== false).length} selected / {selectedProducts.length} total)</Text>
-                  <div style={{ display: 'flex', gap: '10px', alignItems: 'center' }}>
-                    {selectedProducts.length > 0 && (
-                      <Button
-                        onClick={() => confirmDelete('Remove All', 'Are you sure you want to remove all selected products?', () => setSelectedProducts([]))}
-                      >
-                        Delete {selectedProducts.length} Products
-                      </Button>
-                    )}
-                    <div style={{ display: 'flex', gap: '5px' }}>
-                      <div className="scroll-btn" onClick={() => scroll(productsScrollRef, 'left')}>←</div>
-                      <div className="scroll-btn" onClick={() => scroll(productsScrollRef, 'right')}>→</div>
-                    </div>
-                  </div>
-                </InlineStack>
-                <div style={{ overflow: 'visible' }}>
-                  <div className="card-scroll-container" ref={productsScrollRef}>
-                    {/* Select Product Card */}
-                    <div className="model-card" onClick={selectProducts}>
-                      <div className="action-card-content">
-                        <div style={{ fontSize: '32px', marginBottom: '4px' }}>+</div>
-                        <Text variant="bodyMd" fontWeight="medium">Select Product</Text>
-                      </div>
-                    </div>
-
-                    {selectedProducts.map(p => (
-                      <div
-                        key={p.id}
-                        className={p.selected !== false ? "model-card model-card-selected" : "model-card"}
-                        style={{ cursor: 'pointer', position: 'relative' }}
-                        onClick={() => toggleProductSelection(p.id)}
-                      >
-                        <Tooltip content="Select number of angles (photos)">
-                          <div style={{ position: 'absolute', top: '5px', left: '0', right: '0', display: 'flex', justifyContent: 'center', gap: '2px' }}>
-                            {[1, 2, 3].map(n => (
-                              <button
-                                key={n}
-                                onClick={(e) => { e.stopPropagation(); setSelectedProducts(curr => curr.map(x => x.id === p.id ? { ...x, angleCount: n } : x)); }}
-                                style={{
-                                  background: (p.angleCount || 1) === n ? '#008060' : 'rgba(255,255,255,0.8)',
-                                  color: (p.angleCount || 1) === n ? 'white' : 'black',
-                                  border: '1px solid #ddd', borderRadius: '4px', cursor: 'pointer', width: '20px', height: '20px', fontSize: '12px'
-                                }}
-                              >
-                                {n}
-                              </button>
-                            ))}
-                          </div>
-                        </Tooltip>
-                        <img src={p.images?.originalSrc} className="model-img" />
-
-                        <div className="model-text">
-                          <Text truncate variant="bodySm">{p.title}</Text>
-                        </div>
-
-                        <div style={{ position: 'absolute', bottom: '40px', left: '0', right: '0', display: 'flex', justifyContent: 'center', gap: '8px' }}>
-                          <Tooltip content="Preview">
-                            <Button plain icon={MaximizeIcon} onClick={(e) => { e.stopPropagation(); setPreviewImage({ src: p.images?.originalSrc, title: p.title }); }} />
-                          </Tooltip>
-                          <Tooltip content="Remove">
-                            <Button plain icon={DeleteIcon} onClick={(e) => {
-                              e.stopPropagation();
-                              confirmDelete('Remove Product', 'Are you sure?', () => removeProduct(p.id));
-                            }} />
-                          </Tooltip>
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              </Card>
-
-            </Layout.Section>
+            {/* Products Section Removed as per request */}
 
             {/* Models and Locations */}
             <Layout.Section>
