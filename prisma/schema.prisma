@@ -1,0 +1,55 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id             String   @id @default(uuid())
+  clerkId        String   @unique
+  email          String   @unique
+  credits        Int      @default(10)
+  subscription   String   @default("FREE")
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+
+  generatedImages GeneratedImage[]
+  generatedVideos GeneratedVideo[]
+  customAssets    CustomAsset[]
+}
+
+model GeneratedImage {
+  id              String   @id @default(uuid())
+  userId          String
+  user            User     @relation(fields: [userId], references: [id])
+  imageUrl        String
+  productId       String?
+  productTitle    String?
+  productCategory String?
+  productType     String?
+  createdAt       DateTime @default(now())
+}
+
+model GeneratedVideo {
+  id           String   @id @default(uuid())
+  userId       String
+  user         User     @relation(fields: [userId], references: [id])
+  videoUrl     String
+  klingTaskId  String
+  status       String   @default("PENDING") // PENDING, COMPLETED, FAILED
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+}
+
+model CustomAsset {
+  id        String   @id @default(uuid())
+  userId    String
+  user      User     @relation(fields: [userId], references: [id])
+  type      String   // "model" or "location"
+  name      String
+  imageUrl  String
+  createdAt DateTime @default(now())
+}

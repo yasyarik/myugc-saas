@@ -1,0 +1,18 @@
+Environment variables loaded from .env
+Prisma schema loaded from prisma/schema.prisma
+Datasource "db": SQLite database "saas.sqlite" at "file:./saas.sqlite"
+
+The database is already in sync with the Prisma schema.
+
+Running generate... (Use --skip-generate to skip the generators)
+[2K[1A[2K[GRunning generate... - Prisma Client
+[2K[1A[2K[G✔ Generated Prisma Client (v6.4.0) to ./node_modules/@prisma/client in 2.33s
+
+
+> my-ugc-studio-saas@0.1.0 build
+> next build
+
+   ▲ Next.js 15.4.10
+   - Environments: .env
+
+   Creating an optimized production build ...
