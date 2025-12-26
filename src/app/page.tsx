@@ -636,24 +636,20 @@ export default function Dashboard() {
                 <div style={{ flex: 1 }}>
                   <div className="full-height-card">
                     <Card>
-                      <div style={{ height: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'center', padding: '20px' }}>
+                      <div style={{ height: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
                         <DropZone onDrop={handleProductDrop} allowMultiple={true} accept="image/*" outline={false}>
                           <div style={{
-                            height: '200px',
+                            height: '120px',
                             display: 'flex',
-                            flexDirection: 'column',
                             alignItems: 'center',
                             justifyContent: 'center',
-                            borderRadius: '16px',
+                            borderRadius: '12px',
                             cursor: 'pointer',
-                            gap: '16px',
+                            gap: '12px',
                             transition: 'all 300ms'
                           }} className="bg-transparent border-2 border-dashed border-purple-400/30 dark:border-purple-400/20 hover:border-purple-400/50 dark:hover:border-purple-400/40 hover:bg-purple-500/5">
                             <Icon source={NoteIcon} tone="base" />
-                            <div style={{ textAlign: 'center' }}>
-                              <Text variant="headingLg" as="h3" fontWeight="bold">Drop product images</Text>
-                              <Text variant="bodyLg" tone="subdued">or click to upload</Text>
-                            </div>
+                            <Text variant="headingMd" as="h3" fontWeight="bold">Drop product images</Text>
                             <div style={{ display: 'none' }}><DropZone.FileUpload /></div>
                           </div>
                         </DropZone>
