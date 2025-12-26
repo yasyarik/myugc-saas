@@ -376,3 +376,53 @@ html body .Polaris-Button {
 .Polaris-Modal-CloseButton:hover {
   background: rgba(255, 255, 255, 0.1) !important;
 }
+/* SALVAGED STYLES FROM PAGE.TSX INLINE BLOCK */
+.white-spinner { filter: brightness(0) invert(1); }
+
+.Polaris-DropZone.Polaris-DropZone--noOutline {
+  height: 100% !important;
+}
+
+.full-height-card { height: 100%; display: flex; flex-direction: column; }
+.full-height-card > * {
+  height: 100% !important;
+  display: flex !important;
+  flex-direction: column !important;
+  box-sizing: border-box !important;
+}
+.full-height-card .Polaris-Card__Section { flex: 1; display: flex; flex-direction: column; }
+.full-height-card > * > div { flex: 1; display: flex; flex-direction: column; height: 100%; min-height: 0; }
+
+.generate-btn-wrapper button {
+  background: #8b5cf6!important;
+  color: white!important;
+  border: none!important;
+  box-shadow: none!important;
+}
+.generate-btn-wrapper button:hover {
+  background: #7c3aed!important;
+}
+.generate-btn-wrapper button:disabled {
+  background: #ccc!important;
+  color: #666!important;
+}
+
+.Polaris-Button--variantPrimary:not(.Polaris-Button--disabled) {
+  background: #8b5cf6 !important;
+  border-color: #8b5cf6 !important;
+  color: white !important;
+}
+.Polaris-Button--variantPrimary:not(.Polaris-Button--disabled):hover {
+  background: #7c3aed !important;
+  border-color: #7c3aed !important;
+}
+.Polaris-Button--disabled {
+  background: #f1f1f1 !important;
+  border-color: #e1e3e5 !important;
+  color: #8c9196 !important;
+  opacity: 0.6;
+}
+.generate-btn-text {
+  font-weight: 600;
+  letter-spacing: 0.3px;
+}
