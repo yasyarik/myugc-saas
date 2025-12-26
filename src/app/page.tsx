@@ -760,24 +760,26 @@ export default function Dashboard() {
                               <div className="model-text">
                                 <Text variant="bodySm" truncate>{model.name}</Text>
                               </div>
-                              <div style={{ position: 'absolute', bottom: '40px', left: '0', right: '0', display: 'flex', justifyContent: 'center', gap: '8px', zIndex: 20 }}>
-                                <Tooltip content="Preview">
-                                  <Button
-                                    plain
-                                    icon={MaximizeIcon}
-                                    onClick={(e) => { e.stopPropagation(); setPreviewImage({ src: model.dataUrl, title: model.name }); }}
-                                  />
-                                </Tooltip>
-                                <Tooltip content="Delete">
-                                  <Button
-                                    plain
-                                    icon={DeleteIcon}
-                                    onClick={(e) => {
-                                      e.stopPropagation();
-                                      confirmDelete('Delete Model', 'Are you sure you want to delete this model?', () => deleteCustomModel(model.id));
-                                    }}
-                                  />
-                                </Tooltip>
+                              <div style={{ position: 'absolute', bottom: '10px', right: '10px', display: 'flex', gap: '8px', zIndex: 20 }}>
+                                <div style={{ background: 'rgba(255, 255, 255, 0.25)', backdropFilter: 'blur(4px)', borderRadius: '8px', display: 'flex' }}>
+                                  <Tooltip content="Preview">
+                                    <Button
+                                      plain
+                                      icon={MaximizeIcon}
+                                      onClick={(e) => { e.stopPropagation(); setPreviewImage({ src: model.dataUrl, title: model.name }); }}
+                                    />
+                                  </Tooltip>
+                                  <Tooltip content="Delete">
+                                    <Button
+                                      plain
+                                      icon={DeleteIcon}
+                                      onClick={(e) => {
+                                        e.stopPropagation();
+                                        confirmDelete('Delete Model', 'Are you sure you want to delete this model?', () => deleteCustomModel(model.id));
+                                      }}
+                                    />
+                                  </Tooltip>
+                                </div>
                               </div>
                             </div>
                           );
@@ -794,24 +796,26 @@ export default function Dashboard() {
                             <div className="model-text">
                               <Text variant="bodySm" truncate>{model.name}</Text>
                             </div>
-                            <div style={{ position: 'absolute', bottom: '40px', left: '0', right: '0', display: 'flex', justifyContent: 'center', gap: '8px', zIndex: 20 }}>
-                              <Tooltip content="Preview">
-                                <Button
-                                  plain
-                                  icon={MaximizeIcon}
-                                  onClick={(e) => { e.stopPropagation(); setPreviewImage({ src: model.image, title: model.name }); }}
-                                />
-                              </Tooltip>
-                              <Tooltip content="Hide">
-                                <Button
-                                  plain
-                                  icon={DeleteIcon}
-                                  onClick={(e) => {
-                                    e.stopPropagation();
-                                    confirmDelete('Hide Model', 'Are you sure you want to hide this preset model?', () => deletePreset(model.id, e));
-                                  }}
-                                />
-                              </Tooltip>
+                            <div style={{ position: 'absolute', bottom: '10px', right: '10px', display: 'flex', gap: '8px', zIndex: 20 }}>
+                              <div style={{ background: 'rgba(255, 255, 255, 0.25)', backdropFilter: 'blur(4px)', borderRadius: '8px', display: 'flex' }}>
+                                <Tooltip content="Preview">
+                                  <Button
+                                    plain
+                                    icon={MaximizeIcon}
+                                    onClick={(e) => { e.stopPropagation(); setPreviewImage({ src: model.image, title: model.name }); }}
+                                  />
+                                </Tooltip>
+                                <Tooltip content="Hide">
+                                  <Button
+                                    plain
+                                    icon={DeleteIcon}
+                                    onClick={(e) => {
+                                      e.stopPropagation();
+                                      confirmDelete('Hide Model', 'Are you sure you want to hide this preset model?', () => deletePreset(model.id, e));
+                                    }}
+                                  />
+                                </Tooltip>
+                              </div>
                             </div>
                           </div>
                         ))}

@@ -217,20 +217,29 @@ body::after {
 /* ============================================
    POLARIS CARDS - PROMINENT BORDERS LIKE MODEL CARDS 
    ============================================ */
-.Polaris-Card {
+/* ============================================
+   POLARIS CARDS - PROMINENT UNIVERSAL SELECTOR
+   ============================================ */
+/* Target ALL possible Polaris card variations */
+.Polaris-Card,
+.Polaris-LegacyCard,
+div[class*="Polaris-Card"],
+div[class*="Polaris-LegacyCard"],
+.Polaris-Box {
   border-radius: 20px !important;
   /* THICKER, MORE VISIBLE BORDER */
   border: 3px solid rgba(139, 92, 246, 0.6) !important;
   background: rgba(139, 92, 246, 0.08) !important;
   backdrop-filter: blur(50px) saturate(180%) !important;
   -webkit-backdrop-filter: blur(50px) saturate(180%) !important;
-  /* STRONGER GLOW */
+  /* STRONGER GLOW - DROP SHADOW TO WORK WITH TRANSPARENCY */
   box-shadow:
-    0 8px 32px rgba(0, 0, 0, 0.25),
-    inset 0 1px 0 rgba(255, 255, 255, 0.2),
-    inset 0 0 30px rgba(139, 92, 246, 0.15),
-    0 0 45px rgba(139, 92, 246, 0.4) !important;
+    0 0 0 1px rgba(139, 92, 246, 0.5),
+    /* Inner border simulation */
+    0 0 50px rgba(139, 92, 246, 0.45) !important;
+  /* Outer glow */
   overflow: visible !important;
+  margin-bottom: 24px !important;
 }
 
 :root.dark .Polaris-Card {
