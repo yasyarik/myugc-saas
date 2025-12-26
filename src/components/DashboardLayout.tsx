@@ -63,12 +63,18 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
                 WebkitBackdropFilter: 'blur(60px) saturate(180%)',
             }}>
                 <div className="p-6">
-                    <Link href="/" className="flex flex-col items-center gap-2 group">
-                        <img
-                            src="/logo.png"
-                            alt="My UGC Studio"
-                            className="h-16 w-auto object-contain group-hover:scale-105 transition-transform"
-                        />
+                    <Link href="/" className="flex flex-col items-center gap-2 group relative">
+                        <div className="relative">
+                            <img
+                                src="/logo.png"
+                                alt="My UGC Studio"
+                                className="h-16 w-auto object-contain group-hover:scale-105 transition-transform relative z-10"
+                            />
+                            <div className="absolute inset-0 blur-xl opacity-50 group-hover:opacity-70 transition-opacity" style={{
+                                background: 'radial-gradient(circle, rgba(139, 92, 246, 0.6) 0%, transparent 70%)',
+                                transform: 'translateY(8px)'
+                            }}></div>
+                        </div>
                     </Link>
                     <div className="mt-4 px-4 py-3 text-center rounded-xl" style={{
                         background: 'rgba(16, 185, 129, 0.08)',
