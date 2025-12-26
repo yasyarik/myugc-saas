@@ -188,7 +188,7 @@ body::after {
 }
 
 :root.light .Polaris-Text--toneSubdued {
-  color: #64748b !important;
+  color: #7c3aed !important;
 }
 
 /* Glass Input Fields */
