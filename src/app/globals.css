@@ -207,13 +207,12 @@ body::after {
     0 0 0 3px rgba(139, 92, 246, 0.15) !important;
 }
 
-:root.light .Polaris-Card {
-  background: var(--p-color-bg-surface) !important;
-}
-
+/* Light Mode Override for Page Background */
 :root.light .Polaris-Page {
   background: transparent !important;
 }
+
+/* Specific styling for Light Mode Cards creates conflict - deleted to strictly follow Glass style below */
 
 /* ============================================
    POLARIS CARDS - PROMINENT BORDERS LIKE MODEL CARDS 
@@ -273,11 +272,13 @@ body::after {
 }
 
 /* Modal Dialog Content - The Actual Glass Panel */
-.Polaris-Modal-Dialog__Modal {
-  background: rgba(139, 92, 246, 0.1) !important;
+/* TARGETING BOTH CLASSES FOR SPECIFICITY */
+.Polaris-Modal-Dialog__Modal,
+div[role="dialog"]>div[class*="Polaris-Modal-Dialog__Modal"] {
+  background: rgba(139, 92, 246, 0.15) !important;
   backdrop-filter: blur(80px) saturate(200%) !important;
   -webkit-backdrop-filter: blur(80px) saturate(200%) !important;
-  border: 2.5px solid rgba(139, 92, 246, 0.5) !important;
+  border: 3px solid rgba(139, 92, 246, 0.6) !important;
   border-radius: 24px !important;
   box-shadow:
     0 25px 80px rgba(0, 0, 0, 0.5),
@@ -288,13 +289,13 @@ body::after {
 }
 
 :root.dark .Polaris-Modal-Dialog__Modal {
-  background: rgba(139, 92, 246, 0.12) !important;
-  border-color: rgba(139, 92, 246, 0.6) !important;
+  background: rgba(139, 92, 246, 0.2) !important;
+  border-color: rgba(139, 92, 246, 0.7) !important;
   box-shadow:
     0 25px 80px rgba(0, 0, 0, 0.7),
-    0 0 100px rgba(139, 92, 246, 0.5),
+    0 0 100px rgba(139, 92, 246, 0.6),
     inset 0 1px 0 rgba(255, 255, 255, 0.1),
-    inset 0 0 60px rgba(139, 92, 246, 0.2) !important;
+    inset 0 0 60px rgba(139, 92, 246, 0.25) !important;
 }
 
 /* Modal Header */
