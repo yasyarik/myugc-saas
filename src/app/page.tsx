@@ -765,7 +765,7 @@ export default function Dashboard() {
                               <div className="model-text">
                                 <Text variant="bodySm" truncate>{model.name}</Text>
                               </div>
-                              <div style={{ position: 'absolute', bottom: '10px', right: '10px', display: 'flex', gap: '8px', zIndex: 20 }}>
+                              <div style={{ position: 'absolute', bottom: '6px', right: '6px', display: 'flex', gap: '4px', zIndex: 20 }}>
                                 <div style={{ background: 'rgba(255, 255, 255, 0.25)', backdropFilter: 'blur(4px)', borderRadius: '8px', display: 'flex' }}>
                                   <Tooltip content="Preview">
                                     <Button
@@ -801,7 +801,7 @@ export default function Dashboard() {
                             <div className="model-text">
                               <Text variant="bodySm" truncate>{model.name}</Text>
                             </div>
-                            <div style={{ position: 'absolute', bottom: '10px', right: '10px', display: 'flex', gap: '8px', zIndex: 20 }}>
+                            <div style={{ position: 'absolute', bottom: '6px', right: '6px', display: 'flex', gap: '4px', zIndex: 20 }}>
                               <div style={{ background: 'rgba(255, 255, 255, 0.25)', backdropFilter: 'blur(4px)', borderRadius: '8px', display: 'flex' }}>
                                 <Tooltip content="Preview">
                                   <Button
@@ -942,7 +942,7 @@ export default function Dashboard() {
                               <div className="model-text">
                                 <Text variant="bodySm" truncate>{loc.name}</Text>
                               </div>
-                              <div style={{ position: 'absolute', bottom: '10px', right: '10px', display: 'flex', gap: '8px', zIndex: 20 }}>
+                              <div style={{ position: 'absolute', bottom: '6px', right: '6px', display: 'flex', gap: '4px', zIndex: 20 }}>
                                 <div style={{ background: 'rgba(255, 255, 255, 0.25)', backdropFilter: 'blur(4px)', borderRadius: '8px', display: 'flex' }}>
                                   <Tooltip content="Preview">
                                     <Button
@@ -979,7 +979,7 @@ export default function Dashboard() {
                             <div className="model-text">
                               <Text variant="bodySm" truncate>{loc.name}</Text>
                             </div>
-                            <div style={{ position: 'absolute', bottom: '10px', right: '10px', display: 'flex', gap: '8px', zIndex: 20 }}>
+                            <div style={{ position: 'absolute', bottom: '6px', right: '6px', display: 'flex', gap: '4px', zIndex: 20 }}>
                               <div style={{ background: 'rgba(255, 255, 255, 0.25)', backdropFilter: 'blur(4px)', borderRadius: '8px', display: 'flex' }}>
                                 <Tooltip content="Preview">
                                   <Button
@@ -1705,12 +1705,11 @@ export default function Dashboard() {
             >
               Generate Photos
             </Button>
-            {selectedProducts.filter(p => p.selected !== false).length > 0 && (
+            {selectedProducts.length > 0 && (
               <Button
-                plain
-                onClick={() => setSelectedProducts(prev => prev.map(p => ({ ...p, selected: false })))}
+                onClick={() => setSelectedProducts([])}
               >
-                Clear
+                Clear Selection
               </Button>
             )}
             {isGenerating && (
