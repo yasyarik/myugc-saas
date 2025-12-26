@@ -55,9 +55,13 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
     ];
 
     return (
-        <div className="flex h-screen bg-transparent text-foreground overflow-hidden">
+        <div className="flex h-screen bg-transparent text-foreground overflow-hidden relative">
             {/* Sidebar */}
-            <aside className="w-72 border-r border-white/5 bg-[#0d0d10]/80 backdrop-blur-xl flex flex-col shadow-2xl z-50">
+            <aside className="w-72 border-r border-white/10 flex flex-col shadow-2xl relative z-10" style={{
+                background: 'rgba(255, 255, 255, 0.03)',
+                backdropFilter: 'blur(60px) saturate(180%)',
+                WebkitBackdropFilter: 'blur(60px) saturate(180%)',
+            }}>
                 <div className="p-6">
                     <Link href="/" className="flex flex-col items-center gap-2 group">
                         <img
@@ -66,7 +70,11 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
                             className="h-16 w-auto object-contain group-hover:scale-105 transition-transform"
                         />
                     </Link>
-                    <div className="mt-4 bg-emerald-600/10 border border-emerald-500/20 rounded-xl px-4 py-2 text-center">
+                    <div className="mt-4 px-4 py-2 text-center rounded-xl" style={{
+                        background: 'rgba(16, 185, 129, 0.08)',
+                        border: '1.5px solid rgba(16, 185, 129, 0.25)',
+                        backdropFilter: 'blur(20px)',
+                    }}>
                         <p className="text-xs text-emerald-400 font-medium">Credits Available</p>
                         <p className="text-lg font-bold text-white">10</p>
                     </div>
@@ -103,14 +111,21 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
                             </Link>
                             <Link
                                 href="/sign-up"
-                                className="block text-center py-2.5 px-4 bg-slate-700/50 hover:bg-slate-600/50 text-white rounded-xl text-sm font-semibold transition-colors backdrop-blur-md"
+                                className="block text-center py-2.5 px-4 text-white rounded-xl text-sm font-semibold transition-colors"
+                                style={{
+                                    background: 'rgba(255, 255, 255, 0.08)',
+                                    backdropFilter: 'blur(20px)',
+                                }}
                             >
                                 Create Account
                             </Link>
                         </SignedOut>
                     </div>
 
-                    <div className="flex items-center gap-3 px-4 py-4 bg-slate-900/40 backdrop-blur-md rounded-2xl border border-white/5 transition-all hover:bg-slate-800/40">
+                    <div className="flex items-center gap-3 px-4 py-4 rounded-2xl border border-white/5 transition-all" style={{
+                        background: 'rgba(255, 255, 255, 0.05)',
+                        backdropFilter: 'blur(30px)',
+                    }}>
                         <UserButton afterSignOutUrl="/" />
                         <Link href="/user-profile" className="flex-1 min-w-0 cursor-pointer hover:opacity-80 transition-opacity">
                             <p className="text-sm font-medium text-slate-200 truncate px-1">My Account</p>
