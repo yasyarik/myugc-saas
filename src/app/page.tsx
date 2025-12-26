@@ -1660,6 +1660,47 @@ export default function Dashboard() {
             </BlockStack>
           </Modal.Section>
         </Modal>
+        {/* Persistent FAB */}
+        <div
+          id="fab-container"
+          style={{
+            position: 'fixed',
+            bottom: '24px',
+            left: '50%',
+            transform: 'translateX(-50%)',
+            zIndex: 99999,
+            display: 'flex',
+            background: 'rgba(255, 255, 255, 0.65)',
+            backdropFilter: 'blur(20px) saturate(180%)',
+            WebkitBackdropFilter: 'blur(20px) saturate(180%)',
+            border: '1px solid rgba(255, 255, 255, 0.5)',
+            borderRadius: '100px',
+            padding: '8px 12px',
+            boxShadow: '0 8px 32px rgba(31, 38, 135, 0.15)',
+            transition: 'all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1)',
+            visibility: (customModels.length > 0 || selectedProducts.length > 0) ? 'visible' : 'hidden',
+            opacity: (customModels.length > 0 || selectedProducts.length > 0) ? 1 : 0,
+            pointerEvents: (customModels.length > 0 || selectedProducts.length > 0) ? 'auto' : 'none'
+          }}
+        >
+          <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+            <Button
+              variant="primary"
+              tone="critical"
+              onClick={handleGenerate}
+              loading={isGenerating}
+              disabled={isGenerating || (customModels.length === 0 && selectedModel === 'no-model' && !presetModels?.some(m => m.id === selectedModel))}
+            >
+              Generate {selectedProducts.length > 0 ? `(${selectedProducts.length})` : ''}
+            </Button>
+            {isGenerating && (
+              <Button onClick={() => window.location.reload()}>
+                Stop
+              </Button>
+            )}
+          </div>
+        </div>
+
       </DashboardLayout >
     </AppProvider >
   );
