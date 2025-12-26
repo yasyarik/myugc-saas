@@ -144,7 +144,7 @@ body::after {
       var(--p-color-bg-surface)), linear-gradient(135deg,
       rgba(139, 92, 246, 0.4) 0%,
       rgba(236, 72, 153, 0.4) 25%,
-      rgba(56, 189, 248, 0.4) 50%,
+      rgba(192, 132, 252, 0.4) 50%,
       rgba(34, 197, 94, 0.4) 75%,
       rgba(251, 146, 60, 0.4) 100%) !important;
   background-origin: border-box !important;
@@ -164,7 +164,7 @@ body::after {
   background: linear-gradient(135deg,
       rgba(139, 92, 246, 0.3),
       rgba(236, 72, 153, 0.3),
-      rgba(56, 189, 248, 0.3));
+      rgba(192, 132, 252, 0.3));
   -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
   -webkit-mask-composite: xor;
   mask-composite: exclude;
@@ -239,4 +239,3 @@ body::after {
 .Polaris-Modal-Section {
   background: transparent !important;
 }
-
