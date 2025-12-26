@@ -121,7 +121,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
             </aside>
 
             {/* Main Content */}
-            <main className="flex-1 overflow-y-auto bg-gradient-to-br from-[#0a0a0c] to-[#0f0f12]">
+            <main className="flex-1 overflow-y-auto bg-transparent relative z-10">
                 {children}
             </main>
         </div>
