@@ -585,8 +585,8 @@ export default function Dashboard() {
                               <div className="model-text">
                                 <Text variant="bodySm" truncate>{model.name}</Text>
                               </div>
-                              <div style={{ position: 'absolute', bottom: '6px', right: '6px', display: 'flex', gap: '4px', zIndex: 20 }}>
-                                <div style={{ background: 'rgba(255, 255, 255, 0.25)', backdropFilter: 'blur(4px)', borderRadius: '8px', display: 'flex' }}>
+                              <div className="card-icon-container">
+                                <div className="card-icon-glass-wrapper">
                                   <Tooltip content="Preview">
                                     <Button
                                       plain
@@ -621,8 +621,8 @@ export default function Dashboard() {
                             <div className="model-text">
                               <Text variant="bodySm" truncate>{model.name}</Text>
                             </div>
-                            <div style={{ position: 'absolute', bottom: '6px', right: '6px', display: 'flex', gap: '4px', zIndex: 20 }}>
-                              <div style={{ background: 'rgba(255, 255, 255, 0.25)', backdropFilter: 'blur(4px)', borderRadius: '8px', display: 'flex' }}>
+                            <div className="card-icon-container">
+                              <div className="card-icon-glass-wrapper">
                                 <Tooltip content="Preview">
                                   <Button
                                     plain
@@ -762,8 +762,8 @@ export default function Dashboard() {
                               <div className="model-text">
                                 <Text variant="bodySm" truncate>{loc.name}</Text>
                               </div>
-                              <div style={{ position: 'absolute', bottom: '12px', left: 0, right: 0, display: 'flex', justifyContent: 'center', gap: '4px', zIndex: 20 }}>
-                                <div style={{ background: 'rgba(255, 255, 255, 0.25)', backdropFilter: 'blur(4px)', borderRadius: '8px', display: 'flex' }}>
+                              <div className="card-icon-container">
+                                <div className="card-icon-glass-wrapper">
                                   <Tooltip content="Preview">
                                     <Button
                                       plain
@@ -799,8 +799,8 @@ export default function Dashboard() {
                             <div className="model-text">
                               <Text variant="bodySm" truncate>{loc.name}</Text>
                             </div>
-                            <div style={{ position: 'absolute', bottom: '12px', left: 0, right: 0, display: 'flex', justifyContent: 'center', gap: '4px', zIndex: 20 }}>
-                              <div style={{ background: 'rgba(255, 255, 255, 0.25)', backdropFilter: 'blur(4px)', borderRadius: '8px', display: 'flex' }}>
+                            <div className="card-icon-container">
+                              <div className="card-icon-glass-wrapper">
                                 <Tooltip content="Preview">
                                   <Button
                                     plain
@@ -885,7 +885,7 @@ export default function Dashboard() {
                           </div>
                           <div className="model-text"><Text variant="bodySm" truncate>{res.productTitle}</Text></div>
                           {res.imageUrl && (
-                            <div style={{ position: 'absolute', bottom: '40px', left: '0', right: '0', display: 'flex', justifyContent: 'center', gap: '6px' }}>
+                            <div className="card-icon-container results-icon-container">
                               <Tooltip content="Preview"><Button plain icon={MaximizeIcon} onClick={(e) => { e.stopPropagation(); setPreviewImage({ src: res.imageUrl, title: res.productTitle }); }} /></Tooltip>
                               <Tooltip content="Download"><Button plain icon={SaveIcon} onClick={(e) => { e.stopPropagation(); const link = document.createElement('a'); link.href = res.imageUrl; link.download = `${res.productTitle}.jpg`; link.click(); }} /></Tooltip>
                               <Tooltip content="Delete"><Button plain icon={DeleteIcon} onClick={(e) => { e.stopPropagation(); confirmDelete('Delete', 'Delete this image?', () => setBatchResults(prev => prev.filter(r => r.id !== res.id))); }} /></Tooltip>
@@ -1031,7 +1031,7 @@ export default function Dashboard() {
                               <Text variant="bodySm" truncate>{v.productTitle}</Text>
                             </div>
 
-                            <div style={{ position: 'absolute', bottom: '40px', left: '0', right: '0', display: 'flex', justifyContent: 'center', gap: '6px' }}>
+                            <div className="card-icon-container results-icon-container">
                               <Tooltip content="Maximize">
                                 <Button
                                   plain

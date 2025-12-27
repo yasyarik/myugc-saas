@@ -696,3 +696,27 @@ html body div.model-card.model-card-selected:hover {
 @media (max-width: 768px) {
   /* No overrides = Fixed Desktop Size (150x250) */
 }
+/* CARD ICON CONTAINERS - STANDARDIZED */
+.card-icon-container {
+    position: absolute;
+    bottom: 12px;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: center;
+    gap: 4px;
+    z-index: 20;
+}
+
+.card-icon-glass-wrapper {
+    background: rgba(255, 255, 255, 0.25);
+    backdrop-filter: blur(4px);
+    border-radius: 8px;
+    display: flex;
+}
+
+/* Results & Videos need higher clearance for text */
+.card-icon-container.results-icon-container {
+    bottom: 40px;
+    gap: 6px;
+}
