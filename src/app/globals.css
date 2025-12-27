@@ -330,6 +330,21 @@ div[role="dialog"]>div[class*="Polaris-Modal-Dialog__Modal"] {
   background-color: transparent;
 }
 
+/* ============================================
+   MODAL INTERNAL CLEANUP (Fix "Borders Everywhere")
+   ============================================ */
+/* Target ANY Polaris card/box INSIDE a modal and strip it */
+.Polaris-Modal-Dialog__Modal .Polaris-Card,
+.Polaris-Modal-Dialog__Modal .Polaris-LegacyCard,
+.Polaris-Modal-Dialog__Modal .Polaris-Box,
+.Polaris-Modal-Dialog__Modal div[class*="Polaris-Card"],
+.Polaris-Modal-Dialog__Modal div[class*="Polaris-LegacyCard"] {
+  border: none !important;
+  box-shadow: none !important;
+  background: transparent !important;
+  margin: 0 !important;
+}
+
 /* Modal inner elements that might have white */
 .Polaris-Box,
 .Polaris-BlockStack {
@@ -532,14 +547,16 @@ html body .Polaris-Button {
   background-color: rgba(255, 255, 255, 0.1) !important;
 }
 
-/* SELECTED STATE - BOLD WHITE BORDER - HIGH SPECIFICITY */
-html body .model-card.model-card-selected {
+/* SELECTED STATE - BOLD WHITE BORDER - HYPER SPECIFICITY */
+html body div.model-card.model-card-selected {
   border: 3px solid #ffffff !important;
   background-color: rgba(139, 92, 246, 0.15) !important;
-  box-shadow: 0 10px 40px rgba(139, 92, 246, 0.25) !important;
+  box-shadow: 0 0 0 3px #ffffff, 0 10px 40px rgba(139, 92, 246, 0.25) !important;
+  /* Double border trick to ensure visibility */
+  z-index: 10 !important;
 }
 
-html body .model-card.model-card-selected:hover {
+html body div.model-card.model-card-selected:hover {
   border: 3px solid #ffffff !important;
   background-color: rgba(139, 92, 246, 0.2) !important;
 }
