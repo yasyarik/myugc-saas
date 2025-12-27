@@ -205,25 +205,19 @@ div[class*="Polaris-Card"],
 div[class*="Polaris-LegacyCard"],
 .Polaris-Box {
   border-radius: 20px;
-  /* RESTORED BORDER */
-  border: 3px solid rgba(139, 92, 246, 0.6) !important;
-  border-top: 3px solid rgba(139, 92, 246, 0.6) !important;
-  border-bottom: 3px solid rgba(139, 92, 246, 0.6) !important;
-  border-left: 3px solid rgba(139, 92, 246, 0.6) !important;
-  border-right: 3px solid rgba(139, 92, 246, 0.6) !important;
+  /* 3D GLASS STYLE - Like Icons */
+  border: 1.5px solid rgba(255, 255, 255, 0.4) !important;
+  background: rgba(255, 255, 255, 0.05) !important;
+  backdrop-filter: blur(48px) saturate(180%) !important;
+  -webkit-backdrop-filter: blur(48px) saturate(180%) !important;
 
-  background: rgba(139, 92, 246, 0.05);
-  backdrop-filter: blur(40px) saturate(180%);
-  -webkit-backdrop-filter: blur(40px) saturate(180%);
-
-  /* DEPTH SHADOW ONLY */
+  /* DEPTH + 3D EDGE */
   box-shadow:
-    0 15px 35px rgba(0, 0, 0, 0.2),
-    inset 0 1px 0 rgba(255, 255, 255, 0.4);
+    0 20px 50px rgba(0, 0, 0, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.6) !important;
 
   overflow: visible;
   margin-bottom: 0;
-  /* REMOVED MARGIN */
   transform: translateZ(0);
 }
 
@@ -259,23 +253,23 @@ div[class*="Polaris-LegacyCard"],
 .Polaris-Modal-Dialog__Modal,
 div[role="dialog"]>div[class*="Polaris-Modal-Dialog__Modal"] {
   background: rgba(30, 30, 40, 0.6) !important;
-  /* Darker glass base */
   backdrop-filter: blur(60px) saturate(180%) !important;
   -webkit-backdrop-filter: blur(60px) saturate(180%) !important;
-  border: 3px solid rgba(139, 92, 246, 0.6) !important;
+
+  /* 3D GLASS STYLE */
+  border: 1.5px solid rgba(255, 255, 255, 0.4) !important;
   border-radius: 24px !important;
   box-shadow:
-    0 15px 30px rgba(0, 0, 0, 0.5),
-    /* Depth */
-    inset 0 1px 0 rgba(255, 255, 255, 0.2) !important;
+    0 30px 60px rgba(0, 0, 0, 0.5),
+    inset 0 1px 0 rgba(255, 255, 255, 0.3) !important;
   overflow: hidden !important;
 }
 
 :root.dark .Polaris-Modal-Dialog__Modal {
   background: rgba(20, 20, 30, 0.8) !important;
-  border: 3px solid rgba(139, 92, 246, 0.6) !important;
+  border: 1.5px solid rgba(255, 255, 255, 0.2) !important;
   box-shadow:
-    0 15px 40px rgba(0, 0, 0, 0.7),
+    0 30px 70px rgba(0, 0, 0, 0.7),
     inset 0 1px 0 rgba(255, 255, 255, 0.1) !important;
 }
 
@@ -771,12 +765,6 @@ html body div.model-card.model-card-selected:hover {
   display: flex;
   gap: 4px;
   /* Gap for wrapper children (Models/Locations) */
-
-  /* 3D GLASS EFFECT */
-  border: 1px solid rgba(255, 255, 255, 0.4);
-  box-shadow:
-    0 4px 12px rgba(0, 0, 0, 0.08),
-    inset 0 1px 0 rgba(255, 255, 255, 0.6);
 }
 
 /* Results & Videos - Unify with 38px */
