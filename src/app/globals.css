@@ -216,7 +216,8 @@ div[class*="Polaris-LegacyCard"],
     0 20px 50px rgba(0, 0, 0, 0.3),
     inset 0 1px 0 rgba(255, 255, 255, 0.6) !important;
 
-  overflow: visible;
+  overflow: hidden !important;
+  /* Fix corners clipping */
   margin-bottom: 0;
   transform: translateZ(0);
 }
@@ -646,26 +647,27 @@ html body div.model-card.model-card-selected:hover {
   background: rgba(255, 255, 255, 0.25) !important;
 }
 
-/* POLARIS TOOLTIP OVERRIDE - 3D GLASS STYLE (LIGHT) */
-.Polaris-Tooltip__Content {
-  background: rgba(255, 255, 255, 0.3) !important;
-  /* LIGHT GLASS LIKE ICONS */
+/* POLARIS TOOLTIP OVERRIDE - 3D GLASS STYLE (FORCE LIGHT) */
+html body .Polaris-Tooltip__Content,
+html body [class*="Polaris-Tooltip__Content"] {
+  background: rgba(255, 255, 255, 0.35) !important;
+  /* LIGHT GLASS */
   backdrop-filter: blur(12px) saturate(180%) !important;
   -webkit-backdrop-filter: blur(12px) saturate(180%) !important;
   border: 1px solid rgba(255, 255, 255, 0.5) !important;
   box-shadow:
     0 8px 30px rgba(0, 0, 0, 0.15),
     inset 0 1px 0 rgba(255, 255, 255, 0.7) !important;
-  /* 3D GLASS EDGE */
   border-radius: 12px !important;
   padding: 8px 16px !important;
   color: #0f172a !important;
-  /* DARK TEXT */
+  /* HARD FORCE DARK TEXT */
 }
 
-.Polaris-Tooltip__Label {
+html body .Polaris-Tooltip__Label,
+html body [class*="Polaris-Tooltip__Label"] {
   color: #0f172a !important;
-  /* DARK TEXT */
+  /* HARD FORCE DARK TEXT */
   font-weight: 600 !important;
 }
 
