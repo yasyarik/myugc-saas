@@ -618,50 +618,61 @@ html body div.model-card.model-card-selected:hover {
   justify-content: center;
   cursor: pointer;
   z-index: 10;
-  transition: all 0.2s ease;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
 
-  /* GLASS 3D STYLE */
+  /* PURE 3D GLASS STYLE */
   background: rgba(255, 255, 255, 0.25) !important;
-  backdrop-filter: blur(4px) !important;
-  -webkit-backdrop-filter: blur(4px) !important;
-  border: 1px solid rgba(255, 255, 255, 0.3) !important;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1) !important;
-  color: #64748b;
+  backdrop-filter: blur(8px) saturate(180%) !important;
+  -webkit-backdrop-filter: blur(8px) saturate(180%) !important;
+  border: 1px solid rgba(255, 255, 255, 0.4) !important;
+  box-shadow:
+    0 4px 12px rgba(0, 0, 0, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.6) !important;
+  /* The 3D line */
+  color: #475569;
 }
 
 .scroll-btn:hover {
-  background: rgba(255, 255, 255, 0.4) !important;
-  transform: scale(1.05);
-  color: #1e293b;
+  background: rgba(255, 255, 255, 0.45) !important;
+  transform: scale(1.1);
+  color: #0f172a;
   border-color: rgba(255, 255, 255, 0.6) !important;
+  box-shadow:
+    0 8px 20px rgba(0, 0, 0, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.7) !important;
 }
 
 :root.dark .scroll-btn {
-  background: rgba(255, 255, 255, 0.1) !important;
-  border: 1px solid rgba(255, 255, 255, 0.15) !important;
-  color: #e2e8f0;
+  background: rgba(255, 255, 255, 0.15) !important;
+  border: 1px solid rgba(255, 255, 255, 0.2) !important;
+  color: #f1f5f9;
 }
 
 :root.dark .scroll-btn:hover {
-  background: rgba(255, 255, 255, 0.2) !important;
+  background: rgba(255, 255, 255, 0.25) !important;
 }
 
-/* POLARIS TOOLTIP OVERRIDE - 3D GLASS STYLE */
+/* POLARIS TOOLTIP OVERRIDE - 3D GLASS STYLE (LIGHT) */
 .Polaris-Tooltip__Content {
-  background: rgba(30, 30, 40, 0.85) !important;
-  /* Dark glass for contrast */
-  backdrop-filter: blur(8px) saturate(180%) !important;
-  -webkit-backdrop-filter: blur(8px) saturate(180%) !important;
-  border: 1px solid rgba(255, 255, 255, 0.15) !important;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3) !important;
-  border-radius: 8px !important;
-  padding: 6px 12px !important;
-  color: white !important;
+  background: rgba(255, 255, 255, 0.3) !important;
+  /* LIGHT GLASS LIKE ICONS */
+  backdrop-filter: blur(12px) saturate(180%) !important;
+  -webkit-backdrop-filter: blur(12px) saturate(180%) !important;
+  border: 1px solid rgba(255, 255, 255, 0.5) !important;
+  box-shadow:
+    0 8px 30px rgba(0, 0, 0, 0.15),
+    inset 0 1px 0 rgba(255, 255, 255, 0.7) !important;
+  /* 3D GLASS EDGE */
+  border-radius: 12px !important;
+  padding: 8px 16px !important;
+  color: #0f172a !important;
+  /* DARK TEXT */
 }
 
 .Polaris-Tooltip__Label {
-  color: white !important;
-  font-weight: 500 !important;
+  color: #0f172a !important;
+  /* DARK TEXT */
+  font-weight: 600 !important;
 }
 
 /* Hide the little triangle tail if it clashes (optional, but safer for glass) */
@@ -754,11 +765,18 @@ html body div.model-card.model-card-selected:hover {
 
 .card-icon-glass-wrapper {
   background: rgba(255, 255, 255, 0.25);
-  backdrop-filter: blur(4px);
+  backdrop-filter: blur(8px) saturate(180%);
+  -webkit-backdrop-filter: blur(8px) saturate(180%);
   border-radius: 8px;
   display: flex;
   gap: 4px;
   /* Gap for wrapper children (Models/Locations) */
+
+  /* 3D GLASS EFFECT */
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  box-shadow:
+    0 4px 12px rgba(0, 0, 0, 0.08),
+    inset 0 1px 0 rgba(255, 255, 255, 0.6);
 }
 
 /* Results & Videos - Unify with 38px */
