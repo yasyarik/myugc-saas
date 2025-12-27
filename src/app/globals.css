@@ -599,7 +599,16 @@ html body div.model-card.model-card-selected:hover {
   display: none;
 }
 
-/* Scroll buttons */
+/* Standard 3D Glass Style (Like Icons) */
+.glass-3d-style {
+  background: rgba(255, 255, 255, 0.25) !important;
+  backdrop-filter: blur(4px) !important;
+  -webkit-backdrop-filter: blur(4px) !important;
+  border: 1px solid rgba(255, 255, 255, 0.2) !important;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05) !important;
+}
+
+/* Scroll buttons - Match Icons 3D Glass */
 .scroll-btn {
   width: 32px;
   height: 32px;
@@ -610,22 +619,54 @@ html body div.model-card.model-card-selected:hover {
   cursor: pointer;
   z-index: 10;
   transition: all 0.2s ease;
-  background: white;
-  border: 1px solid rgba(0, 0, 0, 0.1);
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+
+  /* GLASS 3D STYLE */
+  background: rgba(255, 255, 255, 0.25) !important;
+  backdrop-filter: blur(4px) !important;
+  -webkit-backdrop-filter: blur(4px) !important;
+  border: 1px solid rgba(255, 255, 255, 0.3) !important;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1) !important;
   color: #64748b;
 }
 
 .scroll-btn:hover {
-  background: #f8fafc;
-  color: #1e293b;
+  background: rgba(255, 255, 255, 0.4) !important;
   transform: scale(1.05);
+  color: #1e293b;
+  border-color: rgba(255, 255, 255, 0.6) !important;
 }
 
 :root.dark .scroll-btn {
-  background: rgba(30, 41, 59, 0.8);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  color: #cbd5e1;
+  background: rgba(255, 255, 255, 0.1) !important;
+  border: 1px solid rgba(255, 255, 255, 0.15) !important;
+  color: #e2e8f0;
+}
+
+:root.dark .scroll-btn:hover {
+  background: rgba(255, 255, 255, 0.2) !important;
+}
+
+/* POLARIS TOOLTIP OVERRIDE - 3D GLASS STYLE */
+.Polaris-Tooltip__Content {
+  background: rgba(30, 30, 40, 0.85) !important;
+  /* Dark glass for contrast */
+  backdrop-filter: blur(8px) saturate(180%) !important;
+  -webkit-backdrop-filter: blur(8px) saturate(180%) !important;
+  border: 1px solid rgba(255, 255, 255, 0.15) !important;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3) !important;
+  border-radius: 8px !important;
+  padding: 6px 12px !important;
+  color: white !important;
+}
+
+.Polaris-Tooltip__Label {
+  color: white !important;
+  font-weight: 500 !important;
+}
+
+/* Hide the little triangle tail if it clashes (optional, but safer for glass) */
+.Polaris-Tooltip__Tail {
+  display: none !important;
 }
 
 /* Action card content */
