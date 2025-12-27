@@ -283,11 +283,13 @@ div[role="dialog"]>div[class*="Polaris-Modal-Dialog__Modal"] {
 
 
 
-/* Modal Header */
+/* Modal Header - NO BORDER */
 .Polaris-Modal-Header {
   background: transparent !important;
-  border-bottom: none !important;
+  border-bottom: 0px none transparent !important;
+  border: none !important;
   padding: 20px 24px !important;
+  box-shadow: none !important;
 }
 
 .Polaris-Modal-Header__Title {
@@ -307,17 +309,22 @@ div[role="dialog"]>div[class*="Polaris-Modal-Dialog__Modal"] {
   border-color: rgba(139, 92, 246, 0.6) !important;
 }
 
-/* Modal Body/Section */
+/* Modal Body/Section - NO BORDER */
 .Polaris-Modal-Section {
   background: transparent !important;
   padding: 24px !important;
+  border: none !important;
+  border-top: none !important;
+  border-bottom: none !important;
 }
 
-/* Modal Footer */
+/* Modal Footer - NO BORDER */
 .Polaris-Modal-Footer {
   background: transparent !important;
-  border-top: none !important;
+  border-top: 0px none transparent !important;
+  border: none !important;
   padding: 16px 24px !important;
+  box-shadow: none !important;
 }
 
 /* Fix any white backgrounds inside modal */

@@ -762,7 +762,7 @@ export default function Dashboard() {
                               <div className="model-text">
                                 <Text variant="bodySm" truncate>{loc.name}</Text>
                               </div>
-                              <div style={{ position: 'absolute', bottom: '6px', right: '6px', display: 'flex', gap: '4px', zIndex: 20 }}>
+                              <div style={{ position: 'absolute', bottom: '12px', right: '12px', display: 'flex', gap: '4px', zIndex: 20 }}>
                                 <div style={{ background: 'rgba(255, 255, 255, 0.25)', backdropFilter: 'blur(4px)', borderRadius: '8px', display: 'flex' }}>
                                   <Tooltip content="Preview">
                                     <Button
@@ -799,7 +799,7 @@ export default function Dashboard() {
                             <div className="model-text">
                               <Text variant="bodySm" truncate>{loc.name}</Text>
                             </div>
-                            <div style={{ position: 'absolute', bottom: '6px', right: '6px', display: 'flex', gap: '4px', zIndex: 20 }}>
+                            <div style={{ position: 'absolute', bottom: '12px', right: '12px', display: 'flex', gap: '4px', zIndex: 20 }}>
                               <div style={{ background: 'rgba(255, 255, 255, 0.25)', backdropFilter: 'blur(4px)', borderRadius: '8px', display: 'flex' }}>
                                 <Tooltip content="Preview">
                                   <Button

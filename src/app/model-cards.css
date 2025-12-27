@@ -73,22 +73,23 @@
     background-color: rgba(255, 255, 255, 0.1) !important;
 }
 
-/* SELECTED STATE - BOLD WHITE BORDER */
-.model-card-selected {
-    border: 3px solid #ffffff !important;
-    background-color: rgba(139, 92, 246, 0.1) !important;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15) !important;
-}
-
-.model-card-selected:hover {
+/* SELECTED STATE - BOLD WHITE BORDER - HIGH SPECIFICITY */
+html body .model-card.model-card-selected {
     border: 3px solid #ffffff !important;
     background-color: rgba(139, 92, 246, 0.15) !important;
+    box-shadow: 0 10px 40px rgba(139, 92, 246, 0.25) !important;
+}
+
+html body .model-card.model-card-selected:hover {
+    border: 3px solid #ffffff !important;
+    background-color: rgba(139, 92, 246, 0.2) !important;
 }
 
 /* Card components */
 .model-img {
     width: 100% !important;
-    height: 180px;
+    height: 215px !important;
+    /* RESTORED HEIGHT */
     object-fit: cover;
     border-radius: 0 !important;
     margin: 0 !important;
