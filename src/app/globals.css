@@ -204,47 +204,41 @@ body::after {
 div[class*="Polaris-Card"],
 div[class*="Polaris-LegacyCard"],
 .Polaris-Box {
-  border-radius: 20px !important;
-  /* FORCE SINGLE BORDER */
-  border: 3px solid rgba(139, 92, 246, 0.6) !important;
-  border-top: 3px solid rgba(139, 92, 246, 0.6) !important;
-  border-bottom: 3px solid rgba(139, 92, 246, 0.6) !important;
-  border-left: 3px solid rgba(139, 92, 246, 0.6) !important;
-  border-right: 3px solid rgba(139, 92, 246, 0.6) !important;
+  border-radius: 20px;
+  /* NO BORDER AS REQUESTED */
+  border: none;
 
-  background: rgba(139, 92, 246, 0.05) !important;
-  backdrop-filter: blur(40px) saturate(180%) !important;
-  -webkit-backdrop-filter: blur(40px) saturate(180%) !important;
+  background: rgba(139, 92, 246, 0.05);
+  backdrop-filter: blur(40px) saturate(180%);
+  -webkit-backdrop-filter: blur(40px) saturate(180%);
 
-  /* DEPTH SHADOW ONLY - NO GLOW */
+  /* DEPTH SHADOW ONLY */
   box-shadow:
     0 15px 35px rgba(0, 0, 0, 0.2),
-    /* Dropped shadow for thickness */
-    inset 0 1px 0 rgba(255, 255, 255, 0.4) !important;
-  /* Glass Top Edge */
+    inset 0 1px 0 rgba(255, 255, 255, 0.4);
 
-  overflow: visible !important;
-  margin-bottom: 24px !important;
+  overflow: visible;
+  margin-bottom: 0;
+  /* REMOVED MARGIN */
   transform: translateZ(0);
-  /* Fix specific rendering artifacts */
 }
 
 /* Clear Dark Mode Overrides */
 :root.dark .Polaris-Card {
-  background: rgba(139, 92, 246, 0.1) !important;
-  border: 3px solid rgba(139, 92, 246, 0.6) !important;
+  background: rgba(139, 92, 246, 0.1);
+  border: none;
   box-shadow:
     0 15px 35px rgba(0, 0, 0, 0.5),
-    inset 0 1px 0 rgba(255, 255, 255, 0.1) !important;
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
 }
 
 /* Card sections transparent */
 .Polaris-Card__Section,
 .Polaris-LegacyCard,
 .Polaris-LegacyCard__Section {
-  background: transparent !important;
-  border: none !important;
-  box-shadow: none !important;
+  background: transparent;
+  border: none;
+  box-shadow: none;
 }
 
 /* ============================================
