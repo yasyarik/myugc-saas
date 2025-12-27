@@ -131,25 +131,7 @@ body::after {
 }
 
 /* Ultra-Glass Effect for Polaris Cards */
-.Polaris-Card {
-  background: var(--p-color-bg-surface) !important;
-  backdrop-filter: blur(48px) saturate(180%) !important;
-  -webkit-backdrop-filter: blur(48px) saturate(180%) !important;
-  border: 1.5px solid transparent !important;
-  background-image: linear-gradient(var(--p-color-bg-surface),
-      var(--p-color-bg-surface)), linear-gradient(135deg,
-      rgba(139, 92, 246, 0.4) 0%,
-      rgba(236, 72, 153, 0.4) 25%,
-      rgba(192, 132, 252, 0.4) 50%,
-      rgba(34, 197, 94, 0.4) 75%,
-      rgba(251, 146, 60, 0.4) 100%) !important;
-  background-origin: border-box !important;
-  background-clip: padding-box, border-box !important;
-  box-shadow: var(--p-shadow-card) !important;
-  border-radius: 20px !important;
-  position: relative;
-  z-index: 2;
-}
+/* REMOVED STALE RAINBOW GLASS TO AVOID CONFLICTS */
 
 
 
@@ -199,27 +181,34 @@ body::after {
    POLARIS CARDS - CLEAN LIQUID GLASS (FINAL RESET)
    ============================================ */
 /* Target ALL possible Polaris card variations */
+/* PURE 3D GLASS STYLE - Match Icons Perfectly */
 .Polaris-Card,
 .Polaris-LegacyCard,
 div[class*="Polaris-Card"],
-div[class*="Polaris-LegacyCard"],
 .Polaris-Box {
-  border-radius: 20px;
-  /* 3D GLASS STYLE - Like Icons */
-  border: 1.5px solid rgba(255, 255, 255, 0.4) !important;
+  border-radius: 20px !important;
   background: rgba(255, 255, 255, 0.05) !important;
-  backdrop-filter: blur(48px) saturate(180%) !important;
-  -webkit-backdrop-filter: blur(48px) saturate(180%) !important;
+  backdrop-filter: blur(40px) saturate(180%) !important;
+  -webkit-backdrop-filter: blur(40px) saturate(180%) !important;
+  border: 1.5px solid rgba(255, 255, 255, 0.35) !important;
 
-  /* DEPTH + 3D EDGE */
   box-shadow:
-    0 20px 50px rgba(0, 0, 0, 0.3),
-    inset 0 1px 0 rgba(255, 255, 255, 0.6) !important;
+    0 20px 50px rgba(0, 0, 0, 0.25),
+    inset 0 1px 0 rgba(255, 255, 255, 0.5) !important;
+  /* THE 3D EFFECT */
 
   overflow: hidden !important;
-  /* Fix corners clipping */
-  margin-bottom: 0;
+  margin-bottom: 0px !important;
   transform: translateZ(0);
+}
+
+/* Ensure children don't bleed or show backgrounds at corners */
+.Polaris-Card>div,
+.Polaris-LegacyCard>div,
+.Polaris-Box>div {
+  background: transparent !important;
+  border: none !important;
+  border-radius: inherit !important;
 }
 
 /* Clear Dark Mode Overrides */
@@ -647,27 +636,27 @@ html body div.model-card.model-card-selected:hover {
   background: rgba(255, 255, 255, 0.25) !important;
 }
 
-/* POLARIS TOOLTIP OVERRIDE - 3D GLASS STYLE (FORCE LIGHT) */
-html body .Polaris-Tooltip__Content,
-html body [class*="Polaris-Tooltip__Content"] {
-  background: rgba(255, 255, 255, 0.35) !important;
-  /* LIGHT GLASS */
+/* POLARIS TOOLTIP - 3D GLASS STYLE */
+.Polaris-Tooltip__Content,
+div[class*="Polaris-Tooltip__Content"] {
+  background: rgba(255, 255, 255, 0.5) !important;
+  /* Light Glass */
   backdrop-filter: blur(12px) saturate(180%) !important;
   -webkit-backdrop-filter: blur(12px) saturate(180%) !important;
   border: 1px solid rgba(255, 255, 255, 0.5) !important;
   box-shadow:
-    0 8px 30px rgba(0, 0, 0, 0.15),
-    inset 0 1px 0 rgba(255, 255, 255, 0.7) !important;
+    0 10px 30px rgba(0, 0, 0, 0.15),
+    inset 0 1px 0 rgba(255, 255, 255, 0.6) !important;
   border-radius: 12px !important;
   padding: 8px 16px !important;
-  color: #0f172a !important;
-  /* HARD FORCE DARK TEXT */
 }
 
-html body .Polaris-Tooltip__Label,
-html body [class*="Polaris-Tooltip__Label"] {
-  color: #0f172a !important;
-  /* HARD FORCE DARK TEXT */
+/* Targeted text color force */
+.Polaris-Tooltip__Content *,
+.Polaris-Tooltip__Label,
+div[class*="Polaris-Tooltip__Label"] {
+  color: #1a1a2e !important;
+  /* DARK TEXT */
   font-weight: 600 !important;
 }
 
